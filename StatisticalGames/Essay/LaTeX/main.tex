@@ -1,0 +1,340 @@
+\documentclass{article}
+
+% https://www.cl.cam.ac.uk/local/typography/phd/#margin
+\usepackage[a4paper, left=30mm, right=20mm, top=20mm, bottom=20mm]{geometry}
+
+% https://ctan.math.illinois.edu/macros/latex/contrib/tkz/pgfornament/doc/ornaments.pdf
+\usepackage{pgfornament}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage{yfonts,color}
+\usepackage{lettrine}
+\usepackage{marvosym}
+
+\newcommand{\util}{\scalebox{0.75}{\text{\Pfund}}}
+
+\title{{\bf Essay on uncertainty} \\ \pgfornament[height=0.8cm]{84}}
+\author{József Konczer}
+\date{March 2024}
+
+\begin{document}
+
+\maketitle
+
+\section*{Opening}
+
+\lettrine[lines=2]{T}{he} subject of this essay might seem hopelessly vast and ungraspable, almost by definition.
+However, I do not attempt to discuss uncertainty itself, instead I will examine mainly the possible strategies by which one can cope with uncertain factors.
+
+In general, it is very hard – perhaps impossible – to say or suggest anything meaningful or well-founded about the ``unknown''. If we take an honest look at the possibilities in a real-world scenario, then we have to conclude that we have no real good arguments by which we could rule out any shape into which reality might fold out. We might have good heuristics – such as our own experience, scientific findings, and possibly other guiding principles – which would be faulty to disregard, but in my view, none of these has the power to bring certainty.
+(This does not mean, however, that operating in an uncertain world would be impossible. Organisms make decisions and act continually. Realizing that thinking can not bring certainty only emphasizes that acting in the real world is more of an art than a science.)
+
+To overcome this both disturbing and liberating relationship with reality, it is safer to start discussing simpler, idealized decision-making problems for the sake of reasoning.
+Although these examples suffer from idealization, they hopefully can function as prototypes, leading to reasonable and useful heuristics.
+The reductionist approach has been used several times to grapple with the concept.
+Games of chance, repeatable mass phenomena, situations where our experience allows us to formulate a degree of belief and the case of specific physical systems (such as chaotic/ergodic systems and quantum states) have all been used to restrict the domain of uncertainty for the sake of model making.
+
+In this essay, I attempt to impose a little less restriction on the concept than in previous works.
+Because of the broader scope, the introduced framework can be viewed as the generalization of previous frameworks, even if it is still very far from a general theory of the uncertain.
+
+\section*{Proposed framework}
+
+To introduce the proposed framework, I might start with a simple but general example, together with the suggested strategy. Let us assume, the followings:
+
+\begin{itemize}
+    \item An Agent can restrict the possible states of the world to a finite set. We will denote this set by $\Theta$ and call it the parameter set;
+    \item The Agent can consider only a finite set of possible actions. The set of actions will be denoted by $\mathcal{A}$;
+    \item Lastly, the Agent can associate utilities (or rewards) to all potential consequences, which depends both on her action and the possible state of the world. This function (in the finite representable by a matrix) will be denoted by $U: \mathcal{A} \times \Theta \mapsto \mathbb{R}$.
+\end{itemize}
+
+Under these assumptions, the game-theoretic framework for statistics would suggest the following strategy for the Agent:
+
+\begin{itemize}
+    \item Imagine that the unknown parameter $\theta \in \Theta$ has been chosen by an opponent whose utility function is the regret of the Agent;
+    \item Determine the Nash equilibrium for such a two-player non-cooperative game;
+    \item Adopt the equilibrium strategy of this imagined game to choose an action from the action set $\mathcal{A}$.
+\end{itemize}
+
+The primary goal of the following treatise is to elaborate on this procedure and show the viability of the above-suggested decision-making strategy.
+
+
+\section*{Objections, defenses and remarks}
+
+\subsection*{Assumptions}
+
+First of all, I should discuss the assumptions for the proposed framework.
+
+\paragraph{Possibilities without probabilities:}
+Some might question the first assumption, or more precisely the lack of – subjective – prior probabilities associated with the possible states of the world: $\Theta$. This objection is not easy to answer completely, but it seems to me that there are good arguments about why an Agent should have decision-making processes when no prior is justified.
+
+I agree that if the Agent has credible experience or information about the possible states of the world, then this should be incorporated and continue with standard (for instance Bayesian) decision-making.
+However, I disagree with the suggestion that model-making always requires (or implies) a conditional prior, given all knowledge the Agent has. In the light of a more general framework, requiring a prior might seem like forcing the Agent to pick unfounded beliefs prematurely.
+
+Perhaps a more extreme requirement can illustrate how premature judgements can cause ``suboptimal'' decisions:
+Imagine that a ``subjective logicist'' believes all propositions must ultimately be either true or false. Therefore, model-making requires picking a definite non-contradicting set of truth values for propositions, i.e. believing and choosing one definite state from $\Theta$.
+This might look like an extreme requirement and can lead to an extreme decision-making process, but formally, it seems just as hard to rule out as demanding a subjective prior. Agents who follow a ``subjective logicist'' doctrine can sometimes win, and if they guess the state of the world correctly, they may be more successful than more cautious players.
+This example shows that even in extreme cases, there are no obvious arguments by which one could definitely rule out an Agent's decision-making doctrine.
+
+However, there are weaker arguments:
+\begin{itemize}
+    \item The ``subjective logicist'' framework can be reinterpreted as a particular case of a subjective Bayesian framework because if the Agent has very strong background knowledge, then her prior can be concentrated on one single state from $\Theta$, and her choice of action indistinguishable from a ``subjective logicist's'' behaviour (who happened to choose the same state).
+    \item There might be situations where the doctrine of a ``subjective logicist'' ``feels'' extreme, and the definite choice of a state forced and premature.
+\end{itemize}
+
+I do not see much better arguments for considering a framework which does not demand the Agent to develop a prior for the possible states. One can show that in a multi-level game setting, as the amount of collected data from other rounds goes to infinity, the collected data can be incorporated into the decision as a prior, i.e. the Bayesian framework can be interpreted as a particular case of a game theoretic framework. Further, one can ``feel'' that there are some decision-making problems in which no specific prior is well founded, and a prior choice would seem forced and premature.
+
+\paragraph{Finiteness:}
+An obvious objection against both the first and second assumption about the finite set of states and actions is naturally valid, but discriminating ``important'' (or ``relevant'') possibilities and actions from all imaginable (or possible) states and actions is an essential task of model making, even if the model will suffer from these idealized simplifications.
+
+\paragraph{Assigning utilities:}
+The introduction of the concept of utility and the requirement that the Agent has to be able to associate her own subjective utility with all possible outcomes in the third assumption might seem like an additional concept to statistics and a heavy burden put on the Agent.
+
+However, the concept of utility is essential in most other decision-making processes, which are aided by statistics and/or probability theory. The standard assumption is that a ``rational'' Agent maximizes her Expected Utility, where the expectation is taken with respect to probabilities determined by statistics and/or a probabilistic/stochastic model. The decision-making process is usually performed modularly: The stochastic model and statistics produce probabilities for the possible states, independent of the utilities of outcomes; then, for all actions, the expected utilities are determined as the weighted sum of outcome utilities; and finally, the action providing the maximal expected utility is selected.
+
+To use probability and statistics for decision-making, one must determine the utility of possible outcomes. The reason why these concepts can decouple is the form of Expected Utility, which is determined as the simple bilinear expression of the probabilities and utilities ($\mathrm{EU}(a)=\sum_\theta U(a,\theta) \pi(\theta)$).
+
+The main difference compared to traditional frameworks is that in the game-theoretic framework, the main focus is on the actions and strategies, not beliefs or asymptotic frequencies.
+In traditional frameworks, beliefs and utilities can be decoupled, while in the game-theoretic framework, the whole decision-making process is performed as one unified strategy.
+
+\subsection*{Suggested strategy}
+
+After discussing the assumptions, we can take a closer look at the suggested decision-making process.
+
+\paragraph{Imaginary opponent:}
+Imagining that the unknown states are chosen by a strategic player is perhaps the most controversial part of the suggested strategy. It might seem like an unfounded metaphysical claim or a form of animism. However, this imaginary opponent is not something the Agent has to wholeheartedly believe or accept. It is only a metaphor, an analogy, which can be adopted—not because of any claim about the unknown, but because such construction can provide ``reasonable'' and ``generalizable'' strategies.
+
+To put this aspect into perspective, it is good to point out that no other frameworks are free of metaphysical claims and constructions either.
+The classical theory of probability postulates that all possibilities have to be assigned with the same degree of belief and often introduces idealized devices of chance (such as coins and dice), which are embodiments of stochastic behaviour. (While the associated probabilities are often determined by symmetry arguments.)
+In the frequentist framework, it is often postulated that some experiments have inherently stochastic behaviour and that no pattern can be found in their outcomes. The possibility of infinite repetition, the assumption of independence, and the convergence of frequency ratios are all further very strong claims and assumptions appearing in this framework.
+In the Bayesian framework, the concept of prior has a nontrivial interpretation and might be viewed as a non-strictly empirical component of the theory.
+
+\paragraph{Potential values of science:}
+The scientific worldview favours objective formulations of ``natural laws'' and ``natural phenomena'' that are not biased by the observer’s beliefs or values. Deducing patterns and principles that are not subservient to popular ideologies has been a very successful project in various fields of science, but science alone can not advise Agents how to act.
+In my view, the practical application of scientific knowledge necessitates the incorporation of personal values; therefore, a purely scientific, value-free decision-making process is hardly imaginable.
+
+Moreover, to a large extent, science is an empirical discipline that relies on real-world data to construct models or match parameters. Statistics is the bridge, which is used to connect the finite amount of observation with abstract values, by separating the ``noise'' from the ``phenomena''. Because of this unique position, connecting the complex and mysterious real world with the constructed abstractions of the scientist, a framework of statistics and probability might be judged differently than abstract scientific theories. Therefore, it could be acceptable – or even be necessary – that such frameworks contain metaphysical elements, including values or utilities. 
+
+However, it might be possible to keep the scientific project separate from subjective values and ideologies if we spell out scientific values. A natural scientific value might be simplicity (quantitatively the length in bits of the model and the data), predictive power (the success rate of guessing the outcome of not yet performed experiments), and possibly other information-related measures. In this way, science does not need to maintain that it is value-free, but it has to spell out its ideology-free ``neutral'' or ``scientific'' values.
+
+A family of ``natural'' utility functions has been adopted and analysed in a separate, more technical, and more mathematically oriented manuscript. Because of the obtained results – which seem robust and reasonable – these could be suggested as default utilities for a standard statistical procedure and might be good candidates for ``neutral'' or ``scientific'' utility functions.
+
+\paragraph{Regret over negative utility:}
+A further important detail in this metaphysical construction is that we assume that the imagined player controlling the unknown parameters ``feeds on'' the Agent’s regret.
+The Agent’s regret associated with a specific outcome $(a,\theta)$ is the difference between the utility of the outcome and the best possible utility for the same parameter $\theta$. Formally: $R(a,\theta) = \max_{b} U(b,\theta) – U(a,\theta)$.
+Historically, Abraham Wald pioneered a construction where ``Nature'' – the player controlling the unknown parameters – is in a zero-sum game with the ``Experimenter'' – the Agent in our framework.
+
+The difference between regret and negative utility might seem small, but in some cases, this difference can cause a dramatic change in behaviour.
+The problems with a minimax decision theory were pointed out by Leonard Savage, who half-heartedly suggested the use of regret instead of utilities.
+
+To illustrate the difference between zero-sum and regret-based attitudes, let us consider a fictional toy example:
+Imagine a prehistoric band searching for a new home in Europe or Asia. They have wandered for a long time, reaching a different habitat from which they came. Once they discover a cave opening that might be suitable for the group. However, they know that cave bears exist, which prefer the same kind of caves suitable for humans, and that they vigorously defend their territory against intruders.
+Fighting a cave bear is not hopeless, but it takes lengthy and costly preparation, and the possible encounter is inherently dangerous and risky.
+The decision-making problem of the band standing at the cave opening can be simplified in the following way:
+The band has to decide whether to start a costly preparation for fighting a cave bear or just quickly send in a small group without wasting any precious time.
+The outcome of their choice naturally depends very much on the presence or absence of a cave bear.
+There are four possible outcomes for which they can associate subjective utilities:
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|cc}
+        Band $\backslash$ Bear & Present & Absent \\
+        \hline
+        Prepared but slow & Bad ($-10\ \util$) & Inconvenient ($-1\ \util$) \\
+        Swift but unprepared & Very bad ($-50\ \util$) & Convenient ($+10\ \util$) \\
+    \end{tabular}
+    \caption{Utility matrix of the band. Utilities are estimated in utils (denoted as $\util$).}
+    \label{tab:BandBearUtilityMatrix}
+\end{table}
+
+Now, let us see what difference in behaviour it would make if a band imagines a zero-sum game or assumes that the unknown factors are chosen by a force that feeds on their regret.
+
+{\it Zero-sum band and Regret band:}
+The Zero-sum band's conclusion and behaviour are straightforward to determine with standard game theoretical argumentation.
+From the cave bear’s point of view, being Present is always better than being Absent because it is worse for the band regardless of the band's action. In technical terms, being Absent is strictly dominated by being Present for the cave bear.
+If we know – or believe – that the bear is surely present, then we conclude that we always have to Prepare. So, for the Zero-sum band, their metaphysical construction leads to a strategy where they will always prepare to fight the cave bear.
+
+Now, let us see what a band focusing on Regret would do.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|cc}
+        Band $\backslash$ Bear & Present & Absent \\
+        \hline
+        Prepared but slow & Best action if the bear is Present ($0\ \util$) & Inconvenient instead of Convenient ($11\ \util$) \\
+        Swift but unprepared & Very bad instead of Bad ($40\ \util$) & Best action if the bear is Absent ($0\ \util$) \\
+    \end{tabular}
+    \caption{Regret matrix of the band. Regrets are determined as $R(a,\theta) = \max_{b} U(b,\theta) – U(a,\theta)$ and measured in the same utils as utility (denoted as $\util$).}
+    \label{tab:BandBearRegretMatrix}
+\end{table}
+
+In an imagined game, where the band is trying to maximize its expected utility $U(a,\theta)$, while the bear is trying to maximize the regret of the band $R(a,\theta)$, has only a mixed strategy equilibrium, where both the band and the bear are choosing their action randomly.
+A straightforward calculation shows that in equilibrium, the band will more probably prepare with a $78.4\%$ chance and will rush into the cave only with a $21.6\%$ chance.
+
+The equilibrium calculation also determines the bear's strategy; however, the band's own strategy is of primary importance, and the behaviour of the imagined bear is secondary.
+In equilibrium, the imaginary bear is present with probability $21.6\%$ and absent with $78.4\%$.
+
+{\it Exploring some variations:}
+To see clearer how the strategies of the bands match our intuition, let us consider a varied example in which the unprepared bear encounter has much worse consequences:
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|cc}
+        Band $\backslash$ Bear & Present & Absent \\
+        \hline
+        Prepared but slow & Bad ($-10\ \util$) & Inconvenient ($-1\ \util$) \\
+        Swift but unprepared & Catastrophic ($-500\ \util$) & Convenient ($+10\ \util$) \\
+    \end{tabular}
+    \caption{Utility matrix of the band in a more dangerous situation. Utilities are estimated in utils (denoted as \util).}
+    \label{tab:BandBearUtilityMatrix2}
+\end{table}
+
+We could repeat the same steps which we made previously and arrive at the following results:
+The behaviour of the Zero-sum band does not change; they will always Prepare and enter slowly.
+The behaviour of the Regret band changes: now they will prepare with a much higher chance, with probability $97.8\%$ (and rush into only with $2.2\%$ chance).
+
+{\it Comparing the bands' behaviour:}
+The difference between these two approaches might not be striking at first, and some might even prefer to belong to the more cautious band because it is ``better to be safe than sorry''.
+
+However, the overly cautious nature of the zero-sum band becomes apparent when we consider that before entering the cave, band members can search for clues and evidence about the bear's presence or absence.
+If there are no tracks, fur, or other typical clue, then the chances of a bear encounter decrease.
+However, there is no consistent mechanism or argument on how this could alter the zero-sum band’s belief that there must be a bear in the cave.
+No matter the weak probabilistic evidence, until there is no proof that finding a bear in the cave is impossible, they will remain in the same mindset and prepare for the encounter.
+Technically, this means that a band with such metaphysical construction can not incorporate new evidence and change its strategy accordingly, i.e., it can not learn.
+
+On the contrary, the band, assuming that a trickster is trying to cause them regret by the unknown parameters, will be able to incorporate such side information (given that they can connect weakly or probabilistically the clues with the presence or absence of bears) and change their strategy accordingly.
+Even if they can not prove that there is no bear in the cave, enough amount of evidence can convince them, that they can choose preparation only very rarely.
+
+To illustrate the difference, let us take a fictional example:
+The band finds a cave in a snow-covered territory. They know the last snowfall was one week ago and that cave bears are not hibernated yet. They carefully approach the cave opening and find no tracks or evidence of a large animal.
+Even if the elders know that for a cave bear, not leaving the cave for a week before hibernation is very improbable, the two different bands would have very different strategies.
+The zero-sum band is convinced there is a cave bear because this would harm the band most, so they prepare before entering.
+While the other band, assuming a trickster-like opponent interested in their regret, will incorporate this new information, enter more swiftly, and make the costly preparation only when they ``feel exceptionally unlucky''.
+
+{\it Conclusion:}
+What can this fictional story teach us? I think the strongest message is that subtle differences in metaphysical constructions can dramatically change agents' behaviour.
+Some constructions can be safer, but result rigid believes derived from pessimism, which prevent learning and adopting to a less dangerious situation.
+Other constructions can promote more risk-taking; they generally require randomized or mixed strategies and can change their behaviour if new information is available.
+
+Being adaptive or able to learn can be a meta-requirement for policies, but this does not mean that such policies will perform better in all environments.
+Learning requires making mistakes, and it can happen that an adaptive Agent needs to pay more during her adaptation than a rigid player, who happened to choose a beneficial strategy from the beginning.
+(In biology, for example, both approaches can make a species successful: they can be adaptive on the individual level by learning and accommodating, or individuals can follow rigid action patterns, which can be changed only by mutation and recombination of genes in the next generation. Naturally, in real organisms, both can be present, but the proportions and importance can vary.)
+
+\paragraph{Compatibility with Bayesian decision making:}
+
+
+
+\paragraph{Why Nash equilibrium?}
+There are further possible objections against adopting a strategy deduced by finding the Nash equilibrium of an imaginary game:
+Why use Nash equilibrium?
+
+To take the objection against Nash equilibrium seriously, it might be useful to list a few alternatives:
+\begin{itemize}
+    \item An interesting alternative might be the so-called Berge equilibrium, which is the formalization of the ``golden rule'', assuming that the agents are more concerned about the other's expected utility than their own.
+    \item Another proposal might be a ``logit equilibrium'' (which could be called a Boltzmann-Nash equilibrium), in which expected utilities play the role of (negative-) energy, while a temperature-like factor can be used to tune the randomization of the actions. (In general, the ``temperatures'' could be different for different players.)
+    \item Correlated equilibrium could be another candidate to replace Nash equilibrium solutions.
+\end{itemize}
+
+There might be myriad ways to define and formulate an equilibrium concept, but this does not disturb the general arguments for choosing Nash equilibrium.
+
+{\it Simplicity:}
+The first argument is that Nash equilibrium is a simple concept. It is a pair of (possibly randomized) strategies in which no player can win more by unilaterally changing her strategy.
+
+{\it Useful in biology:}
+It seems to describe sufficiently well a wide variety of biological and animal behaviour, signalling that biological organisms might have heuristics and neural or other faculties, which can understand and react to ``games''. Thus, it can be expected that an organism with a long evolutionary history reached an evolutionary stable Nash equilibrium point. (Technically, evolutionary adaptation and adaptation using cognitive skills are different, but Nash equilibrium can similarly describe the observed behaviour in a given situation.)
+This argument strenghtens the case to adopt Nash equilibrium as a descriptive theory, but if such decision theory can be formalized, and has ``desirable properties'' then it might serve as a natural starting point for decision making doctrines.
+
+{\it Sound consequences:}
+However, in my view, the most important feature of an equilibrium concept is the decision-making behaviour it induces. This will be analyzed in more detail in the following.
+
+\paragraph{Randomization in mixed strategies:}
+What does randomization in mixed strategies really mean, and how can the Agent take a randomized action?
+I think this question can lead to very complex concepts, but it could also be answered very simply: random acts are what we expect and do when we play rock-paper-scissors (or Matching Pennies, also known as Guess The Hand or Hand Game).
+When the rules are set, even before the first round, we have a belief about what we expect from our opponent. I suggest promoting this expectation for the yet unknown choice to the definition of a random choice.
+On the other hand, for our own strategy, randomization means that we might follow a very complex algorithm, incorporate data from external processes, or take any necessary measures to make our choice of action as unpredictable as possible.
+Strictly speaking, we have two different concepts: randomization and expecting a random choice.
+
+I think the concrete realization of randomization is the one which leads to deeper questions.
+In practice, agents or players will use various methods to choose from their actions in games that have mixed equilibrium. This might include pseudorandom numbers or the result of any complex computation or algorithm. However, what might look complex for one player might look regular for another, and if the regularity can be spotted, then it can be exploited.
+Are there sequences that can not be exploited? Or, more precisely, are there sequences of actions that would discourage any opponent from searching for patterns and expecting to take advantage?
+
+{\it Complex versus random sequences:}
+Personally, I think that no realized finite sequence has this discouraging effect because for any finite sequence, we can find a finite algorithm (or computable program) which matches the known sequence perfectly and can continue indefinitely. Naturally (and provably), most sequences need a long algorithm to match exactly. However, I do not see any objective criteria which might separate ``regular sequences'' from ``random sequences'', at least in the finite case.
+
+If there would be a criterion, let's say in the form of a test $T$, applicable to $n$-long binary sequences, then this would lead to a little paradox:
+Let's say we can bet on the outcome of an $n$-long random sequence. If randomness means that the sequence needs to belong to the subset of all possibilities where $T$ is true, that would exclude some ``regular sequences'' and increase the bettor's winning prospects.
+I think this clearly shows that if you want to play Matching Pennies, you must not exclude ``too regular sequences'' because this can make you more predictable.
+
+The situation might be different for infinite sequences. In the infinite case, non-computable sequences such as Chaitin omega number(s) can be defined, which might discourage any opponent from taking advantage.
+Personally, I think this is a fascinating branch of mathematics, but I do not think it is necessary to think and reason about constructions and strategies involving randomness.
+Therefore, I suggest grounding the concept of randomness in our experience with simple games.
+
+\paragraph{Correspondence principle and limiting cases:}
+There are several viewpoints from which the behaviour emerging from a metaphysical construction can be analyzed and evaluated. An important test for any theory with a broader domain of validity is to explore its limiting cases, where we expect to get back the results of previous, narrower frameworks. The suggested decision-making framework has several limiting cases:
+
+\begin{enumerate}
+    \item A case when the utilities of some consequences go to extreme values;
+    \item The limit where the number of possible states of the world goes to infinity;
+    \item The case where the possible actions for the Agent go to infinity;
+    \item The limit where the available ``relevant data'' goes to infinity.
+\end{enumerate}
+
+A few general meta requirements can be collected, such as:
+
+{\it Evade catastrophes:}
+A natural requirement for the 1. case might be that an Agent should avoid actions, which can lead to catashtrofic possibilities (if there are other actions which do not bring such calamities).
+
+{\it Continuouty and Smoothness:}
+Much weaker requirements can be listed for the 2. and 3. cases:
+Reaching a well-defined continuum limit might be a desirable property of a metaphysical construction (if the Agent acquires well-behaving utility functions in the limit).
+However, continuity or smoothness does not seem to be a property, which, in its absence, could exclude metaphysical constructions.
+Analytic properties might be reassuring but not essential.
+
+{\it Correspondence with Bayesian and ``Frequentist'' decision making:}
+The 4. limiting case can give much stricter requirements for acceptable behaviours in the face of uncertainty:
+This is where the general correspondence principle can be effectively utilized to connect the proposed frameworks with decision-making under risk (where the Agent can associate probabilities with the possible states of the world).
+In particular, it seems a reasonable requirement that if the amount of ``relevant data'' goes to infinity, the behaviour should converge to both ``Frequentist'' and Bayesian decision-making strategies.
+
+\paragraph{One dimensional, real-valued utilities:}
+Is it correct to associate one real number to consequences measuring their ``utility''?
+I think the claim that a one-dimensional scale to compare consequences might not be sufficient could be taken seriously. Salty food might make us less hungry but more thirsty, or another outcome might increase our reproductive chances but decrease our safety. It could be conceivable that we associate separate ``utilities'' with several ``aspects'' that might be important for an Agent.
+This might reflect an Agent’s internal/psychological states more faithfully, but it seems hard to derive strategies based on such multidimensional utilities.
+
+This conflict between usability and personal experiences might be bridged by assuming that decision makers (humans, for instance) are not ``elementary Agents'' (which have only a one-dimensional utility function) but ``composite Agent'', which are composed of multiple elementary Agents having different utilities choosing their own internal actions.
+In this framework a composite Agent with actions set $\mathcal{A}$ and consequence set $\mathcal{C} \subset \mathcal{A} \times \Theta$ could be described by 
+$\aleph_1,\dots,\aleph_n$ internal agents, a decision rule (a mapping from $\mathcal{A}_1 \times \dots \times \mathcal{A}_n \mapsto \mathcal{A}$) and separate elementary utility functions for each internal agents $u_i: \mathcal{A}_1 \times \dots \mathcal{A}_n \times \Theta \mapsto \mathbb{R}$.
+This construction might capture a “composite Agent's” internal life and can yield a framework in which different aspects can potentially play a role in determining the final strategy of a non-elementary or composite Agent.
+
+{\it Capricious behaviour:}
+In this framework, the seemingly capricious behaviour of some Agents could be understood as a composite Agent composed of highly non-aligned elementary agents and non-authoritarian decision rules.
+
+{\it Dual descriptions:}
+This might open an interesting direction for understanding real-world Agents. One could start to search for a finer and finer ``dissection'' of composite Agents to elementary Agents. Although this is not unheard of in Philosophy, Religious metaphysics, and Psychology, associating agency to smaller and smaller constituents of organisms is not the ``naturalistic'' or ``materialistic'' viewpoint.
+(There are, however, framings which have a similar flavour, such as the Free will theorem of John H. Conway and Simon B. Kochen (although not associating preferences to elementary particles).)
+I am not convinced that such an animated description of the world and decision-makers is the ``right'' approach toward a unified theory. However, it is conceivable for me that it might yield a dual description besides the Naturalistic framework. (By duality, I mean that a dictionary between two theories or frameworks can be found that can describe the ``same thing'' in a ``different language''. However, some things might be more suitable for one language, and other things might be more suitable for another.)
+
+In ``continental philosophy'' (named this way by ``analytical philosophers''), phenomenology advocated by Husserl and Merleau-Ponty might be considered to be such a dual description. (In natural sciences, Ernst Mach’s Empirio-criticism might also belong here.) Starting with the Agent's Experiences, referring to ``Natural laws'' only as organizing principles. I think this can be a perfectly valid dual understanding of the world, where reality is defined as an equivalence class of subjective experiences.
+I do not see a huge difference between an Agent adopting a Naturalistic or Phenomenological viewpoint because I do not think this would cause dramatic differences in the Agent’s actions.
+(I think actions are what really separate metaphysical constructions, not the actual beliefs (or the chosen language to articulate these beliefs).)
+
+\paragraph{Prototypical games:}
+Even if every real-life situation is different, there might be some typical decision-making problems that occur frequently and can give good starting points for developing our own views that suit our own situation.
+I will mention three main branches of prototypical decision-making problems and one simple modification generalizing the Target (which might be in a very different domain from which we gathered the Data or where the separate parameters of the model are important).
+
+While I vigorously defend the Agents right to define her own utility function in a way she finds most suitable, I think it is illuminating to list a few default utility functions and make suggestions about ``natural'', ``neutral'' or ``scientific'' utility functions which might be suitable for ``purely scientific'' inquiry.
+
+
+{\centering
+\vspace{1 cm}
+  \Huge To be continued.\par
+}
+
+
+%To demonstrate, that such construction indeed provides ``reasonable'' decision making strategies, one has to explore and analyze the resulted strategies. This mainly mathematical task has been started by the fir
+
+\end{document}
