@@ -1,3 +1,5 @@
+![](20240503_QMUL_Cover.png)
+
 # Statistical Games
 
 Date: 3 May 2024
