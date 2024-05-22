@@ -1,7 +1,7 @@
 import scipy.special
 
-def F(x):
-    return x * 2
+def fishergame_solve(N, KA, KB, M):
+    return _fishergame_solve(N, KA, KB, M)
 
 def _fishergame_solve(N, KA, KB, M):
     
@@ -42,5 +42,3 @@ def _fishergame_solve(N, KA, KB, M):
     s_star = (k_star + nu_star) / (N + 1)
 
     return {'P':P_star, 'k':k_star, 'nu':nu_star, 's':s_star, 'v':v_star}
-
-print(_fishergame_solve(1,0,1,2))
