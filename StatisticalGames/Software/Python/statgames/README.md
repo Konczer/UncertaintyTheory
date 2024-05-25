@@ -4,6 +4,10 @@ A package for calculating equilibrium quantities for Fisher, Bayesian, and Stati
 
 Based on the [arXiv:2402.15892](https://arxiv.org/abs/2402.15892) paper on Statistical Games.
 
+## Dependencies
+
+This package requires `scipy`
+
 ## Installation
 
 You can install the package using pip directly from the GitHub repository:
