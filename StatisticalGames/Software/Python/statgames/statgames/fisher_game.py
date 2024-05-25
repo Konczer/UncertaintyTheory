@@ -14,13 +14,17 @@ def _fishergame_solve(N, KA, KB, M):
     Z = scipy.special.comb(M, N, exact=True)
 
     def w_k_A(k):
+        if k < k_A_minmax[0] or k > k_A_minmax[1]:
+            return 0
         return scipy.special.comb(KA, k, exact=True) * scipy.special.comb(M - KA, N - k, exact=True) 
     
     def w_k_B(k):
+        if k < k_B_minmax[0] or k > k_B_minmax[1]:
+            return 0
         return scipy.special.comb(KB, k, exact=True) * scipy.special.comb(M - KB, N - k, exact=True) 
 
     z_AB=[0, 0]
-    for k in range(k_minmax[0], k_minmax[1]):
+    for k in range(k_minmax[0], k_minmax[1] + 1):
 
         z_AB[0] += w_k_A(k)
         z_AB[1] += w_k_B(k)
@@ -29,6 +33,7 @@ def _fishergame_solve(N, KA, KB, M):
             k_star = k
             z_AB_star = z_AB
             break
+    
 
     w_A_star = w_k_A(k_star)
     w_B_star = w_k_B(k_star)
