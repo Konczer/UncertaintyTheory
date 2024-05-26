@@ -1,9 +1,65 @@
 import scipy.special
+# from typing import Dict, Union
 
+# def fishergame_solve(N: int, KA: int, KB: int, M: int) -> Dict[str, Union[int, float]]:
 def fishergame_solve(N, KA, KB, M):
+    """
+    Solve the Fisher game problem and calculate equilibrium quantities.
+
+    This function serves as a public interface to solve the Fisher game problem
+    by invoking the internal `_fishergame_solve` function.
+
+    Parameters:
+    N (int): Number of sampled bits.
+    KA (int): Number of 1-s in scenario A.
+    KB (int): Number of 1-s in scenario B.
+    M (int): Total length of the binary strings.
+
+    Returns:
+    dict: A dictionary containing the results:
+        - 'P' (float): The probability 0 < P_star < 1.
+        - 'k' (int): The critical value k_star.
+        - 'nu' (float): The probability 0 <= nu_star < 1.
+        - 's' (float): The value s_star.
+        - 'v' (float): The winning rate v_star.
+
+    Raises:
+    ValueError: If any parameter is invalid.
+    TypeError: If any parameter is not an integer.
+
+    References:
+    The concept of the Fisher game is introduced in the following paper:
+    Jozsef Konczer, "Statistical Games",  arXiv:2402.15892, 2024.
+    Available at: https://arxiv.org/abs/2402.15892
+    """
+    # Check if all parameters are integers and non-negative
+    if not all(isinstance(param, int) for param in [N, KA, KB, M]):
+        raise TypeError("All parameters must be integers")
+    if not all(param >= 0 for param in [N, KA, KB, M]):
+        raise ValueError("All parameters must be non-negative")
+    
+    # Check if N <= M and KA, KB <= M
+    if N > M:
+        raise ValueError("N must be less than or equal to M")
+    if KA > M:
+        raise ValueError("KA must be less than or equal to M")
+    if KB > M:
+        raise ValueError("KB must be less than or equal to M")
     return _fishergame_solve(N, KA, KB, M)
 
 def _fishergame_solve(N, KA, KB, M):
+    """
+    Internal function to calculate Fisher game equilibrium quantities.
+
+    Parameters:
+    N (int): Number of sampled bits.
+    KA (int): Number of 1-s in scenario A.
+    KB (int): Number of 1-s in scenario B.
+    M (int): Total length of the binary strings.
+
+    Returns:
+    dict: Contains 'P', 'k', 'nu', 's', 'v'.
+    """
     
     k_A_minmax = [max(0, N - (M - KA)), min(N, KA)]
     k_B_minmax = [max(0, N - (M - KB)), min(N, KB)]
