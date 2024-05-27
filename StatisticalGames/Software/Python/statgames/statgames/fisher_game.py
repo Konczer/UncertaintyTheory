@@ -1,8 +1,8 @@
-import scipy.special
-# from typing import Dict, Union
+from typing import Dict, Union
 
-# def fishergame_solve(N: int, KA: int, KB: int, M: int) -> Dict[str, Union[int, float]]:
-def fishergame_solve(N, KA, KB, M):
+import scipy.special
+
+def fishergame_solve(N: int, KA: int, KB: int, M: int) -> Dict[str, Union[int, float]]:
     """
     Solve the Fisher game problem and calculate equilibrium quantities.
 
@@ -45,6 +45,8 @@ def fishergame_solve(N, KA, KB, M):
         raise ValueError("KA must be less than or equal to M")
     if KB > M:
         raise ValueError("KB must be less than or equal to M")
+
+    # Return the output of the internal _fishergame_solve   
     return _fishergame_solve(N, KA, KB, M)
 
 def _fishergame_solve(N, KA, KB, M):
