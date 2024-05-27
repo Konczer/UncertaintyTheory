@@ -6,7 +6,7 @@ Based on the [arXiv:2402.15892](https://arxiv.org/abs/2402.15892) paper on Stati
 
 ## Dependencies
 
-This package requires `scipy`
+This package requires `numpy`, `scipy`.
 
 ## Installation
 

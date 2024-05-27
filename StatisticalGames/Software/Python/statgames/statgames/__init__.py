@@ -1,3 +1,5 @@
 # statgames/__init__.py
-from .fisher_game import fishergame_solve
+# Import functions from submodules
 
+from .fisher_game import fishergame_solve
+from .bayesian_game import bayesiangame_solve
