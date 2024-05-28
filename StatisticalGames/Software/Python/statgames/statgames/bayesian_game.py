@@ -50,7 +50,7 @@ def bayesiangame_solve(N: int, KA: int, KB: int, M: int):
     # Return the output of the internal _fishergame_solve   
     return _bayesiangame_solve(N, KA, KB, M, method="Bisection")
 
-def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="Bisection"):
+def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection"):
     """
     Internal function to calculate Bayesian game equilibrium quantities.
 
@@ -101,6 +101,53 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="Bisection"):
 
     G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - (P_star * HA + (1 - P_star) * HB) - \
             sum((P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) * np.log(P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(k_minmax[0], k_minmax[1] + 1))
+
+    p_prime_star = {k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(N + 1)}
+
+    return {'P': P_star, 'P_interval': PLU, 'G': G_star, 'p_prime': p_prime_star}
+
+def _binomial_bayesiangame_solve(N: int, xA: float, xB: float, method="bisection"):
+    """
+    Internal function to calculate Binomial Bayesian game equilibrium quantities.
+
+    Parameters:
+    N (int): Number of sampled bits.
+    xA (float): Fraction of 1-s in case of scenario A.
+    xB (float): Fraction of 1-s in case of scenario B.
+
+    Returns:
+    dict: Contains 'P', 'P_interval', 'G', 'p_prime'.
+    """
+
+    p_A_list = np.array([scipy.special.comb(N, k, exact=True) * (xA ** k) * ((1 - xA) ** (N - k)) for k in range(N + 1)])
+    p_B_list = np.array([scipy.special.comb(N, k, exact=True) * (xB ** k) * ((1 - xB) ** (N - k)) for k in range(N + 1)])
+
+    HA = -sum(p_A_list[k] * np.log(p_A_list[k]) for k in range(N + 1))
+    HB = -sum(p_B_list[k] * np.log(p_B_list[k]) for k in range(N + 1))
+    
+    def g(P):
+        return np.log(P / (1 - P)) - HA + HB - sum((p_A_list[k] - p_B_list[k]) * np.log(P * p_A_list[k] + (1 - P) * p_B_list[k]) for k in range(N + 1))
+
+    def next(PLU):
+        mean_PLU = np.mean(PLU)
+        g_mean_PLU = g(mean_PLU)
+        if g_mean_PLU > 0:
+            return [PLU[0], mean_PLU]
+        elif g_mean_PLU < 0:
+            return [mean_PLU, PLU[1]]
+        else:
+            return [mean_PLU, mean_PLU]
+
+    PLU = [0, 1]
+    i = 1
+    while i < 10 and PLU[1] - PLU[0] > 1 / 2**10:
+        PLU = next(PLU)
+        i += 1
+
+    P_star = np.mean(PLU)
+
+    G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - (P_star * HA + (1 - P_star) * HB) - \
+            sum((P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) * np.log(P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(N + 1))
 
     p_prime_star = {k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(N + 1)}
 
