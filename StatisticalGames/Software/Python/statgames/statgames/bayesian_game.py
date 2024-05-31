@@ -5,10 +5,10 @@ import scipy.special
 
 def bayesiangame_solve(N: int, KA: int, KB: int, M: int):
     """
-    Solve the Fisher game problem and calculate equilibrium quantities.
+    Solves a Bayesian game and calculates equilibrium quantities.
 
-    This function serves as a public interface to solve the Fisher game problem
-    by invoking the internal `_fishergame_solve` function.
+    This function serves as a public interface to solve a Bayesian game
+    by invoking the internal `_bayesiangame_solve` function.
 
     Parameters:
     N (int): Number of sampled bits.
@@ -28,7 +28,7 @@ def bayesiangame_solve(N: int, KA: int, KB: int, M: int):
     TypeError: If any parameter is not an integer.
 
     References:
-    The concept of the Fisher game is introduced in the following paper:
+    The concept of the Bayesian game is introduced in the following paper:
     Jozsef Konczer, "Statistical Games",  arXiv:2402.15892, 2024.
     Available at: https://arxiv.org/abs/2402.15892
     """
@@ -70,6 +70,8 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection"):
     k_minmax = [min(k_A_minmax[0], k_B_minmax[0]), max(k_A_minmax[1], k_B_minmax[1])]
     k_AB_minmax = [max(k_A_minmax[0], k_B_minmax[0]), min(k_A_minmax[1], k_B_minmax[1])]
 
+    # TODO: include shure winning if k_AB_minmax[0] > k_AB_minmax[1]
+
     Z = scipy.special.comb(M, N, exact=True)
 
     p_A_list = np.array([scipy.special.comb(KA, k, exact=True) * scipy.special.comb(M - KA, N - k, exact=True) for k in range(N + 1)]) / Z
@@ -102,7 +104,11 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection"):
     G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - (P_star * HA + (1 - P_star) * HB) - \
             sum((P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) * np.log(P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(k_minmax[0], k_minmax[1] + 1))
 
-    p_prime_star = {k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(N + 1)}
+    p_prime_star = {
+        k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k])
+        if (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) != 0 else np.nan
+        for k in range(N + 1)
+        }
 
     return {'P': P_star, 'P_interval': PLU, 'G': G_star, 'p_prime': p_prime_star}
 
@@ -149,6 +155,10 @@ def _binomial_bayesiangame_solve(N: int, xA: float, xB: float, method="bisection
     G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - (P_star * HA + (1 - P_star) * HB) - \
             sum((P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) * np.log(P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(N + 1))
 
-    p_prime_star = {k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(N + 1)}
+    p_prime_star = {
+        k: 
+        P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k])
+        for k in range(N + 1)
+        }
 
     return {'P': P_star, 'P_interval': PLU, 'G': G_star, 'p_prime': p_prime_star}
