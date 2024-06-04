@@ -1,20 +1,30 @@
-from typing import Dict, Union
+from typing import Dict, Union, List, Tuple
 
 import numpy as np
 import scipy.special
 
-def bayesiangame_solve(N: int, KA: int, KB: int, M: int):
+def bayesiangame_solve(
+    N: int,
+    Kx_list: Union[List[int], List[float], np.ndarray],
+    M: Union[int, float] = float('inf'),
+    method="bisection",
+    max_iteration=float('inf'),
+    max_error=1 / 2 ** 10
+    ) -> Dict[str, Union[float, Tuple[float, float], Dict[int, float]]]:   
     """
-    Solves a Bayesian game and calculates equilibrium quantities.
+    Solve the Fisher game problem and calculate equilibrium quantities.
 
-    This function serves as a public interface to solve a Bayesian game
-    by invoking the internal `_bayesiangame_solve` function.
+    This function serves as a public interface to solve the Fisher game problem
+    by invoking the internal `_fishergame_solve` or `_binomial_fishergame_solve` function.
 
     Parameters:
     N (int): Number of sampled bits.
-    KA (int): Number of 1-s in scenario A.
-    KB (int): Number of 1-s in scenario B.
-    M (int): Total length of the binary strings.
+    Kx_list (Union[List[int], List[float], np.ndarray]): A list or array containing two elements:
+        [K_A, K_B], pair of integers or [x_A, x_B], pair of floats.
+    M (Union[int, float], optional): Total length of the binary strings or float('inf'). 
+        If M is a finite integer, then Kx_list contains [K_A, K_B];
+        if M is infinite, then Kx_list contains [x_A, x_B].
+        Default is float('inf').
 
     Returns:
     dict: A dictionary containing the results:
@@ -25,30 +35,107 @@ def bayesiangame_solve(N: int, KA: int, KB: int, M: int):
 
     Raises:
     ValueError: If any parameter is invalid.
-    TypeError: If any parameter is not an integer.
+    TypeError: If any parameter has none appropriate type.
 
     References:
-    The concept of the Bayesian game is introduced in the following paper:
+    The concept of the Fisher game is introduced in the following paper:
     Jozsef Konczer, "Statistical Games",  arXiv:2402.15892, 2024.
     Available at: https://arxiv.org/abs/2402.15892
+    
+    Example Usage:
+    -------------
+    Solving the Fisher game with finite M:
+    
+    >>> result = fishergame_solve(1, [0, 1], 2)
+    >>> print(result)
+    {'P': 0.4462890625, 
+    'P_interval': [0.4462890625, 0.447265625], 
+    'G': -0.4812106300819732, 
+    'p_prime': {
+        0: 0.6171505739365294, 
+        1: 0.0
+        }
+    }
+    
+    Solving the Fisher game with infinite M:
+    
+    >>> result = fishergame_solve(10, [0.3, 0.5])
+    >>> print(result)
+    {'P': 0.4990234375, 
+    'P_interval': [0.498046875, 0.5], 
+    'G': -0.5158309498018485, 
+    'p_prime': {
+        0: 0.9664572431930976, 
+        1: 0.925084082646245, 
+        2: 0.8410712502801064, 
+        3: 0.6940075752961667, 
+        4: 0.49290664335788936, 
+        5: 0.29407520178603835, 
+        6: 0.15148886921226545, 
+        7: 0.07107654724506647, 
+        8: 0.03175094751718913, 
+        9: 0.013858998265404298, 
+        10: 0.005986984172753379
+        }
+    }
     """
 
-    # Check if all parameters are integers and non-negative
-    if not all(isinstance(param, int) for param in [N, KA, KB, M]):
-        raise TypeError("All parameters must be integers")
-    if not all(param >= 0 for param in [N, KA, KB, M]):
-        raise ValueError("All parameters must be non-negative")
+    # Check if Kx_list is iterable and attempt to convert it to a list
+    if not isinstance(Kx_list, (list, np.ndarray, set, tuple)):
+        raise TypeError(f"Kx_list must be an iterable or convertible to a list, got {type(Kx_list)} instead.")
     
-    # Check if N <= M and KA, KB <= M
-    if N > M:
-        raise ValueError("N must be less than or equal to M")
-    if KA > M:
-        raise ValueError("KA must be less than or equal to M")
-    if KB > M:
-        raise ValueError("KB must be less than or equal to M")
+    # Converting Kx_list to a list
+    try:
+        if isinstance(Kx_list, (np.ndarray, set, tuple)):
+            Kx_list = list(Kx_list)
+    except Exception as e:
+        raise TypeError(f"Kx_list conversion to list failed: {e}")
 
-    # Return the output of the internal _fishergame_solve   
-    return _bayesiangame_solve(N, KA, KB, M, method="Bisection")
+    # Check if Kx_list is a list or array containing two elements
+    if len(Kx_list) != 2:
+        raise TypeError("Kx_list must be a list or array containing two elements")
+    
+    # Check if N and M are integers and non-negative
+    if not isinstance(N, int) or (not isinstance(M, int) and not np.isinf(M)):
+        raise TypeError("N must be an integer and M must be an integer or float('inf')")
+    if N < 0 or (isinstance(M, int) and M < 0):
+        raise ValueError("N and M must be non-negative")
+    if any(param < 0 for param in Kx_list):
+        raise ValueError("Values in Kx_list must be non-negative")
+    
+    # Check the case when M is infinity
+    if np.isinf(M):
+        if not all(isinstance(param, (int, float)) and 0 <= param <= 1 for param in Kx_list):
+            raise TypeError("When M is infinity, Kx_list must contain values between 0 and 1")
+
+    # Check the case when M is a finite integer
+    if not np.isinf(M):
+        if not all(isinstance(param, int) for param in Kx_list):
+            raise TypeError("Kx_list must contain two integers when M is finite")
+        KA, KB = Kx_list
+        if N > M or KA > M or KB > M:
+            raise ValueError("N, KA, and KB must be <= M")
+
+    # Based on the structure of the imput, 
+    # returns the output of the internal:
+    # _fishergame_solve or _binomial_fishergame_solve  
+
+    if np.isinf(M):
+        xA, xB = map(float, Kx_list)
+        if xA <= xB:
+            return _binomial_bayesiangame_solve(N, xA, xB)
+        else:
+            # Uses the convention of the paper:
+            # https://arxiv.org/pdf/2402.15892#Hfootnote.16 
+            return _binomial_bayesiangame_solve(N, xB, xA)
+    else:
+        KA, KB = Kx_list
+        if KA <= KB:
+            return _bayesiangame_solve(N, KA, KB, M)
+        else:
+            # Uses the convention of the paper:
+            # https://arxiv.org/pdf/2402.15892#Hfootnote.16 
+            return _bayesiangame_solve(N, KB, KA, M)
 
 def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection"):
     """

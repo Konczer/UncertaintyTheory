@@ -29,7 +29,7 @@ def fishergame_solve(N: int, Kx_list: Union[List[int], List[float], np.ndarray],
 
     Raises:
     ValueError: If any parameter is invalid.
-    TypeError: If any parameter is not an integer.
+    TypeError: If any parameter has none appropriate type.
 
     References:
     The concept of the Fisher game is introduced in the following paper:
