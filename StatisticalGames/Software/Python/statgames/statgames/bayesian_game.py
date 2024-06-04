@@ -187,5 +187,3 @@ def _binomial_bayesiangame_solve(N: int, xA: float, xB: float, method="bisection
         }
 
     return {'P': P_star, 'P_interval': PLU, 'G': G_star, 'p_prime': p_prime_star}
-
-print(bayesiangame_solve(1,0,1,2))
