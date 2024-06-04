@@ -1,19 +1,23 @@
-from typing import Dict, Union
+from typing import Dict, Union, List
 
+import numpy as np
 import scipy.special
 
-def fishergame_solve(N: int, KA: int, KB: int, M: int) -> Dict[str, Union[int, float]]:
+def fishergame_solve(N: int, Kx_list: Union[List[int], List[float], np.ndarray], M: Union[int, float] = float('inf')) -> Dict[str, Union[int, float]]:
     """
     Solve the Fisher game problem and calculate equilibrium quantities.
 
     This function serves as a public interface to solve the Fisher game problem
-    by invoking the internal `_fishergame_solve` function.
+    by invoking the internal `_fishergame_solve` or `_binomial_fishergame_solve` function.
 
     Parameters:
     N (int): Number of sampled bits.
-    KA (int): Number of 1-s in scenario A.
-    KB (int): Number of 1-s in scenario B.
-    M (int): Total length of the binary strings.
+    Kx_list (Union[List[int], List[float], np.ndarray]): A list or array containing two elements:
+        [K_A, K_B], pair of integers or [x_A, x_B], pair of floats.
+    M (Union[int, float], optional): Total length of the binary strings or float('inf'). 
+        If M is a finite integer, then Kx_list contains [K_A, K_B];
+        if M is infinite, then Kx_list contains [x_A, x_B].
+        Default is float('inf').
 
     Returns:
     dict: A dictionary containing the results:
@@ -31,24 +35,78 @@ def fishergame_solve(N: int, KA: int, KB: int, M: int) -> Dict[str, Union[int, f
     The concept of the Fisher game is introduced in the following paper:
     Jozsef Konczer, "Statistical Games",  arXiv:2402.15892, 2024.
     Available at: https://arxiv.org/abs/2402.15892
+
+    Example Usage:
+    -------------
+    Solving the Fisher game with finite M:
+    
+    >>> result = fishergame_solve(1, [0, 1], 2)
+    >>> print(result)
+    {'P': 0.6666666666666666, 'k': 0, 'nu': 0.6666666666666666, 's': 0.3333333333333333, 'v': 0.6666666666666666}
+    
+    Solving the Fisher game with infinite M:
+    
+    >>> result = fishergame_solve(10, [0.3, 0.5])
+    >>> print(result)
+    {'P': 0.4938830363664651, 'k': 4, 'nu': 0.4405594510317179, 's': 0.4036872228210653, 'v': 0.737775893831386}
     """
 
-    # Check if all parameters are integers and non-negative
-    if not all(isinstance(param, int) for param in [N, KA, KB, M]):
-        raise TypeError("All parameters must be integers")
-    if not all(param >= 0 for param in [N, KA, KB, M]):
-        raise ValueError("All parameters must be non-negative")
+    # Check if Kx_list is iterable and attempt to convert it to a list
+    if not isinstance(Kx_list, (list, np.ndarray, set, tuple)):
+        raise TypeError(f"Kx_list must be an iterable or convertible to a list, got {type(Kx_list)} instead.")
     
-    # Check if N <= M and KA, KB <= M
-    if N > M:
-        raise ValueError("N must be less than or equal to M")
-    if KA > M:
-        raise ValueError("KA must be less than or equal to M")
-    if KB > M:
-        raise ValueError("KB must be less than or equal to M")
+    # Converting Kx_list to a list
+    try:
+        if isinstance(Kx_list, (np.ndarray, set, tuple)):
+            Kx_list = list(Kx_list)
+    except Exception as e:
+        raise TypeError(f"Kx_list conversion to list failed: {e}")
 
-    # Return the output of the internal _fishergame_solve   
-    return _fishergame_solve(N, KA, KB, M)
+    # Check if Kx_list is a list or array containing two elements
+    if len(Kx_list) != 2:
+        raise TypeError("Kx_list must be a list or array containing two elements")
+    
+    # Check if N and M are integers and non-negative
+    if not isinstance(N, int) or (not isinstance(M, int) and not np.isinf(M)):
+        raise TypeError("N must be an integer and M must be an integer or float('inf')")
+    if N < 0 or (isinstance(M, int) and M < 0):
+        raise ValueError("N and M must be non-negative")
+    if any(param < 0 for param in Kx_list):
+        raise ValueError("Values in Kx_list must be non-negative")
+    
+    # Check the case when M is infinity
+    if np.isinf(M):
+        if not all(isinstance(param, (int, float)) and 0 <= param <= 1 for param in Kx_list):
+            raise TypeError("When M is infinity, Kx_list must contain values between 0 and 1")
+
+    # Check the case when M is a finite integer
+    if not np.isinf(M):
+        if not all(isinstance(param, int) for param in Kx_list):
+            raise TypeError("Kx_list must contain two integers when M is finite")
+        KA, KB = Kx_list
+        if N > M or KA > M or KB > M:
+            raise ValueError("N, KA, and KB must be <= M")
+
+    # Based on the structure of the imput, 
+    # returns the output of the internal:
+    # _fishergame_solve or _binomial_fishergame_solve  
+
+    if np.isinf(M):
+        xA, xB = map(float, Kx_list)
+        if xA <= xB:
+            return _binomial_fishergame_solve(N, xA, xB)
+        else:
+            # Uses the convention of the paper:
+            # https://arxiv.org/pdf/2402.15892#Hfootnote.16 
+            return _binomial_fishergame_solve(N, xB, xA)
+    else:
+        KA, KB = Kx_list
+        if KA <= KB:
+            return _fishergame_solve(N, KA, KB, M)
+        else:
+            # Uses the convention of the paper:
+            # https://arxiv.org/pdf/2402.15892#Hfootnote.16 
+            return _fishergame_solve(N, KB, KA, M)
 
 def _fishergame_solve(N: int, KA: int, KB: int, M: int) -> Dict[str, Union[int, float]]:
     """
