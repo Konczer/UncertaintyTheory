@@ -74,43 +74,68 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection"):
 
     Z = scipy.special.comb(M, N, exact=True)
 
-    p_A_list = np.array([scipy.special.comb(KA, k, exact=True) * scipy.special.comb(M - KA, N - k, exact=True) for k in range(N + 1)]) / Z
-    p_B_list = np.array([scipy.special.comb(KB, k, exact=True) * scipy.special.comb(M - KB, N - k, exact=True) for k in range(N + 1)]) / Z
+    # Define the range for k values
+    k_values = np.arange(k_minmax[0], k_minmax[1] + 1)
 
-    HA = -sum(p_A_list[k] * np.log(p_A_list[k]) for k in range(k_A_minmax[0], k_A_minmax[1] + 1))
-    HB = -sum(p_B_list[k] * np.log(p_B_list[k]) for k in range(k_B_minmax[0], k_B_minmax[1] + 1))
-    
+    # Calculate p_A_list and p_B_list using element-wise calculations
+    p_A_list = np.array([scipy.special.comb(KA, k, exact=True) * scipy.special.comb(M - KA, N - k, exact=True) for k in k_values]) / Z
+    p_B_list = np.array([scipy.special.comb(KB, k, exact=True) * scipy.special.comb(M - KB, N - k, exact=True) for k in k_values]) / Z
+
+    # Define the slices directly for later use
+    k_A_slice = slice(k_A_minmax[0] - k_minmax[0], k_A_minmax[1] - k_minmax[0] + 1)
+    k_B_slice = slice(k_B_minmax[0] - k_minmax[0], k_B_minmax[1] - k_minmax[0] + 1)
+
+    # Calculate HA and HB using numpy operations
+    HA = -np.sum(p_A_list[k_A_slice] * np.log(p_A_list[k_A_slice]))
+    HB = -np.sum(p_B_list[k_B_slice] * np.log(p_B_list[k_B_slice]))
+
+    # Optimized g function using vectorized operations and the predefined slice
     def g(P):
-        return np.log(P / (1 - P)) - HA + HB - sum((p_A_list[k] - p_B_list[k]) * np.log(P * p_A_list[k] + (1 - P) * p_B_list[k]) for k in range(k_minmax[0], k_minmax[1] + 1))
+        return np.log(P / (1 - P)) - HA + HB - \
+            np.sum((p_A_list - p_B_list) * np.log(P * p_A_list + (1 - P) * p_B_list))
 
-    def next(PLU):
-        mean_PLU = np.mean(PLU)
-        g_mean_PLU = g(mean_PLU)
-        if g_mean_PLU > 0:
-            return [PLU[0], mean_PLU]
-        elif g_mean_PLU < 0:
-            return [mean_PLU, PLU[1]]
-        else:
-            return [mean_PLU, mean_PLU]
+    # Simple implementation of the Bisection method:
+    # https://pythonnumericalmethods.studentorg.berkeley.edu/notebooks/chapter19.03-Bisection-Method.html
+    
+    # Or from Numerical Recipes: https://www.numerical.recipes/book.html
+    # 9.1 Bracketing and Bisection 445:
+    # https://nr304ob.s3.amazonaws.com/MNV7AKCDC7LVFQDK.pdf
 
-    PLU = [0, 1]
-    i = 1
-    while i < 10 and PLU[1] - PLU[0] > 1 / 2**10:
-        PLU = next(PLU)
+    # Initial bounds
+    P_lower = 0
+    P_upper = 1
+    tol = 1 / 2**10
+    max_iter = float('inf')
+
+    i = 0
+    while i < max_iter and (P_upper - P_lower) > tol:
+        P_mid = (P_lower + P_upper) / 2
+        g_P_mid = g(P_mid)
+        
+        if g_P_mid > 0:
+            P_upper = P_mid
+        elif g_P_mid < 0:
+            P_lower = P_mid
+        elif g_P_mid == 0:
+            P_star = P_mid
+            break
+        
         i += 1
 
-    P_star = np.mean(PLU)
+    P_star = P_mid  # Set P_star to the midpoint after the loop
 
-    G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - (P_star * HA + (1 - P_star) * HB) - \
-            sum((P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) * np.log(P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(k_minmax[0], k_minmax[1] + 1))
+    G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - \
+            (P_star * HA + (1 - P_star) * HB) - \
+            np.sum((P_star * p_A_list + (1 - P_star) * p_B_list) * \
+                    np.log(P_star * p_A_list + (1 - P_star) * p_B_list))
 
     p_prime_star = {
         k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k])
         if (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) != 0 else np.nan
-        for k in range(N + 1)
-        }
+        for k in range(k_minmax[0], k_minmax[1] + 1)
+    }
 
-    return {'P': P_star, 'P_interval': PLU, 'G': G_star, 'p_prime': p_prime_star}
+    return {'P': P_star, 'P_interval': [P_lower,P_upper], 'G': G_star, 'p_prime': p_prime_star}
 
 def _binomial_bayesiangame_solve(N: int, xA: float, xB: float, method="bisection"):
     """
@@ -162,3 +187,5 @@ def _binomial_bayesiangame_solve(N: int, xA: float, xB: float, method="bisection
         }
 
     return {'P': P_star, 'P_interval': PLU, 'G': G_star, 'p_prime': p_prime_star}
+
+print(bayesiangame_solve(1,0,1,2))
