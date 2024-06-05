@@ -47,7 +47,7 @@ def bayesiangame_solve(
     -------------
     Solving the Fisher game with finite M:
     
-    >>> result = fishergame_solve(1, [0, 1], 2)
+    >>> result = bayesiangame_solve(1, [0, 1], 2)
     >>> print(result)
     {'P': 0.4462890625, 
     'P_interval': [0.4462890625, 0.447265625], 
@@ -60,7 +60,7 @@ def bayesiangame_solve(
     
     Solving the Fisher game with infinite M:
     
-    >>> result = fishergame_solve(10, [0.3, 0.5])
+    >>> result = bayesiangame_solve(10, [0.3, 0.5])
     >>> print(result)
     {'P': 0.4990234375, 
     'P_interval': [0.498046875, 0.5], 
@@ -156,7 +156,11 @@ def _surewinning(k_A_minmax, k_B_minmax):
     return {'P': None, 'P_interval': [0, 1], 'G': 0, 'p_prime': p_prime_A | p_prime_B}
 
 
-def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection", max_iter=float('inf'), max_error=1 / 2 ** 10):
+def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, 
+    method="bisection",
+    max_iter=float('inf'),
+    max_error=1 / 2 ** 10
+    ):
     """
     Internal function to calculate Bayesian game equilibrium quantities.
 
@@ -195,6 +199,10 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection", ma
     # Calculate HA and HB using numpy operations
     HA = -np.sum(p_A_list[k_A_slice] * np.log(p_A_list[k_A_slice]))
     HB = -np.sum(p_B_list[k_B_slice] * np.log(p_B_list[k_B_slice]))
+
+    # g being the derivative of G(P) respect to P
+    # $\Delta G'(P)$ in the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.3.120
 
     # Optimized g function using vectorized operations and the predefined slice
     def g(P):
@@ -242,53 +250,84 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection", ma
 
     return {'P': P_star, 'P_interval': [P_lower,P_upper], 'G': G_star, 'p_prime': p_prime_star}
 
-def _binomial_bayesiangame_solve(N: int, xA: float, xB: float, method="bisection"):
+def _binomial_bayesiangame_solve(N: int, xA: float, xB: float, 
+    method="bisection", 
+    max_iter=float('inf'), 
+    max_error=1 / 2 ** 10):
     """
-    Internal function to calculate Binomial Bayesian game equilibrium quantities.
+    Internal function to calculate binomial Bayesian game equilibrium quantities.
 
     Parameters:
     N (int): Number of sampled bits.
-    xA (float): Fraction of 1-s in case of scenario A.
-    xB (float): Fraction of 1-s in case of scenario B.
+    xA (float): Probability of 1 in scenario A.
+    xB (float): Probability of 1 in scenario B.
+    method (str, optional): Method to use for solving the game. Default is "bisection".
+    max_iter (int, optional): Maximum number of iterations allowed. Default is float('inf').
+    max_error (float, optional): Maximum acceptable error. Default is 1 / 2 ** 10.
 
     Returns:
     dict: Contains 'P', 'P_interval', 'G', 'p_prime'.
     """
-
-    p_A_list = np.array([scipy.special.comb(N, k, exact=True) * (xA ** k) * ((1 - xA) ** (N - k)) for k in range(N + 1)])
-    p_B_list = np.array([scipy.special.comb(N, k, exact=True) * (xB ** k) * ((1 - xB) ** (N - k)) for k in range(N + 1)])
-
-    HA = -sum(p_A_list[k] * np.log(p_A_list[k]) for k in range(N + 1))
-    HB = -sum(p_B_list[k] * np.log(p_B_list[k]) for k in range(N + 1))
     
+    if xA == 0 and xB == 1:
+        return _surewinning([0,0],[N,N])
+    
+    # Define the range for k values
+    k_values = np.arange(0, N + 1)
+    
+    # Calculate binomial probabilities p_A_list and p_B_list
+    p_A_list = np.array([scipy.special.comb(N, k, exact=True) * (xA ** k) * ((1 - xA) ** (N - k)) for k in k_values])
+    p_B_list = np.array([scipy.special.comb(N, k, exact=True) * (xB ** k) * ((1 - xB) ** (N - k)) for k in k_values])
+    
+    # Calculate HA and HB using numpy operations
+    HA = -np.sum(p_A_list * np.log(p_A_list))
+    HB = -np.sum(p_B_list * np.log(p_B_list))
+    
+    # g being the derivative of G(P) respect to P
+    # $\Delta G'(P)$ in the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.3.120
+
+    # Optimized g function using vectorized operations
     def g(P):
-        return np.log(P / (1 - P)) - HA + HB - sum((p_A_list[k] - p_B_list[k]) * np.log(P * p_A_list[k] + (1 - P) * p_B_list[k]) for k in range(N + 1))
+        return np.log(P / (1 - P)) - HA + HB - \
+            np.sum((p_A_list - p_B_list) * np.log(P * p_A_list + (1 - P) * p_B_list))
+    
+    # Simple implementation of the Bisection method:
+    # https://pythonnumericalmethods.studentorg.berkeley.edu/notebooks/chapter19.03-Bisection-Method.html
+    
+    # Or from Numerical Recipes: https://www.numerical.recipes/book.html
+    # 9.1 Bracketing and Bisection 445:
+    # https://nr304ob.s3.amazonaws.com/MNV7AKCDC7LVFQDK.pdf
 
-    def next(PLU):
-        mean_PLU = np.mean(PLU)
-        g_mean_PLU = g(mean_PLU)
-        if g_mean_PLU > 0:
-            return [PLU[0], mean_PLU]
-        elif g_mean_PLU < 0:
-            return [mean_PLU, PLU[1]]
-        else:
-            return [mean_PLU, mean_PLU]
-
-    PLU = [0, 1]
-    i = 1
-    while i < 10 and PLU[1] - PLU[0] > 1 / 2**10:
-        PLU = next(PLU)
+    P_lower = 0
+    P_upper = 1
+    
+    i = 0
+    while i < max_iter and (P_upper - P_lower) / 2 > max_error:
+        P_mid = (P_lower + P_upper) / 2
+        g_P_mid = g(P_mid)
+        
+        if g_P_mid > 0:
+            P_upper = P_mid
+        elif g_P_mid < 0:
+            P_lower = P_mid
+        elif g_P_mid == 0:
+            P_star = P_mid
+            break
+        
         i += 1
-
-    P_star = np.mean(PLU)
-
-    G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - (P_star * HA + (1 - P_star) * HB) - \
-            sum((P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) * np.log(P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) for k in range(N + 1))
-
+    
+    P_star = (P_lower + P_upper) / 2  # Set P_star to the midpoint after the loop
+    
+    G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - \
+            (P_star * HA + (1 - P_star) * HB) - \
+            np.sum((P_star * p_A_list + (1 - P_star) * p_B_list) * \
+                    np.log(P_star * p_A_list + (1 - P_star) * p_B_list))
+    
     p_prime_star = {
-        k: 
-        P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k])
+        k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k])
+        if (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) != 0 else np.nan
         for k in range(N + 1)
-        }
-
-    return {'P': P_star, 'P_interval': PLU, 'G': G_star, 'p_prime': p_prime_star}
+    }
+    
+    return {'P': P_star, 'P_interval': [P_lower, P_upper], 'G': G_star, 'p_prime': p_prime_star}
