@@ -7,9 +7,10 @@ def bayesiangame_solve(
     N: int,
     Kx_list: Union[List[int], List[float], np.ndarray],
     M: Union[int, float] = float('inf'),
-    method="bisection",
-    max_iteration=float('inf'),
+    method = "bisection",
+    max_iter = float('inf'),
     max_error=1 / 2 ** 10
+    # keys: List[str] = "all"
     ) -> Dict[str, Union[float, Tuple[float, float], Dict[int, float]]]:   
     """
     Solve the Fisher game problem and calculate equilibrium quantities.
@@ -131,13 +132,31 @@ def bayesiangame_solve(
     else:
         KA, KB = Kx_list
         if KA <= KB:
-            return _bayesiangame_solve(N, KA, KB, M)
+            return _bayesiangame_solve(N, KA, KB, M, method="bisection", max_iter=max_iter, max_error=max_error)
         else:
             # Uses the convention of the paper:
             # https://arxiv.org/pdf/2402.15892#Hfootnote.16 
-            return _bayesiangame_solve(N, KB, KA, M)
+            return _bayesiangame_solve(N, KB, KA, M, method="bisection", max_iter=max_iter, max_error=max_error)
 
-def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection"):
+def _surewinning(k_A_minmax, k_B_minmax):
+    """
+    Internal function to handle sure winning Bayesian games.
+
+    Parameters:
+    k_A_minmax (Tuple[int, int]): Minimum and Maximum of k in case of scenario A.
+    k_B_minmax (Tuple[int, int]): Minimum and Maximum of k in case of scenario B.
+
+    Returns:
+    dict: Contains 'P', 'P_interval', 'G', 'p_prime'.
+    """
+
+    p_prime_A = {k: 1 for k in range(k_A_minmax[0], k_A_minmax[1] + 1)}
+    p_prime_B = {k: 0 for k in range(k_B_minmax[0], k_B_minmax[1] + 1)}
+
+    return {'P': None, 'P_interval': [0, 1], 'G': 0, 'p_prime': p_prime_A | p_prime_B}
+
+
+def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection", max_iter=float('inf'), max_error=1 / 2 ** 10):
     """
     Internal function to calculate Bayesian game equilibrium quantities.
 
@@ -157,7 +176,8 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection"):
     k_minmax = [min(k_A_minmax[0], k_B_minmax[0]), max(k_A_minmax[1], k_B_minmax[1])]
     k_AB_minmax = [max(k_A_minmax[0], k_B_minmax[0]), min(k_A_minmax[1], k_B_minmax[1])]
 
-    # TODO: include shure winning if k_AB_minmax[0] > k_AB_minmax[1]
+    if k_AB_minmax[0] > k_AB_minmax[1]:
+        return _surewinning(k_A_minmax, k_B_minmax)
 
     Z = scipy.special.comb(M, N, exact=True)
 
@@ -191,11 +211,9 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection"):
     # Initial bounds
     P_lower = 0
     P_upper = 1
-    tol = 1 / 2**10
-    max_iter = float('inf')
 
     i = 0
-    while i < max_iter and (P_upper - P_lower) > tol:
+    while i < max_iter and (P_upper - P_lower) / 2 > max_error:
         P_mid = (P_lower + P_upper) / 2
         g_P_mid = g(P_mid)
         
@@ -209,7 +227,7 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, method="bisection"):
         
         i += 1
 
-    P_star = P_mid  # Set P_star to the midpoint after the loop
+    P_star = (P_lower + P_upper) / 2  # Set P_star to the midpoint after the loop
 
     G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - \
             (P_star * HA + (1 - P_star) * HB) - \
