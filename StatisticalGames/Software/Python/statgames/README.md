@@ -117,6 +117,58 @@ print(result)
 #    }
 ```
 
+### Statistical Game
+
+The `statisticalgame_solve` function solves a Statistical game and calculates equilibrium quantities.
+
+**Example Usage:**
+
+Solving a Statistical game with finite `M`:
+
+$\mathfrak{SGame}(N=1, K_A=0, K_B=1, M=2, \gamma=0.5)$:
+```python
+from statgames import statisticalgame_solve
+
+result = statisticalgame_solve(1, [0, 1], 2, gamma=0.5)
+print(result)
+# Output: {
+#      'P': 0.3994140625, 
+#      'P_interval': [0.3984375, 0.400390625], 
+#      'U': -0.3999993129521612, 
+#      'p_prime': {
+#           0: 0.6388739570095546, 
+#           1: 0.0
+#           }
+#       }
+```
+
+Solving the Statistical game with infinite `M` i.e. a Binomial Statistical game:
+
+$\overline{\mathfrak{SGame}}(N=10, x_A=0.3, x_B=0.5, \gamma=0.5)$:
+```python
+from statgames import statisticalgame_solve
+
+result = statisticalgame_solve(10, [0.3, 0.5], gamma=0.5)
+print(result)
+# Output: {
+#    'P': 0.4951171875, 
+#    'P_interval': [0.494140625, 0.49609375], 
+#    'U': -0.38742895605774774, 
+#    'p_prime': {
+#        0: 0.9987587334732929, 
+#        1: 0.9932790709733905, 
+#        2: 0.9644695967162675, 
+#        3: 0.832937947072644, 
+#        4: 0.4780137141353738, 
+#        5: 0.14398267774885304, 
+#        6: 0.02996816223631757, 
+#        7: 0.00564239067955681, 
+#        8: 0.0010411530573117144, 
+#        9: 0.0001913948646887022, 
+#        10: 3.515965218925e-05
+#        }
+#    }
+```
 
 ## Citation
 
