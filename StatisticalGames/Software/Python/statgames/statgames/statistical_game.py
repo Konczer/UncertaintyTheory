@@ -3,20 +3,21 @@ from typing import Dict, Union, List, Tuple
 import numpy as np
 import scipy.special
 
-def bayesiangame_solve(
+def statisticalgame_solve(
     N: int,
     Kx_list: Union[List[int], List[float], np.ndarray],
     M: Union[int, float] = float('inf'),
+    gamma: Union[float, int] = 1/2,
     method = "bisection",
     max_iter = float('inf'),
     max_error=1 / 2 ** 10
     # keys: List[str] = "all"
     ) -> Dict[str, Union[float, Tuple[float, float], Dict[int, float]]]:   
     """
-    Solves a Bayesian game and calculates equilibrium quantities.
+    Solves a Statistical game and calculates equilibrium quantities.
 
-    This function serves as a public interface to solve a Bayesian game
-    by invoking the internal `_bayesiangame_solve` or `_binomial_bayesiangame_solve` function.
+    This function serves as a public interface to solve a Statistical game
+    by invoking the internal `_statisticalgame_solve` or `_binomial_statisticalgame_solve` function.
 
     Parameters:
     N (int): Number of sampled bits.
@@ -26,6 +27,8 @@ def bayesiangame_solve(
         If M is a finite integer, then Kx_list contains [K_A, K_B];
         if M is infinite, then Kx_list contains [x_A, x_B].
         Default is float('inf').
+    gamma (Union[int, float]): relative risk aversion parameter also known as
+        the Arrow-Pratt measure of relative risk aversion
 
     Returns:
     dict: A dictionary containing the results:
@@ -45,38 +48,37 @@ def bayesiangame_solve(
     
     Example Usage:
     -------------
-    Solving a Bayesian game with finite M:
+    Solving a Statistical game with finite M:
     
-    >>> result = bayesiangame_solve(1, [0, 1], 2)
+    >>> result = statisticalgame_solve(1, [0, 1], 2, gamma=0.5)
     >>> print(result)
-    {'P': 0.4462890625, 
-    'P_interval': [0.4462890625, 0.447265625], 
-    'G': -0.4812106300819732, 
+    {'P': 0.3994140625, 
+    'P_interval': [0.3984375, 0.400390625], 
+    'U': -0.3999993129521612, 
     'p_prime': {
-        0: 0.6171505739365294, 
-        1: 0.0
+        0: 0.6388739570095546, 
+        1: 0.0}
         }
-    }
     
-    Solving a Bayesian game with infinite M:
+    Solving a Statistical game with infinite M:
     
-    >>> result = bayesiangame_solve(10, [0.3, 0.5])
+    >>> result = statisticalgame_solve(10, [0.3, 0.5], gamma=0.5)
     >>> print(result)
-    {'P': 0.4990234375, 
-    'P_interval': [0.498046875, 0.5], 
-    'G': -0.5158309498018485, 
+    {'P': 0.4951171875, 
+    'P_interval': [0.494140625, 0.49609375], 
+    'U': -0.38742895605774774, 
     'p_prime': {
-        0: 0.9664572431930976, 
-        1: 0.925084082646245, 
-        2: 0.8410712502801064, 
-        3: 0.6940075752961667, 
-        4: 0.49290664335788936, 
-        5: 0.29407520178603835, 
-        6: 0.15148886921226545, 
-        7: 0.07107654724506647, 
-        8: 0.03175094751718913, 
-        9: 0.013858998265404298, 
-        10: 0.005986984172753379
+        0: 0.9987587334732929, 
+        1: 0.9932790709733905, 
+        2: 0.9644695967162675, 
+        3: 0.832937947072644, 
+        4: 0.4780137141353738, 
+        5: 0.14398267774885304, 
+        6: 0.02996816223631757, 
+        7: 0.00564239067955681, 
+        8: 0.0010411530573117144, 
+        9: 0.0001913948646887022, 
+        10: 3.515965218925e-05
         }
     }
     """
@@ -124,19 +126,20 @@ def bayesiangame_solve(
     if np.isinf(M):
         xA, xB = map(float, Kx_list)
         if xA <= xB:
-            return _binomial_bayesiangame_solve(N, xA, xB)
+            return _binomial_statisticalgame_solve(N, xA, xB, gamma)
         else:
             # Uses the convention of the paper:
             # https://arxiv.org/pdf/2402.15892#Hfootnote.16 
-            return _binomial_bayesiangame_solve(N, xB, xA)
+            return _binomial_statisticalgame_solve(N, xB, xA, gamma)
     else:
         KA, KB = Kx_list
         if KA <= KB:
-            return _bayesiangame_solve(N, KA, KB, M, method="bisection", max_iter=max_iter, max_error=max_error)
+            return _statisticalgame_solve(N, KA, KB, M, gamma, method="bisection", max_iter=max_iter, max_error=max_error)
         else:
             # Uses the convention of the paper:
             # https://arxiv.org/pdf/2402.15892#Hfootnote.16 
-            return _bayesiangame_solve(N, KB, KA, M, method="bisection", max_iter=max_iter, max_error=max_error)
+            return _statisticalgame_solve(N, KB, KA, M, gamma, method="bisection", max_iter=max_iter, max_error=max_error)
+
 
 def _surewinning(k_A_minmax, k_B_minmax):
     """
@@ -156,22 +159,23 @@ def _surewinning(k_A_minmax, k_B_minmax):
     return {'P': None, 'P_interval': [0, 1], 'G': 0, 'p_prime': p_prime_A | p_prime_B}
 
 
-def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, 
-    method="bisection",
-    max_iter=float('inf'),
+def _statisticalgame_solve(N: int, KA: int, KB: int, M: int, gamma: float, 
+    method="bisection", 
+    max_iter=float('inf'), 
     max_error=1 / 2 ** 10
     ):
     """
-    Internal function to calculate Bayesian game equilibrium quantities.
+    Internal function to calculate Statistical game equilibrium quantities.
 
     Parameters:
     N (int): Number of sampled bits.
     KA (int): Number of 1-s in scenario A.
     KB (int): Number of 1-s in scenario B.
     M (int): Total length of the binary strings.
+    gamma (float): relative risk aversion parameter.
 
     Returns:
-    dict: Contains 'P', 'P_interval', 'G', 'p_prime'.
+    dict: Contains 'P', 'P_interval', 'U', 'p_prime'.
     """
     
     k_A_minmax = [max(0, N - (M - KA)), min(N, KA)]
@@ -196,18 +200,36 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int,
     k_A_slice = slice(k_A_minmax[0] - k_minmax[0], k_A_minmax[1] - k_minmax[0] + 1)
     k_B_slice = slice(k_B_minmax[0] - k_minmax[0], k_B_minmax[1] - k_minmax[0] + 1)
 
-    # Calculate HA and HB using numpy operations
-    HA = -np.sum(p_A_list[k_A_slice] * np.log(p_A_list[k_A_slice]))
-    HB = -np.sum(p_B_list[k_B_slice] * np.log(p_B_list[k_B_slice]))
+    # Define a th(P) transformation from probability to log-odds
+    def th(P):
+        return np.log(P / (1 - P))
 
-    # g being the derivative of G(P) respect to P
-    # $\Delta G'(P)$ in the Statistical Games paper:
-    # https://arxiv.org/pdf/2402.15892#equation.3.120
+    # Define a(k, th)
+    # $a_k$ (or a_k(z(\vartheta))) in the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.F.724
+    def a(k, th):
+        return  np.exp(th / gamma / 2) * p_A_list[k]**(1 / gamma) + \
+                np.exp(-th / gamma / 2) * p_B_list[k]**(1 / gamma)
 
-    # Optimized g function using vectorized operations and the predefined slice
-    def g(P):
-        return np.log(P / (1 - P)) - HA + HB - \
-            np.sum((p_A_list - p_B_list) * np.log(P * p_A_list + (1 - P) * p_B_list))
+    # Define Phi(th)
+    # $\Phi(\vartheta)$ in the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.F.722
+    def Phi(th):
+        sum_A = np.sum([p_A_list[k]**(1 / gamma) / a(k, th)**(1 - gamma) for k in k_values[k_A_slice]])
+        sum_B = np.sum([p_B_list[k]**(1 / gamma) / a(k, th)**(1 - gamma) for k in k_values[k_B_slice]])
+        return -gamma / (1 - gamma) * np.log(sum_A / sum_B)
+
+    # h(P) being the quantity, which should be zero in equilibrium
+    # $h(P) = \vartheta(P) - \Phi(\vartheta(P))$
+    # See the requirement in the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.F.718
+    def h(P):
+        return th(P) - Phi(th(P))
+
+    # Define the isoelastic utility function u(c)
+    # $u_\gamma(c)$
+    def u(c):
+        return (c ** (1 - gamma) - 1) / (1 - gamma)
 
     # Simple implementation of the Bisection method:
     # https://pythonnumericalmethods.studentorg.berkeley.edu/notebooks/chapter19.03-Bisection-Method.html
@@ -223,13 +245,13 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int,
     i = 0
     while i < max_iter and (P_upper - P_lower) / 2 > max_error:
         P_mid = (P_lower + P_upper) / 2
-        g_P_mid = g(P_mid)
+        h_P_mid = h(P_mid)
         
-        if g_P_mid > 0:
+        if h_P_mid > 0:
             P_upper = P_mid
-        elif g_P_mid < 0:
+        elif h_P_mid < 0:
             P_lower = P_mid
-        elif g_P_mid == 0:
+        elif h_P_mid == 0:
             P_star = P_mid
             break
         
@@ -237,36 +259,41 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int,
 
     P_star = (P_lower + P_upper) / 2  # Set P_star to the midpoint after the loop
 
-    G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - \
-            (P_star * HA + (1 - P_star) * HB) - \
-            np.sum((P_star * p_A_list + (1 - P_star) * p_B_list) * \
-                    np.log(P_star * p_A_list + (1 - P_star) * p_B_list))
-
+    # Calculate p_prime_star using the given equation
+    # In the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.F.713
     p_prime_star = {
-        k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k])
-        if (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) != 0 else np.nan
+        k: (P_star * p_A_list[k])**(1 / gamma) / ((P_star * p_A_list[k])**(1 / gamma) + ((1 - P_star) * p_B_list[k])**(1 / gamma))
         for k in range(k_minmax[0], k_minmax[1] + 1)
     }
 
-    return {'P': P_star, 'P_interval': [P_lower,P_upper], 'G': G_star, 'p_prime': p_prime_star}
+    # Calculate U_gamma(P_star) based on the given equation
+    U_star =    P_star *        np.sum([p_A_list[k] * u(p_prime_star[k]) \
+                                for k in k_values[k_A_slice]]) + \
+                (1 - P_star) *  np.sum([p_B_list[k] * u(1 - p_prime_star[k]) \
+                                for k in k_values[k_B_slice]])
 
-def _binomial_bayesiangame_solve(N: int, xA: float, xB: float, 
+    return {'P': P_star, 'P_interval': [P_lower, P_upper], 'U': U_star, 'p_prime': p_prime_star}
+
+
+def _binomial_statisticalgame_solve(N: int, xA: float, xB: float, gamma: float, 
     method="bisection", 
     max_iter=float('inf'), 
     max_error=1 / 2 ** 10):
     """
-    Internal function to calculate binomial Bayesian game equilibrium quantities.
+    Internal function to calculate binomial Statistical game equilibrium quantities.
 
     Parameters:
     N (int): Number of sampled bits.
     xA (float): Density of 1 in scenario A.
     xB (float): Density of 1 in scenario B.
+    gamma (float): Relative risk aversion parameter.
     method (str, optional): Method to use for solving the game. Default is "bisection".
     max_iter (int, optional): Maximum number of iterations allowed. Default is float('inf').
     max_error (float, optional): Maximum acceptable error. Default is 1 / 2 ** 10.
 
     Returns:
-    dict: Contains 'P', 'P_interval', 'G', 'p_prime'.
+    dict: Contains 'P', 'P_interval', 'U', 'p_prime'.
     """
     
     if xA == 0 and xB == 1:
@@ -279,19 +306,38 @@ def _binomial_bayesiangame_solve(N: int, xA: float, xB: float,
     p_A_list = np.array([scipy.special.comb(N, k, exact=True) * (xA ** k) * ((1 - xA) ** (N - k)) for k in k_values])
     p_B_list = np.array([scipy.special.comb(N, k, exact=True) * (xB ** k) * ((1 - xB) ** (N - k)) for k in k_values])
     
-    # Calculate HA and HB using numpy operations
-    HA = -np.sum(p_A_list * np.log(p_A_list))
-    HB = -np.sum(p_B_list * np.log(p_B_list))
-    
-    # g being the derivative of G(P) respect to P
-    # $\Delta G'(P)$ in the Statistical Games paper:
-    # https://arxiv.org/pdf/2402.15892#equation.3.120
+    # Define a th(P) transformation from probability to log-odds
+    def th(P):
+        return np.log(P / (1 - P))
 
-    # Optimized g function using vectorized operations
-    def g(P):
-        return np.log(P / (1 - P)) - HA + HB - \
-            np.sum((p_A_list - p_B_list) * np.log(P * p_A_list + (1 - P) * p_B_list))
-    
+    # Define a(k, th)
+    # $a_k$ (or a_k(z(\vartheta))) in the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.F.724
+    def a(k, th):
+        term1 = np.exp(th / gamma / 2) * p_A_list[k]**(1 / gamma)
+        term2 = np.exp(-th / gamma / 2) * p_B_list[k]**(1 / gamma)
+        return term1 + term2
+
+    # Define Phi(th)
+    # $\Phi(\vartheta)$ in the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.F.722
+    def Phi(th):
+        sum_A = np.sum([p_A_list[k]**(1 / gamma) / a(k, th)**(1 - gamma) for k in k_values])
+        sum_B = np.sum([p_B_list[k]**(1 / gamma) / a(k, th)**(1 - gamma) for k in k_values])
+        return -gamma / (1 - gamma) * np.log(sum_A / sum_B)
+
+    # h(P) being the quantity, which should be zero in equilibrium
+    # $h(P) = \vartheta(P) - \Phi(\vartheta(P))$
+    # See the requirement in the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.F.718
+    def h(P):
+        return th(P) - Phi(th(P))
+
+    # Define the isoelastic utility function u(c)
+    # $u_\gamma(c)$
+    def u(c):
+        return (c ** (1 - gamma) - 1) / (1 - gamma)
+
     # Simple implementation of the Bisection method:
     # https://pythonnumericalmethods.studentorg.berkeley.edu/notebooks/chapter19.03-Bisection-Method.html
     
@@ -305,13 +351,13 @@ def _binomial_bayesiangame_solve(N: int, xA: float, xB: float,
     i = 0
     while i < max_iter and (P_upper - P_lower) / 2 > max_error:
         P_mid = (P_lower + P_upper) / 2
-        g_P_mid = g(P_mid)
+        h_P_mid = h(P_mid)
         
-        if g_P_mid > 0:
+        if h_P_mid > 0:
             P_upper = P_mid
-        elif g_P_mid < 0:
+        elif h_P_mid < 0:
             P_lower = P_mid
-        elif g_P_mid == 0:
+        elif h_P_mid == 0:
             P_star = P_mid
             break
         
@@ -319,15 +365,24 @@ def _binomial_bayesiangame_solve(N: int, xA: float, xB: float,
     
     P_star = (P_lower + P_upper) / 2  # Set P_star to the midpoint after the loop
     
-    G_star = P_star * np.log(P_star) + (1 - P_star) * np.log(1 - P_star) - \
-            (P_star * HA + (1 - P_star) * HB) - \
-            np.sum((P_star * p_A_list + (1 - P_star) * p_B_list) * \
-                    np.log(P_star * p_A_list + (1 - P_star) * p_B_list))
-    
+    # Calculate p_prime_star using the given equation
+    # In the Statistical Games paper:
+    # https://arxiv.org/pdf/2402.15892#equation.F.713
     p_prime_star = {
-        k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k])
-        if (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) != 0 else np.nan
-        for k in range(N + 1)
+        k: (P_star * p_A_list[k])**(1 / gamma) / ((P_star * p_A_list[k])**(1 / gamma) + ((1 - P_star) * p_B_list[k])**(1 / gamma))
+        for k in k_values
     }
     
-    return {'P': P_star, 'P_interval': [P_lower, P_upper], 'G': G_star, 'p_prime': p_prime_star}
+    # Calculate U_star based on the given equation
+    U_star =    P_star *        np.sum([p_A_list[k] * u(p_prime_star[k]) \
+                                for k in k_values]) + \
+                (1 - P_star) *  np.sum([p_B_list[k] * u(1 - p_prime_star[k]) \
+                                for k in k_values])
+    
+    return {'P': P_star, 'P_interval': [P_lower, P_upper], 'U': U_star, 'p_prime': p_prime_star}
+
+print(statisticalgame_solve(1,[0,1],2,gamma=1.7, max_error=0.000001))
+print(statisticalgame_solve(10,[0.3,0.5],gamma=0.5, max_error=0.000001))
+
+print(statisticalgame_solve(1,[0,1],2))
+print(statisticalgame_solve(10, [0.3, 0.5], gamma=0.5))

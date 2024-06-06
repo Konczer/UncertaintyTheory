@@ -5,9 +5,9 @@ import scipy.special
 
 def fishergame_solve(N: int, Kx_list: Union[List[int], List[float], np.ndarray], M: Union[int, float] = float('inf')) -> Dict[str, Union[int, float]]:
     """
-    Solve the Fisher game problem and calculate equilibrium quantities.
+    Solves a Fisher game and calculates equilibrium quantities.
 
-    This function serves as a public interface to solve the Fisher game problem
+    This function serves as a public interface to solve a Fisher game
     by invoking the internal `_fishergame_solve` or `_binomial_fishergame_solve` function.
 
     Parameters:
@@ -38,13 +38,13 @@ def fishergame_solve(N: int, Kx_list: Union[List[int], List[float], np.ndarray],
 
     Example Usage:
     -------------
-    Solving the Fisher game with finite M:
+    Solving a Fisher game with finite M:
     
     >>> result = fishergame_solve(1, [0, 1], 2)
     >>> print(result)
     {'P': 0.6666666666666666, 'k': 0, 'nu': 0.6666666666666666, 's': 0.3333333333333333, 'v': 0.6666666666666666}
     
-    Solving the Fisher game with infinite M:
+    Solving a Fisher game with infinite M:
     
     >>> result = fishergame_solve(10, [0.3, 0.5])
     >>> print(result)
