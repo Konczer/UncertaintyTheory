@@ -155,6 +155,23 @@ def _surewinning(k_A_minmax, k_B_minmax):
 
     return {'P': None, 'P_interval': [0, 1], 'G': 0, 'p_prime': p_prime_A | p_prime_B}
 
+def _blindguessing(k_A_minmax, k_B_minmax):
+    """
+    Internal function to handle blind guessing Bayesian games.
+
+    Parameters:
+    k_A_minmax (Tuple[int, int]): Minimum and Maximum of k in case of scenario A.
+    k_B_minmax (Tuple[int, int]): Minimum and Maximum of k in case of scenario B.
+
+    Returns:
+    dict: Contains 'P', 'P_interval', 'G', 'p_prime'.
+    """
+
+    p_prime_A = {k: 1/2 for k in range(k_A_minmax[0], k_A_minmax[1] + 1)}
+    p_prime_B = {k: 1/2 for k in range(k_B_minmax[0], k_B_minmax[1] + 1)}
+
+    return {'P': 1/2, 'P_interval': [1/2, 1/2], 'G': -np.log(2), 'p_prime': p_prime_A | p_prime_B}
+
 
 def _bayesiangame_solve(N: int, KA: int, KB: int, M: int, 
     method="bisection",
@@ -179,6 +196,9 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int,
 
     k_minmax = [min(k_A_minmax[0], k_B_minmax[0]), max(k_A_minmax[1], k_B_minmax[1])]
     k_AB_minmax = [max(k_A_minmax[0], k_B_minmax[0]), min(k_A_minmax[1], k_B_minmax[1])]
+
+    if KA == KB:
+        return _blindguessing(k_A_minmax, k_B_minmax)
 
     if k_AB_minmax[0] > k_AB_minmax[1]:
         return _surewinning(k_A_minmax, k_B_minmax)
