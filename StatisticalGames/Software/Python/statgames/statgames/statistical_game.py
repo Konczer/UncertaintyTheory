@@ -3,7 +3,7 @@ from typing import Dict, Union, List, Tuple
 import numpy as np
 import scipy.special
 
-from bayesian_game import bayesiangame_solve
+from statgames.bayesian_game import bayesiangame_solve
 
 def statisticalgame_solve(
     N: int,
