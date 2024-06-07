@@ -3,6 +3,8 @@ from typing import Dict, Union, List, Tuple
 import numpy as np
 import scipy.special
 
+from bayesian_game import bayesiangame_solve
+
 def statisticalgame_solve(
     N: int,
     Kx_list: Union[List[int], List[float], np.ndarray],
