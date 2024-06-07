@@ -123,6 +123,10 @@ def statisticalgame_solve(
     # returns the output of the internal:
     # _fishergame_solve or _binomial_fishergame_solve  
 
+    # Call bayesiangame_solve if gamma == 1
+    if float(gamma) == 1.:
+        return bayesiangame_solve(N, Kx_list, M, method="bisection", max_iter=max_iter, max_error=max_error)
+
     if np.isinf(M):
         xA, xB = map(float, Kx_list)
         if xA <= xB:
@@ -380,9 +384,3 @@ def _binomial_statisticalgame_solve(N: int, xA: float, xB: float, gamma: float,
                                 for k in k_values])
     
     return {'P': P_star, 'P_interval': [P_lower, P_upper], 'U': U_star, 'p_prime': p_prime_star}
-
-print(statisticalgame_solve(1,[0,1],2,gamma=1.7, max_error=0.000001))
-print(statisticalgame_solve(10,[0.3,0.5],gamma=0.5, max_error=0.000001))
-
-print(statisticalgame_solve(1,[0,1],2))
-print(statisticalgame_solve(10, [0.3, 0.5], gamma=0.5))
