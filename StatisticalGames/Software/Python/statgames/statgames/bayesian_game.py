@@ -262,10 +262,11 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int,
             np.sum((P_star * p_A_list + (1 - P_star) * p_B_list) * \
                     np.log(P_star * p_A_list + (1 - P_star) * p_B_list))
 
+    # Calculate p_prime_star
     p_prime_star = {
-        k: P_star * p_A_list[k] / (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k])
-        if (P_star * p_A_list[k] + (1 - P_star) * p_B_list[k]) != 0 else np.nan
-        for k in range(k_minmax[0], k_minmax[1] + 1)
+        k: P_star * p_A_list[i] / (P_star * p_A_list[i] + (1 - P_star) * p_B_list[i])
+        if (P_star * p_A_list[i] + (1 - P_star) * p_B_list[i]) != 0 else np.nan
+        for i, k in enumerate(k_values)
     }
 
     return {'P': P_star, 'P_interval': [P_lower,P_upper], 'G': G_star, 'p_prime': p_prime_star}
