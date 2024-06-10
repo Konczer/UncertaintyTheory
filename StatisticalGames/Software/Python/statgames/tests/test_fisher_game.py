@@ -1,12 +1,17 @@
 # tests/test_fisher_game.py
-import sys
-import os
 import pytest
 
-# Add the parent directory of the module to the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'statgames')))
+try:
+    # Try importing the package
+    from statgames.fisher_game import fishergame_solve
+except ImportError:
+    # If import fails, add the parent directory of the module to the Python path
+    import sys
+    import os
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'statgames')))
+    from fisher_game import fishergame_solve
 
-from fisher_game import fishergame_solve
+
 
 # pytest.approx(2/3, abs=1e-10)
 def test_fishergame_solve():

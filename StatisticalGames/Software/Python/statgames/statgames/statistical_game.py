@@ -3,7 +3,15 @@ from typing import Dict, Union, List, Tuple
 import numpy as np
 import scipy.special
 
-from statgames.bayesian_game import bayesiangame_solve
+try:
+    # Try importing the package
+    from statgames.bayesian_game import bayesiangame_solve
+except ImportError:
+    # If import fails, add the parent directory of the module to the Python path
+    import sys
+    import os
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    from statgames.bayesian_game import bayesiangame_solve
 
 def statisticalgame_solve(
     N: int,
@@ -258,7 +266,8 @@ def _statisticalgame_solve(N: int, KA: int, KB: int, M: int, gamma: float,
         elif h_P_mid < 0:
             P_lower = P_mid
         elif h_P_mid == 0:
-            P_star = P_mid
+            P_lower = P_mid
+            P_upper = P_mid
             break
         
         i += 1

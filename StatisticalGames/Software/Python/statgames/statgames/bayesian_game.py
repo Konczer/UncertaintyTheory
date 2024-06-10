@@ -9,7 +9,8 @@ def bayesiangame_solve(
     M: Union[int, float] = float('inf'),
     method = "bisection",
     max_iter = float('inf'),
-    max_error=1 / 2 ** 10
+    max_error=1 / 2 ** 10,
+    error_type: str = "P"
     # keys: List[str] = "all"
     ) -> Dict[str, Union[float, Tuple[float, float], Dict[int, float]]]:   
     """
@@ -250,7 +251,8 @@ def _bayesiangame_solve(N: int, KA: int, KB: int, M: int,
         elif g_P_mid < 0:
             P_lower = P_mid
         elif g_P_mid == 0:
-            P_star = P_mid
+            P_lower = P_mid
+            P_upper = P_mid
             break
         
         i += 1
