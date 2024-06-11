@@ -291,6 +291,8 @@ def _binomial_bayesiangame_solve(N: int, xA: float, xB: float,
     Returns:
     dict: Contains 'P', 'P_interval', 'G', 'p_prime'.
     """
+
+    
     
     if xA == 0 and xB == 1:
         return _surewinning([0,0],[N,N])
@@ -299,12 +301,22 @@ def _binomial_bayesiangame_solve(N: int, xA: float, xB: float,
     k_values = np.arange(0, N + 1)
     
     # Calculate binomial probabilities p_A_list and p_B_list
-    p_A_list = np.array([scipy.special.comb(N, k, exact=True) * (xA ** k) * ((1 - xA) ** (N - k)) for k in k_values])
-    p_B_list = np.array([scipy.special.comb(N, k, exact=True) * (xB ** k) * ((1 - xB) ** (N - k)) for k in k_values])
-    
-    # Calculate HA and HB using numpy operations
-    HA = -np.sum(p_A_list * np.log(p_A_list))
-    HB = -np.sum(p_B_list * np.log(p_B_list))
+    if xA == 0:
+        p_A_list = np.zeros(N + 1)
+        p_A_list[0] = 1.0
+    else:
+        p_A_list = np.array([scipy.special.comb(N, k, exact=True) * (xA ** k) * ((1 - xA) ** (N - k)) for k in k_values])
+        p_A_list /= np.sum(p_A_list)
+
+    if xB == 1:
+        p_B_list = np.zeros(N + 1)
+        p_B_list[N] = 1.0
+    else:
+        p_B_list = np.array([scipy.special.comb(N, k, exact=True) * (xB ** k) * ((1 - xB) ** (N - k)) for k in k_values])
+
+    # Calculate entropies HA and HB using slices
+    HA = -np.sum(p_A_list[p_A_list > 0] * np.log(p_A_list[p_A_list > 0]))
+    HB = -np.sum(p_B_list[p_B_list > 0] * np.log(p_B_list[p_B_list > 0]))
     
     # g being the derivative of G(P) respect to P
     # $\Delta G'(P)$ in the Statistical Games paper:
