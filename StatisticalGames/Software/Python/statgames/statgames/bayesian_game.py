@@ -299,6 +299,9 @@ def _binomial_bayesiangame_solve(N: int, xA: float, xB: float,
     
     # Define the range for k values
     k_values = np.arange(0, N + 1)
+
+    if xA == xB:
+        return _blindguessing(k_values, k_values)
     
     # Calculate binomial probabilities p_A_list and p_B_list
     if xA == 0:
