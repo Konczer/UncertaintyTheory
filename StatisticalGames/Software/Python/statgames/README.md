@@ -24,6 +24,10 @@ If you need to uninstall the package, you can do so using pip. Run the following
 pip uninstall statgames
 ```
 
+## Example notebook
+
+An example Jupyter notebook which uses `statgames` to reproduce figures from the [Statistical Games](https://arxiv.org/pdf/2402.15892) paper is available on [GitHub](https://github.com/Konczer/UncertaintyTheory/blob/main/StatisticalGames/Notebooks/Jupyter/StatisticalGames.ipynb) and an interactive version on [Google Colab](https://colab.research.google.com/drive/1dFSqVPMd0_6Ai8iMfoohOETQjdy2C2GD?usp=sharing).
+
 ## Usage
 
 ### Fisher Game
