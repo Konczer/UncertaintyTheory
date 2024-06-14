@@ -135,7 +135,8 @@ def statisticalgame_solve(
 
     # Call bayesiangame_solve if gamma == 1
     if float(gamma) == 1.:
-        return bayesiangame_solve(N, Kx_list, M, method="bisection", max_iter=max_iter, max_error=max_error)
+        res = bayesiangame_solve(N, Kx_list, M, method=method, max_iter=max_iter, max_error=max_error)
+        return {('U' if k == 'G' else k): v for k, v in res.items()}
 
     if np.isinf(M):
         xA, xB = map(float, Kx_list)

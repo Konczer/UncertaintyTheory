@@ -22,19 +22,29 @@ def test_statisticalgame_solve():
 
     # Trivial example
     # Zero game
-    result = statisticalgame_solve(0, [0, 0], 0)
+    result = statisticalgame_solve(0, [0, 0], 0, gamma=0.5)
     assert result['P'] == 1/2
     assert result['P_interval'] == [1/2, 1/2]
     assert result['U'] == pytest.approx(2 * (np.sqrt(1/2) - 1), abs=1e-10)
     assert result['p_prime'] == {0: 1/2}
 
     # Smallest nontrivial example
-    result = statisticalgame_solve(1, [0, 1], 2, max_error=1e-10)
+    result = statisticalgame_solve(1, [0, 1], 2, gamma=0.5, max_error=1e-10)
     assert result['P'] == pytest.approx(0.4, abs=1e-10)
     assert result['P_interval'][1] - result['P_interval'][0] <= 2 * 1e-10
     assert result['P_interval'][0] == pytest.approx(0.4, abs=2e-10)
     assert result['U'] == pytest.approx(-0.4, abs=1e-8)
     assert result['p_prime'][0] == pytest.approx(0.64, abs=1e-8)
+    assert result['p_prime'][1] == 0
+
+    # Correspondence with Bayesian games when gamma=1
+    result = statisticalgame_solve(1, [0, 1], 2, gamma=1, max_error=1e-12)
+    assert result['P'] == pytest.approx(1/np.sqrt(5), abs=1e-12)
+    assert result['P_interval'][1] - result['P_interval'][0] <= 2 * 1e-12
+    assert result['P_interval'][0] == pytest.approx(1/np.sqrt(5), abs=2e-12)
+    assert result['P_interval'][1] == pytest.approx(1/np.sqrt(5), abs=2e-12)
+    assert result['U'] == pytest.approx( -np.log((3 + np.sqrt(5))/2) / 2, abs=1e-10)
+    assert result['p_prime'][0] == pytest.approx((np.sqrt(5) - 1) / 2, abs=1e-10)
     assert result['p_prime'][1] == 0
 
 
