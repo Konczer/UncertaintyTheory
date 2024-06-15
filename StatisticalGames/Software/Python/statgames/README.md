@@ -174,6 +174,17 @@ print(result)
 #    }
 ```
 
+## For developers
+
+For interacting with a subdirectory of a Git repository see this [short summary](https://www.baeldung.com/ops/git-clone-subdirectory).
+
+### Cloning
+
+```bash
+git clone --no-checkout --depth=1 https://github.com/Konczer/UncertaintyTheory.git
+git checkout main -- StatisticalGames/Software/Python/statgames
+```
+
 ## Citation
 
 To cite the Python package:
