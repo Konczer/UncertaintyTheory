@@ -4,6 +4,9 @@ See the related arXiv paper:
 
 [**arXiv:2402.15892**](https://arxiv.org/abs/2402.15892)
 
+<img style="float: right;" src="StatisticalGames.png" alt="StatisticalGamesImage" width="350">
+
+
 > **Abstract:** This work contains the mathematical exploration of a few prototypical games in which central concepts from statistics and probability theory naturally emerge. The first two kinds of games are termed Fisher and Bayesian games, which are connected to Frequentist and Bayesian statistics, respectively. Later, a more general type of game is introduced, termed Statistical game, in which a further parameter, the players' relative risk aversion, can be set. In this work, we show that Fisher and Bayesian games can be viewed as limiting cases of Statistical games. Therefore, Statistical games can be viewed as a unified framework, incorporating both Frequentist and Bayesian statistics. Furthermore, a philosophical framework is (re-)presented -- often referred to as minimax regret criterion -- as a general approach to decision making.
 The main motivation for this work was to embed Bayesian statistics into a broader decision-making framework, where, based on collected data, actions with consequences have to be made, which can be translated to utilities (or rewards/losses) of the decision-maker. The work starts with the simplest possible toy model, related to hypothesis testing and statistical inference. This choice has two main benefits: i.) it allows us to determine (conjecture) the behaviour of the equilibrium strategies in various limiting cases ii.) this way, we can introduce Statistical games without requiring additional stochastic parameters. The work contains game theoretical methods related to two-player, non-cooperative games to determine and prove equilibrium strategies of Fisher, Bayesian and Statistical games. It also relies on analytical tools for derivations concerning various limiting cases.
 
