@@ -13,27 +13,27 @@ The main motivation for this work was to embed Bayesian statistics into a broade
     - [alphaxiv.org/abs/2402.15892](https://www.alphaxiv.org/abs/2402.15892)
 
 - Talks:
-    - See a recorded talk given at 3 May 2024 on [AI for QFT](https://sites.google.com/view/ai-qft) seminar at Queen Mary University of London ([QMUL](https://www.qmul.ac.uk/)), which has been uploaded to YouTube:
+    - See a recorded talk given on 3 May 2024 on [AI for QFT](https://sites.google.com/view/ai-qft) seminar at Queen Mary University of London ([QMUL](https://www.qmul.ac.uk/)), which has been uploaded to YouTube:
 
         - [https://www.youtube.com/watch?v=kNNmLIa31vE](https://www.youtube.com/watch?v=kNNmLIa31vE)
 
-        - You can eccess the uploaded slides [here](raw.githubusercontent.com/Konczer/UncertaintyTheory/main/StatisticalGames/Talks/20240503_QMUL/pdf/StatisticalGames_20240503_QMUL.pdf)
+        - You can access the uploaded slides [here](https://raw.githubusercontent.com/Konczer/UncertaintyTheory/main/StatisticalGames/Talks/20240503_QMUL/pdf/StatisticalGames_20240503_QMUL.pdf).
 
     - For a talk given at 9 May 2024 on [Statistics Seminar](https://www.bristolmathsresearch.org/seminar/statistics-seminar-9th-may-jozsef-konczer/) at [University of Bristol](https://www.bristol.ac.uk/):
-        - See uploaded slides [here](https://github.com/Konczer/UncertaintyTheory/raw/main/StatisticalGames/Talks/20240509_Bristol/pdf/StatisticalGames_20240509_Bristol.pdf)
+        - See uploaded slides [here](https://github.com/Konczer/UncertaintyTheory/raw/main/StatisticalGames/Talks/20240509_Bristol/pdf/StatisticalGames_20240509_Bristol.pdf).
 
     - See the repository of [Talks](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/Talks) for further resources.
 
  - Software:
-    - [𝚜𝚝𝚊𝚝𝚐𝚊𝚖𝚎𝚜](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/Software/Python/statgames) an open source Python implementation to compute equilibrium quantities;
+    - [𝚜𝚝𝚊𝚝𝚐𝚊𝚖𝚎𝚜](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/Software/Python/statgames) an open source Python implementation to compute equilibrium quantities.
 
 - Notebooks:
     - On [Google Colab](https://colab.research.google.com/drive/1dFSqVPMd0_6Ai8iMfoohOETQjdy2C2GD?usp=sharing);
     - On [CoCalc](https://cocalc.com/share/public_paths/4b2db98a47502178ce895de95cf70715299c85cd);
-    - Static version on [GitHub](https://github.com/Konczer/UncertaintyTheory/blob/main/StatisticalGames/Notebooks/Jupyter/StatisticalGames.ipynb).
+    - A static version is uploaded to [GitHub](https://github.com/Konczer/UncertaintyTheory/blob/main/StatisticalGames/Notebooks/Jupyter/StatisticalGames.ipynb).
 
 - Posts:
-    - See a social media post on [LinkedIn](https://www.linkedin.com/posts/j%C3%B3zsef-konczer-25290189_dear-colleagues-and-friends-after-years-activity-7168337625697697792-CO6a) for a wider context.
+    - See a social media post on [LinkedIn](https://www.linkedin.com/posts/j%C3%B3zsef-konczer-25290189_dear-colleagues-and-friends-after-years-activity-7168337625697697792-CO6a) for a broader context.
 
 - Broader project:
     - The content of Statistical Games is a prelude to a broader project which aims to formalize the concept of *uncertainty* in the context of Game Theory. Resources for this more general project will be found in the [Uncertainty Theory](https://github.com/Konczer/UncertaintyTheory/tree/main) repository.
@@ -41,15 +41,15 @@ The main motivation for this work was to embed Bayesian statistics into a broade
 
 ## Citation
 
-To cite the Statistical Games paper you might use the following BibTeX entry:
+To cite the Statistical Games paper, you might use the following BibTeX entry:
 
 ```latex
 @misc{konczer2024statisticalgames,
-    title={Statistical Games}, 
-    author={Jozsef Konczer},
-    year={2024},
-    eprint={2402.15892},
-    archivePrefix={arXiv},
-    primaryClass={math.ST}
+ title={Statistical Games}, 
+ author={Jozsef Konczer},
+ year={2024},
+ eprint={2402.15892},
+ archivePrefix={arXiv},
+ primaryClass={math.ST}
 }
 ```
