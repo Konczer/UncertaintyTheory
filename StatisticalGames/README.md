@@ -2,8 +2,8 @@
 
 See the related arXiv paper:
 
-
 [**arXiv:2402.15892**](https://arxiv.org/abs/2402.15892)
+(or a local copy of [Statistical Games](https://github.com/Konczer/UncertaintyTheory/raw/main/StatisticalGames/arXiv/pdf/StatisticalGames.pdf))
 
 
 > <img align="right" src="StatisticalGames.png" alt="StatisticalGamesImage" width="380"> **Abstract:** This work contains the mathematical exploration of a few prototypical games in which central concepts from statistics and probability theory naturally emerge. The first two kinds of games are termed Fisher and Bayesian games, which are connected to Frequentist and Bayesian statistics, respectively. Later, a more general type of game is introduced, termed Statistical game, in which a further parameter, the players' relative risk aversion, can be set. In this work, we show that Fisher and Bayesian games can be viewed as limiting cases of Statistical games. Therefore, Statistical games can be viewed as a unified framework, incorporating both Frequentist and Bayesian statistics. Furthermore, a philosophical framework is (re-)presented -- often referred to as minimax regret criterion -- as a general approach to decision making.
@@ -34,6 +34,10 @@ The main motivation for this work was to embed Bayesian statistics into a broade
     - On [Google Colab](https://colab.research.google.com/drive/1dFSqVPMd0_6Ai8iMfoohOETQjdy2C2GD?usp=sharing);
     - On [CoCalc](https://cocalc.com/share/public_paths/4b2db98a47502178ce895de95cf70715299c85cd);
     - A static version is uploaded to [GitHub](https://github.com/Konczer/UncertaintyTheory/blob/main/StatisticalGames/Notebooks/Jupyter/StatisticalGames.ipynb).
+
+- [LaTeX source](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/arXiv/LaTeX) and [local copy](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/arXiv/pdf) of the manuscript.
+
+- [Errata](https://github.com/Konczer/UncertaintyTheory/blob/main/StatisticalGames/arXiv/Errata/errata.md) for [v1]
 
 - Posts:
     - See a social media post on [LinkedIn](https://www.linkedin.com/posts/j%C3%B3zsef-konczer-25290189_dear-colleagues-and-friends-after-years-activity-7168337625697697792-CO6a) for a broader context.
