@@ -12,7 +12,7 @@ The main motivation for this work was to embed Bayesian statistics into a broade
 <p>
 <img src="StatisticalGames.png" height="200rm" align="right">
 
-I am a full-stack web developer and currently learning many things...
+Lorem ipsume etc...
 </p>
 
 
