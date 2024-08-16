@@ -1,5 +1,6 @@
 # Statistical Games
 
+This repository accompanies the manuscript on **Statistical Games** and collects all the resources, software, talks, and further content related to the work.
 See the related arXiv paper:
 
 [**arXiv:2402.15892**](https://arxiv.org/abs/2402.15892)
