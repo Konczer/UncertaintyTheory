@@ -5,10 +5,10 @@
 
 ## Context
 
-This is an informal introduction and summary of a longer manuscript on [Statistical Games](https://arxiv.org/abs/2402.15892) in the style of a technical blog post.
-I intend to keep the material self-contained in its message but to bring the details closer to interested readers; I will often mention specific sections in the manuscript.
-In this way, the post can be viewed as a companion to the relatively long and technical document available on arXiv: 
-[arXiv:2402.15892](https://arxiv.org/abs/2402.15892)
+This is an informal introduction and summary of a longer manuscript on [Statistical Games](https://arxiv.org/abs/2402.15892).
+I try to keep the material self-contained but to bring the paper closer, I will often mention specific sections and parts in the manuscript.
+This blog post is therefore essentially a companion to the relatively long and technical document available on arXiv: 
+[arXiv:2402.15892](https://arxiv.org/abs/2402.15892).
 
 ## Introduction
 
@@ -17,25 +17,26 @@ Humans, animals, machines all need to navigate environments where they can't see
 
 Although the incomprehensible complexity of the whole world prevents us from reaching absolute certainty, we (and various other organisms) can construct models, gather data and develop heuristics to ride better the waves of reality.
 
-One approach to refined heuristics is decision-making based on statistics. However, the most well-known interpretations and frameworks for Probability theory and (theoretical-) Statistics seem to focus more on making rigorous statements (often in various limiting cases) than guiding an Agent with only a finite amount of data.
+One approach - sounding scientific and "objective" - for refined heuristics is decision-making aided with statistics. However, the most well-known interpretations and frameworks for [Probability theory](https://en.wikipedia.org/wiki/Probability_interpretations) and (theoretical-) [Statistics](https://plato.stanford.edu/entries/statistics/) seem to focus more on making rigorous statements (often in various limiting cases) than guiding an Agent with only a finite amount of data.
 
 My aim was to construct a broader framework where Statistics and Probability theory are not separate disciplines, operating with their own concepts, but where these are ingredients of a whole decision-making process of an Agent who needs to make moves having incomplete information.
-After serious mathematical idealisations, by which we restrict the possible states of the environment and the Agent's possible actions, the best framework to analyse this decision-making process appears to be Game Theory.
+After substantial mathematical idealisations, by which we restrict the possible states of the environment and the Agent's possible actions, the best framework to analyse this decision-making process appears to be Game Theory.
 
 
 ## Why Game Theory?
 
-The concepts and techniques in Game Theory are often compatible with the decision-making framework, while some parts need adjustments.
+The concepts and techniques in Game Theory are mostly compatible with the decision-making framework, but some parts need adjustments.
 
 ### What is Game Theory?
 
 <img src="img/GameTheoryLogo.png" alt="GameTheoryLogo" width="150"/>
 
-Image source: [Introduction to Game Theory](https://nordstrommath.com/IntroGameTheoryv4-2020.pdf) a Discovery Approach by Jennifer Firkins Nordstrom
+Image source: *[Introduction to Game Theory](https://nordstrommath.com/IntroGameTheoryv4-2020.pdf) a Discovery Approach* by Jennifer Firkins Nordstrom
 
+A concise definition of Game Theory is:
 > The study of strategically interdependent behaviour.
 
-[Game Theory](https://www.britannica.com/science/game-theory) is the formal description of *Games*, in which "rational" players can act and receive payoffs based on their collective actions.
+[Game Theory](https://www.britannica.com/science/game-theory) is the formal description of *Games*, in which "rational" players can act and receive payoffs based on their collective actions. Usually we start with the following assumptions:
 
 
 
@@ -43,26 +44,28 @@ Image source: [Introduction to Game Theory](https://nordstrommath.com/IntroGameT
 - Every Player can choose from (a possibly different) finite set of Actions
 - Outcomes of the Game can depend on all Players' chosen Action
 - Players can NOT communicate with each other
-- Players can "Randomise" their strategies if desirable
-- Players are "Rational", meaning they are aiming to maximise their [Expected Utility](https://plato.stanford.edu/entries/rationality-normative-utility/) 
-- All above property (including every Players' Action dependent Payoff) is Common Knowledge
+- Players can "randomise" their strategies if desirable
+- Players are "rational", meaning they are aiming to maximise their *[Expected Utility](https://plato.stanford.edu/entries/rationality-normative-utility/)*
+   - *utility* is the Players' subjective quantity associated to the possible consequences of the Game. (The theory does not restrict Players' utility judgements but they are public i.e. known for all others.) 
+- All above property (including every Players' action dependent payoffs or utilities) is *common knowledge*
     - meaning every Player knows, and every Player knows that every (other) Player knows, etc.
 
 ### What is NOT Game Theory?
 
 There are a few frequent misconceptions about Game Theory, which I would address at this point:
-"Game Theory assumes selfish players":
-In the [dictionary sense](https://www.merriam-webster.com/dictionary/selfish): "concerned excessively or exclusively with oneself: seeking or concentrating on one's own advantage, pleasure, or well-being without regard for others" this is not the case. This is because any Player's utilities associated with possible outcomes are subjective and can incorporate other Players' welfare. For instance, swapping players' payoff functions in any two-player game would result in a perfectly valid new game in which both players are completely altruistic and concerned only about the other's welfare.
 
-"Game Theory is formalised Machiavellianism":
-Again, if we take the [dictionary definition](https://www.merriam-webster.com/dictionary/Machiavellianism): "the view that politics is amoral and that any means however unscrupulous can justifiably be used in achieving political power",
-then we see that Game Theory suggest Machiavellian strategies only if the Player's only concern is control and power. If the Player has other values, this will change her strategy through her utilities.
+- It is NOT the case that "Game Theory assumes selfish players":
+    - In the [dictionary sense](https://www.merriam-webster.com/dictionary/selfish) of the meaning:  "concerned excessively or exclusively with oneself, seeking or concentrating on one's own advantage, pleasure, or well-being without regard for others" this does not apply to game theory. This is because any Player's utilities associated with possible outcomes are subjective and can incorporate other Players' welfare. For instance, swapping Players' payoff functions in any two-player game would result in a perfectly valid new game in which both players are completely altruistic and concerned only about the other Player's welfare.
 
-"Game Theory is grounded in Utilitarianism":
-In Game Theory, utility functions and utility matrices are subjective, personal and even their units ($\text{util}_1, \text{util}_2,\dots$) are not harmonised. This means that the slogan of utilitarianism: "greatest good for the greatest number", is not automatically compatible with the Game Theoretic framework. (Because adding the utilities of different agents does not respect the invariances present in Game Theory.)
+- It is NOT the case that "Game Theory is formalised Machiavellianism":
+    - Again, if we take the [dictionary definition](https://www.merriam-webster.com/dictionary/Machiavellianism): "the view that politics is amoral and that any means however unscrupulous can justifiably be used in achieving political power",
+    then we see that game theory suggest Machiavellian strategies only if the Player's sole concern is control and power. If the Player has other values, this will change her strategy through her utilities.
 
-"Game Theory can be used only for simple games of entertainment":
-Unless the Expected Utility Hypothesis happens to be valid, a surprisingly wide variety of problems can be addressed by game theory. This includes social fields: Economics, Politics, Military theory, Sociology, etc. And non-human-related fields such as Biology, Control theory, Artificial Intelligence (Reinforcement Learning, Neural Networks), etc.
+- It is NOT the case that "Game Theory is grounded in Utilitarianism":
+    - In Game Theory, utility functions and utility matrices are subjective, personal and even their units ($\text{util}_1, \text{util}_2,\dots$) are not harmonised. This means that the slogan of utilitarianism: "greatest good for the greatest number", is not automatically compatible with the game theoretic framework. (Because adding the utilities of different Players does not respect the invariances present in game theory.)
+
+- It is NOT the case that "Game Theory can be used only for simple games of entertainment":
+    - A surprisingly wide variety of problems can be addressed by game theory, until the Expected Utility Hypothesis holds. This includes social fields: Economics, Politics, Military theory, Sociology, etc. And non-human-related fields such as Biology, Control theory, Artificial Intelligence (Reinforcement Learning, Neural Networks), etc. (See a brief summary of uses on [Wikipedia](https://en.wikipedia.org/wiki/Game_theory#General_and_applied_uses), and related fields to Statistical Games in the ["Brief introduction"](https://arxiv.org/pdf/2402.15892#section.1).)
 
 ### Prototypical example:
 

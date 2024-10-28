@@ -26,6 +26,9 @@ The main motivation for this work was to embed Bayesian statistics into a broade
     - For a talk given at 9 May 2024 on [Statistics Seminar](https://www.bristolmathsresearch.org/seminar/statistics-seminar-9th-may-jozsef-konczer/) at [University of Bristol](https://www.bristol.ac.uk/):
         - See uploaded slides [here](https://github.com/Konczer/UncertaintyTheory/raw/main/StatisticalGames/Talks/20240509_Bristol/pdf/StatisticalGames_20240509_Bristol.pdf).
 
+    - For a talk given at 11 October 2024 for the [Group of Aaditya Ramdas](https://www.stat.cmu.edu/~aramdas/group.html) at Carnegie Mellon University ([CMU](https://www.cmu.edu/)):
+        - See uploaded slides [here](https://github.com/Konczer/UncertaintyTheory/raw/refs/heads/main/StatisticalGames/Talks/20241011_CMU/pdf/StatisticalGames_20241011_CMU.pdf).
+
     - See the repository of [Talks](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/Talks) for further resources.
 
  - Software:
@@ -52,7 +55,7 @@ The main motivation for this work was to embed Bayesian statistics into a broade
 To cite the Statistical Games paper, you might use the following BibTeX entry:
 
 ```latex
-@misc{konczer2024statisticalgames,
+@misc{StatisticalGamesKonczer2024,
  title={Statistical Games}, 
  author={Jozsef Konczer},
  year={2024},
