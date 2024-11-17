@@ -28,6 +28,9 @@ The main motivation for this work was to embed Bayesian statistics into a broade
 
     - For a talk given at 11 October 2024 for the [Group of Aaditya Ramdas](https://www.stat.cmu.edu/~aramdas/group.html) at Carnegie Mellon University ([CMU](https://www.cmu.edu/)):
         - See uploaded slides [here](https://github.com/Konczer/UncertaintyTheory/raw/refs/heads/main/StatisticalGames/Talks/20241011_CMU/pdf/StatisticalGames_20241011_CMU.pdf).
+    
+    - For a talk given at 5 November 2024 for the [Budapest Computational Neuroscience Forum](https://ccc.ceu.edu/budapest-computational-neuroscience-forum) at the Center for Cognitive Computation ([CCC](https://ccc.ceu.edu/)) at the Central European University ([CEU](https://www.ceu.edu/)):
+        - See uploaded slides [here](https://github.com/Konczer/UncertaintyTheory/raw/refs/heads/main/StatisticalGames/Talks/20241105_CEU/pdf/StatisticalGames_20241105_CEU.pdf).
 
     - See the repository of [Talks](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/Talks) for further resources.
 
