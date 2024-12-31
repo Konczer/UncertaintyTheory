@@ -3,6 +3,10 @@
 % https://www.cl.cam.ac.uk/local/typography/phd/#margin
 \usepackage[a4paper, left=30mm, right=20mm, top=20mm, bottom=20mm]{geometry}
 
+\interfootnotelinepenalty=10000 %% Completely prevent breaking of footnotes
+
+\usepackage{nameref}
+
 % https://ctan.math.illinois.edu/macros/latex/contrib/tkz/pgfornament/doc/ornaments.pdf
 \usepackage{pgfornament}
 
@@ -18,6 +22,15 @@
 
 \usepackage{hyperref}
 
+% Description list indent
+% https://tex.stackexchange.com/questions/9760/indenting-description-lists
+\usepackage{enumitem}
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+
+% for [H]
+% https://www.overleaf.com/learn/latex/Errors/LaTeX_Error%3A_Unknown_float_option_%60H%27
+\usepackage{float}
+
 \newcommand{\util}{\scalebox{0.75}{\text{\Pfund}}}
 
 \usepackage[backref=true]{biblatex}
@@ -28,7 +41,7 @@
 \href{mailto:konczer.j@gmail.com}{konczer.j@gmail.com},
 \href{https://konczer.github.io/}{konczer.github.io}}
 }
-\date{September 2024}
+\date{December 2024}
 
 \begin{document}
 
@@ -36,19 +49,21 @@
 
 \section*{Opening}
 
+
 \lettrine[lines=2]{T}{he} subject of this essay might seem hopelessly vast and ungraspable, almost by definition.
 However, I do not attempt to discuss uncertainty itself, instead I will examine mainly the possible strategies by which one can cope with uncertain factors.
 
 In general, it is very hard -- perhaps impossible -- to say or suggest anything meaningful or well-founded about the ``unknown''. If we take an honest look at the possibilities in a real-world scenario, then we have to conclude that we have no real good arguments by which we could rule out any shape into which reality might fold out\footnote{Some might feel that I declared the solution to the ``problem of induction'' \cite{sep:Induction} too boldly. Let me try to clarify my statement by taking an imagined ideal casino as an example. I would make the same statement for gamblers playing Hazard or Craps in this casino. I cannot see any good argument that could rule out any result from a throw of a pair of dice. However, not being able to rule something out does not mean that there are no better and worse heuristics for gambling. Furthermore, it does not mean we can not have some advantage at the Blackjack table by, for example, counting cards.
+Bertrand Russell wrote the following: ``When one admits that nothing is certain one must, I think, also admit that some things are much more nearly certain than others.'' \cite{book:AtheistOrAgnosticRussell}, by which I absolutely agree on the importance of refining the position, but in my view strategy and action can be regarded more fundamental then believes.
 
 In fact, the primary purpose of this essay is to introduce and discuss such heuristics, hopefully, applicable not only in ideal casinos but also in real-world scenarios.
 }.
-We might have good heuristics -- such as our own experience, scientific findings, and possibly other guiding principles -- which would be faulty to disregard, but in my view, none of these has the power to bring certainty.
+We might have good heuristics -- such as our own experience, scientific findings, and possibly other guiding principles -- which would be faulty to disregard\footnote{The concept of the impossible, limits, and no-go theorems are useful and fruitful tools of mathematics, science, and engineering \cite{book:Impossibility}. However, these concepts has to be understood in their context and not elevate them -- mainly those which are related to Nature i.e. are not purely mathematical -- to a dogma, because not only futile attempts but sometimes self imposed constraints can also hinder progress. After all, science should not worship what is known but to question it \cite{book:TheAscentOfMan}.}, but in my view, none of these has the power to bring certainty.
 (This does not mean, however, that operating in an uncertain world would be impossible. Organisms make decisions and act continually. Realizing that thinking can not bring certainty only emphasizes that acting in the real world is more of an art than a science.)
 
 To overcome this both disturbing and liberating relationship with reality, it is safer to start discussing simpler, idealized decision-making problems for the sake of constructing a theoretical framework.
 Although these examples suffer from idealization, they hopefully can function as prototypes, leading to reasonable and useful heuristics.
-Adopting a self restrictive definition\footnote{See Von Mises \cite{book:VonMises} for elaborating on ``analytic'' and ``synthetic'' definitions of ``probability'', referring back to Kant.} of ``probability'' has been used several times to grapple with the concept.
+Adopting a self restrictive definition\footnote{See Von Mises \cite{book:VonMises} for elaborating on ``analytic'' and ``synthetic'' definitions of ``probability'', referring back to Kant. And/or Carnap's explication of the concept of probability in \cite{book:CarnapLogicalFoundationsOfProbability}.} of ``probability'' has been used several times to grapple with the concept.
 Games of chance,
 %\footnote{See \emph{Philosophical Essay on Probabilities} by Laplace \cite{book:Laplace}.}
 repeatable mass phenomena,
@@ -74,31 +89,84 @@ Because of the broader scope, the introduced framework can be viewed as the gene
 
 \section*{Proposed framework}
 
-Probably the best way to introduce the proposed framework, is to give a simple and general example, together with the suggested strategy. Let us assume, the followings:
+Probably the best way to introduce the proposed framework, is to clearly list its assumptions, together with the suggested strategy. Let us assume, the followings:
 
-\begin{itemize}
-    \item $\star$ There is an ``Agent'' who is part of the ``World''. The Agent can only partially model the whole World, she can develop heuristics, and, most importantly, perform actions;
-    \item The Agent considers only a finite number of possible actions. The set of actions will be denoted by $\mathcal{A}$;
-    \item The Agent can (or is willing to) restrict the possible states of the world to a finite set. We will denote this set by $\Theta$ and call it the parameter set;
-    \item Lastly, the Agent can associate utilities (or rewards) to all potential consequences, which depends both on her action and the state of the world. This function (in the finite case representable by table or a matrix) will be denoted by $U: \mathcal{A} \times \Theta \mapsto \mathbb{R}$.
-\end{itemize}
+\begin{description}
+    \item[0.)] $\star$ There is an ``Agent'' who is part of the ``World''. The Agent can only partially model the whole World, she can develop heuristics, and, most importantly, perform actions;
+    \item[1.)] The Agent considers only a finite number of possible actions. The set of actions will be denoted by $\mathcal{A}$;
+    \item[2.)] The Agent can (or is willing to) restrict the possible states of the world to a finite set. We will denote this set by $\Theta$ and call it the parameter set;
+    \item[3.)] Lastly, the Agent can associate utilities (or rewards) to all potential consequences, which depends both on her action and the state of the world. This function (in the finite case representable by table or a matrix) will be denoted by $U: \mathcal{A} \times \Theta \mapsto \mathbb{R}$.
+\end{description}
 
 Under these assumptions, the game-theoretic framework for decision-making and statistics suggests the following strategy for the Agent:
 
-\begin{itemize}
-    \item Imagine that the unknown parameter $\theta \in \Theta$ has been chosen by an opponent whose utility function is the regret of the Agent;
-    \item Determine the Nash equilibrium for such a two-player non-cooperative game: $\langle \sigma^*; \pi^* \rangle$;
-    \item Adopt the equilibrium strategy $\sigma^*$ of this imagined game to choose an action from the action set $\mathcal{A}$.
-\end{itemize}
+\begin{description}
+    \item[I.)] Imagine that the unknown parameter $\theta \in \Theta$ has been chosen by an opponent whose utility function is the regret of the Agent;
+    \item[II.)] Determine the Nash equilibrium for such a two-player non-cooperative game: $\langle \sigma^*; \pi^* \rangle$;
+    \item[III.)] Adopt the equilibrium strategy $\sigma^*$ of this imagined game to choose an action from the action set $\mathcal{A}$.
+\end{description}
 
 The primary goal of the following treatise is to elaborate on this procedure and show the viability of the above-suggested decision-making strategy.
 
 
 \section*{Objections, defences and remarks}
 
+\paragraph{Whom is this essay addressed to?}
+It is a natural question for a reader ``Is this essay for me?'', ``Am I supposed to understand the following?''
+
+The topic of this essay is vast in scope and interdisciplinary by nature.
+The institutional walls of today's academia are thick, disciplines often develop separate norms, have their own technical jargon, sometimes similar concepts are independently introduced, and often fields stay in their own confinement and do not refer to literature outside of their abstract intellectual niche\footnote{Although data shows that science becomes more interdisciplinary in the last century \cite{paper:NaturePapersInterdisciplinary,paper:ACenturyOfPhysics,book:AtlasOfKnowledge}, increased specialization can simultaneously happen \cite{paper:BurdenOfKnowledge}, because of the exponential growth of papers and fields alike \cite{book:AcademicTribesAndTerritories}. (The amount of subfields can be illustrated by the number of listed first-level categories in widely used classification schemes. The \href{https://mathscinet.ams.org/mathscinet/msc/msc2020.html}{Mathematics Subject Classification} lists 98 subfields, \href{https://physh.org/browse}{Physics Subject Headings} lists 17 disciplines and the \href{https://dl.acm.org/ccs}{ACM Computing Classification System} lists 13 subfields.)}.
+Given these circumstances, scoping has been a hard challenge -- and I am not sure I succeeded.
+
+My solution attempt to this challenge was that I pictured my audience as my younger, less experienced self. A person with some background in probability theory and statistics -- both in theory and practice -- but who was perplexed about its foundations and baffled about the discipline's success against its seemingly ad hoc techniques and foundation.
+The aim to write about the topic and embed it into a broader context occurred to me because a similar text would have been very valuable and eye-opening to me a decade ago, before I dared to embark on the quest for recovering -- or constructing -- deeper-lying foundations for probability theory and statistics.
+
+Besides clarifying my own thoughts, I wanted to keep the text intelligible for a broad and diverse audience. The tone and the topics are perhaps more suitable for an academic audience, but hopefully, many aspects are presented in a way that can be appreciated by the general public.
+The structure of the essay follows a classical ``dialectic'' philosophical style\footnote{The reason I resorted to wordy philosophical arguments and literary narratives was the lack of already existing formal tools by which I could grasp the relevant aspects of decision making doctrines and reasoning about various heuristics, values and metaphysical constructions. I tried my best to demonstrate the feasibility and computability of the proposed framework for the simplest possible toy model in Statistical Games \cite{arxiv:StatisticalGamesKonczer2024} which is a work mostly about the mathematical \emph{how}. This essay aims to address the philosophical \emph{why} with softer and more delicate philosophical arguments -- mostly using deduction, analogies and abduction -- as an ``epistemic practice'' \cite{sep:Arguments}.} -- with objections and defences --, but the whole text is not moulded into a single coherent narrative. Every objection grasps a different aspect of the problem, some philosophical, some mathematical, some more general. The objections are organized into paragraphs that rarely refer to each other, structuring the text into a loose collection of episodes. Therefore, they can be read separately according to the reader's taste and their own emerging doubts.
+
+\paragraph{Don't we already have a good enough understanding of the topic?}
+Haven't statisticians and philosophers already spilt enough ink discussing the foundations and techniques of probability and statistics?
+There are authoritative textbooks\footnote{Such as \cite{book:FellerIntroductionToProbabilityV1,book:FellerIntroductionToProbabilityV2,book:Renyi1970,book:Klenke,book:FoundationsOfModernProbability} for probability theory and \cite{book:StatisticalInference,book:CoxStatistics,book:DeGrootProbabilityAndStatistics} and \cite{book:Jaynes,book:Bernardo,book:BoxBayesianInference,book:BayesianDataAnalysis} for statistics.} with a wide variety of techniques; isn't that more than enough to handle uncertainty adequately?
+
+Undoubtedly, there is a vast literature and a rich history\footnote{For relatively concise historical overviews see several Bibliographic notes in \cite{book:CoxStatistics} or Chapter 2: The Historical Context in \cite{book:ProbabilityAndFinanceGame}.} surrounding uncertainty and the concept of probability.
+Statistics is a mature field, and it appears to me that most of its techniques have found their niche of applicability.
+``Frequentist'' techniques, also known as classical statistics -- developed and popularised among many others by Fisher, Neyman and Pearson -- work well in data-rich environments if stakes are not extremely high. Bayesian techniques -- associating an ``a priori'' probability distribution to unknown parameters -- perform better typically far from asymptotic regimes. (Therefore, these frameworks can be seen both as complementing or rivalling each other.) Even the sometimes seemingly ad hoc techniques are usually tested in practice and kept only those which don't produce undesirable results. Therefore, I do not argue that the current field of statistics is not a valuable repository of useful heuristics. My aim is to search for an organising principle, which can be viewed as a quest for simplicity in thought.
+
+{\it Charting the landscape:}
+Writing an overview feels daunting and frightening because I am sure that the sheer volume of the material and the existing diverse viewpoints make it impossible to give a brief summary on which every mentioned major branch would agree. However, daring this impossible task, an oversimplified characterisation of today's mainstream understanding of uncertainty might be given in the following way\footnote{This simplistic description is only a crude overview for those who are not or minimally familiar with statistics and probability theory. For more nuance, see further footnotes, and for a more comprehensive overview, see the cited resources.}:
+In practice, we often encounter events that we can not predict with certainty. Contrary to our lack of knowledge, it has been proven useful to not give up entirely our reasoning about such events but try to characterise their behaviour \emph{as if} it would be random, analogous to coin flips and throws of dice. In the time of writing, the dominant way of characterising uncertain events is to associate a probability distribution with the possible outcomes.
+There are two main schools of thought for the interpretation of probability itself. The so-called ``frequentist'' approach, which -- strictly speaking -- defines probability only for infinitely repeatable stochastic experiments simply as the ratio of the number of ``desirable events'' divided by the total number of experiments\footnote{Of course, this is a simplistic definition, but even for modern advanced definitions randomness is defined -- strictly speaking -- only for infinite sequences. Historically von Mises introduced ``collectives'' \cite{book:VonMises} as the models of random sequences (also known as Mises–Wald–Church random sequences). Jean Ville in 1939 proved \cite{book:ProbabilityAndFinanceGame,thesis:Ville1939} that this definition allows sequences which do not satisfy the iterated logarithm theorem, i.e. their ratios don't fluctuate the limiting probabilities but converge from below (or above). This led to more advanced definitions of randomness, such as a construction by Martin-Löf \cite{book:KnuthVol2,paper:MartinLof1966}.}. The so-called Bayesian approach understands probability mostly as a ``degree of belief'' and -- strictly speaking -- prescribes only a rule -- Bayes' rule -- to update one's beliefs in the light of new evidence (therefore, the Bayesian framework in its simplest form stays silent about the initial degree of belief, i.e. the prior probabilities)\footnote{Naturally, the real landscape of Bayesianism is more diverse (I. J. Good mentioned $46656$ different interpretations in \cite{book:GoodThinking}). Two big camps can be identified based on their approach to the question of priors. Subjective Bayesians -- most notably represented by de Finetti \cite{book:deFinetti} -- view priors as a completely subjective degree of belief of an experimenter, while objective Bayesians \cite{book:ObjectiveBayesianInference} tend to seek additional principles -- such as maximum entropy \cite{book:Jaynes,paper:GameTheoryMaximumEntropyGrunwald2004}, invariance under symmetry transformation groups leading to Haar prior(s) \cite{book:Jaynes,book:ObjectiveBayesianInference}, reparametrisation invariance leading to Jeffreys prior \cite{paper:JeffreysPriorOriginal}, maximal ``uninformativeness'' (causing the biggest expected surprise) leading to the reference prior \cite{book:Bernardo} -- to construct ``objective'' or ``uninformative'' priors. (A whole catalogue of uninformative priors has been collected here \cite{misc:PriorCatalog}.)}.
+
+There were times when people -- mostly economists in the beginning of XX. century -- contemplated uncertainties which can not be characterised by probabilities\footnote{See Knight \cite{book:Knight}, Keynes \cite{book:TreatiseOnProbability} and a historical summary of the concept's development in economics in \cite{book:JuliaUncertainty}}.
+There was a suspicion that the ``frequentist'' and the Bayesian interpretation might describe related but different concepts\footnote{Such as ``degree of confirmation'', i.e. credence or degree of belief and ``relative frequency in the long run'', i.e. chance \cite{sep:Carnap,book:CarnapLogicalFoundationsOfProbability}.}.
+However, seemingly, most contemporary researchers and practitioners operate in a conceptual framework where it is assumed that uncertainty is adequately describable by probabilities, and its objective description is related to the ``frequentist'' interpretation while its subjective description is related to the Bayesian framework.
+
+Statistical techniques stemming from the ``frequentist'' interpretation are concerned with asymptotic properties of a test or a method -- therefore, these are most naturally applicable in data-rich environments i.e. in the ``asymptotic regime''\footnote{For reference see \cite{book:AsymptoticStatistics}.}.
+Meanwhile, for Bayesian techniques, the biggest challenge has been the tractability of their method. The emerging popularity of Bayesian techniques can be partially explained by the development of effective numerical methods such as Markov Chain Monte Carlo sampling, by which the required high dimensional integrals become numerically tractable\footnote{For a brief historical overview how this numerical method coupled with increasing computing power revolutionised and generated renewed interest in Bayesian methods in the late 1980s and early 1990s see \cite{paper:ShortHistoryOfMCMC}.}. However, as data gets sparser, the choice of priors becomes more and more important in Bayesian methods, requiring additional principles or heuristics to yield results.
+
+Of course, the real history and the more detailed landscape are much more complicated:
+The whole mathematical discipline of probability theory was introduced as an epistemic description, partially founded by Laplace in about 1820, coining the term ``the principle of insufficient reason''\footnote{See Laplace's famous essay at \cite{book:Laplace}. For early European history of probability, see \cite{book:Todhunter1865History}, which is itself a historical specimen -- from 1865 -- reflecting the norms and views of its age. Another book investigating the evolution of concepts related to probability from ancient times to the Newtonian era is \cite{book:GamesGodsGambling}. The three books of Anders Hald cover the topic from antiquity to 1935 \cite{book:HaldHistoryProbabilityStatisticsBefore1750,book:HaldHistoryOfMathematicalStatistics1750-1930,book:HaldHistoryOfInference1713–1935}. For more recent developments see the historical parts in \cite{book:ProbabilityAndFinanceGame} and the Bibliographical notes in \cite{book:CoxStatistics}. For very recent highlights, see a presentation by Yuval Peres \cite{talk:HighlightsFromTheHistoryOfProbability} stretching from Hilbert's 6th problem in 1900 \cite{paper:HilbertProblems1900} to 2024. About the transmission of the concepts of probability theory to other mathematical traditions -- such as China -- see \cite{paper:TransmissionOfProbabilityTheoryIntoChina, book:GlobalHistoryOfMathematics}.}.
+The mathematical axiomatisation of probability theory happened relatively early in 1933 by Andrey Kolmogorov\footnote{However, Kolmogorov's mathematical formalisation \cite{book:Kolmogorov} is purely a formal theory: ``Every axiomatic (abstract) theory admits, as is well known, of an unlimited number of concrete interpretations besides those from which it was derived. Thus we find applications in fields of science which have no relation to the concepts of random event and of probability in the precise meaning of these words.'' As such, it is not closely ``tied'' to any interpretation of probability \cite{sep:InterpretationsOfProbability}. Besides Kolmogorov's construction -- which is still the most influential -- other axiomatisations exist. To mention a few alternatives there is Dempster–Shafer theory \cite{paper:Dempster1967,book:ShaferTheoryOfEvidence} (closely related to imprecise probabilities \cite{paper:IntervalProbability,book:UncertaintyInEngineering} and the theory of capacities \cite{book:TheoryOfRandomSets,book:TheoryOfCapacities}), logical probabilities built on Cox's theorem \cite{paper:Cox1946,book:Jaynes,arxiv:Cox} (often derived only for finitely additive measures). For a collection and comparison of several formal approaches, see \cite{book:TheoriesOfProbability}.}. It provided a rigorous formal framework built on measure theory in which theorems could have been stated, and it provided tools that proved fertile in other branches of mathematics\footnote{For probabilistic techniques in graph theory, number theory and more see \cite{book:TheProbabilisticMethod,book:ProofsFromTHEBOOK}.}. 
+There was a temporary enthusiasm in the 1950s regarding -- non-Bayesian -- statistical decision theory, mostly related to Abraham Wald and his book\footnote{Where Wald introduces a zero-sum game between the ``Experimenter'' and ``Nature'' and defines equilibrium strategies for such a fictional game. The book is rather technical but had a considerable impact \cite{book:Wald}. Savage summarised, modified and criticised Wald's construction and introduced half-heartedly the concept of minimax regret in \cite{book:Savage}. (Jürg Niehans proposed independently a deterministic minimax regret decision rule regarding economic pricing in 1948 \cite{paper:MinimaxRegretNiehans1948}.)} in 1950:
+``This work lead to the view, widely held for a period, that all statistical
+problems should be formulated in terms of decision making.''\footnote{Quotation from the Bibliographical notes of chapter 11 Decision theory in \cite{book:CoxStatistics}.}.
+Today, quantum systems are characterised by another kind of non-commutative algebra of observables, replacing probabilistic density functions with density matrices\footnote{Quantum mechanics \cite{book:NeumannQuantum,book:WeinbergQuantumMechanics} and quantum logic \cite{paper:NeumannBirkhoffQuantumLogic} is itself an immense field. On a surface level, two related interesting phenomena should be mentioned if contrasted with classical probabilistic descriptions. Entanglement -- causing ``extra correlations''\cite{book:PitowskyQuantum} -- and non-commutativity which forces to change the structure of events or observables from a commutative lattice (representable by a collection of subsets in classical probability theory) to an ``orthomodular lattice''\cite{sep:QuantumProbability,arxiv:Pitowsky,book:AxiomsForLattices} (representable by linear projections on a vector space with scalar product i.e. projectors on a Hilbert space). These special features of quantum systems, such as superposition and entanglement, made it possible to develop new computing technologies such as quantum computing and quantum information theory \cite{book:QuantumComputationAndInformation}.}.
+Work has been done in algorithmic probability theory, which by associating a universal prior to discrete -- or rather digital -- patterns related to their complexity\footnote{For further resources see \cite{book:LiVitanyi,book:Solomonoff,book:UniversalArtificialIntelligence}.}, can provide a rich framework and be used for inference in theory (and simplified versions in practice). In my view, this is a fascinating direction as well, but seems to fall outside of today's mainstream.
+
+{\it Positioning the proposed framework:}
+Relative to this landscape, the proposed framework can be viewed as the continuation of statistical -- or robust\footnote{See \cite{book:RobustnessAnalysis} for the connection between Wald's minimax principle and robust decision theory. To see relations with robust control, see \cite{book:Control,book:RobustAndOptimalControl}.} -- decision theory -- more particularly approaches related to minimax regret -- which was popular in the 1950s, but fell out of the mainstream at about 1960s\footnote{``In the late 1950s and early 1960s theoretical interest shifted from the situation without prior distributions to Bayesian decision theory in which personalistic prior distributions and utilities are central to the argument'' \cite{book:CoxStatistics}.}. It is, therefore, applicable to uncertain parameters that are not well characterisable by a probability distribution (described by Knight and Keynes in the first part of the XX. century).
+
+The framework restricts itself to ``known unknowns'' first and doesn't address immediately the ``unknown unknowns''\footnote {As Donald Rumsfeld famously declared: ``There are known knowns; there are things that we know that we know. We also know there are known unknowns; that is to say, we know there are some things we do not know. But there are also unknown unknowns, the ones we don’t know we don’t know.'' \cite{book:WhatWeCannotKnow,book:RadicalUncertainty,book:TheBlackSwan}.}. However, it has a natural continuation to ``describable unknowns'' which could be potential events not coming from a finite set of possibilities, but any event which can be described with a string of characters e.g. described by written language\footnote{A relatively simple construction can yield an equilibrium strategy eerily similar to Solomonoff's induction formula \cite{book:Solomonoff}.}.
+
+{\it Justification of the effort:}
+To address the original objection, this project's modest goal is to revitalise and repopularise the concept of uncertainty and statistical decision theory framework in light of new concepts and applications.
+
+The more ambitious goal of the project is to embed the diverse and numerous collection of techniques in statistics into one coherent, unified framework, in which the seemingly separate approaches can be understood as different limiting cases or as decision-making tools for various objectives.
+
+
 \subsection*{Discussion of the assumptions}
 
-First, I should discuss the assumptions of the proposed framework.
+As we now delve into the proposed framework, I should first discuss the assumptions it requires.
 
 \paragraph{Separating the Agent from the World:}
 How is it possible for the Agent to maintain a separate identity from the World? How do the Agent's preferences come to be? What does it mean to ``choose'' for the Agent?
@@ -114,7 +182,7 @@ For a possible path where individuals emerge -- instead of being postulated --, 
 
 This framework aims to help navigate the uncertain world for those who are -- or at least play the role of being -- in the state of separation. However, I hope that suggesting strategies in imagined games will contribute more to enhance the overall conditions for enjoying the play, then solidifying the illusion of the game itself.
 
-I think we can stay just as perplexed about the intricacies of the ``self'' (or Agents in our context) as Isaac Newton was on ``causes hitherto unknown'' \cite{book:Principia, book:Principia1848, sep:Principia} for action at a distance in his law of universal gravitation \cite{book:CorrespondenceOfIsaacNewton,paper:NewtonOnActionAtADistance}; unless a framework assuming individuals can go near the fruitfulness of the success of the inverse square law in celestial mechanics. By not excluding the possibility of further generalisation and reinterpretation of the theory as emergent, this hopefully does not prevent deeper understanding in the future.
+I think we can stay just as perplexed about the intricacies of the ``self'' (or Agents in our context) as Isaac Newton was on ``causes hitherto unknown'' \cite{book:Principia, book:Principia1848, sep:Principia} for action at a distance in his law of universal gravitation \cite{book:CorrespondenceOfIsaacNewton,paper:NewtonOnActionAtADistance}; unless a framework assuming individuals can go near the fruitfulness of the success of the inverse square law in celestial mechanics. By not excluding the possibility of further generalisation and reinterpretation of the theory as emergent, this assumption hopefully does not prevent deeper understanding in the future.
 }
 , but in this essay, I will not attempt to clarify or investigate the emergence or the workings of the willing, thinking and acting faculties of the Agent from the ``Naturalistic perspective''. I will assume that such an Agent or Organism is given -- or at least that this description can characterise some existing structures well. If I am honest, I need to admit that this is an idealisation, hopefully a useful one.
 
@@ -137,8 +205,7 @@ Instead of searching and constructing more elaborate examples, I aim to show tha
 
 Perhaps this more extreme requirement can illustrate how premature judgements can cause ``hard to accept'' decisions:
 Imagine that a ``subjective logicist'' believes that all propositions must ultimately be either true or false\footnote{Also known as ``Dichotomous Thinking'' in psychology \cite{book:DichotomousCBT}.}. Therefore, model-making requires picking a definite non-contradicting set of truth values for propositions, i.e. believing and choosing one definite state from $\Theta$.
-This might look like an extreme requirement and can lead to an extreme decision-making process, but formally, it seems just as hard to rule out as demanding a subjective prior
-\footnote{
+This might look like an extreme requirement and can lead to an extreme decision-making process, but formally, it seems just as hard to rule out as demanding a subjective prior\footnote{
 One might think that whenever a ``subjective logicist's'' firm belief turns out to be false, she might need to give up her decision-making doctrine.
 However, she can simply admit that she has chosen the wrong axioms, which turned out to be inconsistent with the facts, but then she picks another non-excluded set of axioms, i.e. she can continue following her black-and-white decision-making process.
 This shows that the ``subjective logicist'' is not incapable of learning from experience, and this partial flexibility makes it harder to challenge her doctrine.
@@ -208,7 +275,7 @@ Moreover, to a large extent, science is an empirical discipline that relies on r
 
 However, it might be possible to keep the scientific project separate from subjective values and ideologies if we spell out scientific values. A natural scientific value might be a form of simplicity (quantitatively the length in bits of the model and the data\footnote{This is the core idea of the Minimum Description Length (MDL) principle \cite{paper:MinimumDescriptionLengthRevisited,book:MinimumDescriptionLength}.}), predictive power (the success rate of guessing the outcome of not yet performed experiments\footnote{This aim coupled with algorithmic probability \cite{book:LiVitanyi} can lead to the Solomonoff induction formula \cite{book:Solomonoff,book:UniversalArtificialIntelligence}.}), and possibly other information-related measures. In this way, science does not need to maintain that it is value-free, but it has to spell out its ideology-free ``neutral'' or ``scientific'' values.
 
-A family of ``natural'' utility functions has been adopted and analysed in a separate, more technical, and more mathematically oriented manuscript\footnote{See the paper on Statistical Games \cite{arxiv:konczer2024statisticalgames} and for further resources the related \href{https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames}{GitHub repository}.}. Because of the obtained results – which seem robust and reasonable – these could be suggested as default utilities for a standard statistical procedure and might be good candidates for ``neutral'' or ``scientific'' utility functions.
+A family of ``natural'' utility functions has been adopted and analysed in a separate, more technical, and more mathematically oriented manuscript\footnote{See the paper on Statistical Games \cite{arxiv:StatisticalGamesKonczer2024} and for further resources the related \href{https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames}{GitHub repository}.}. Because of the obtained results – which seem robust and reasonable – these could be suggested as default utilities for a standard statistical procedure and might be good candidates for ``neutral'' or ``scientific'' utility functions.
 
 {\it Why scientific values matter?}
 To illustrate why choosing values wisely is important, and how they can change behaviour lets consider an example:
@@ -322,6 +389,147 @@ Being adaptive or able to learn can be a meta-requirement for policies, but this
 Learning requires making mistakes, and it can happen that an adaptive Agent needs to pay more during her adaptation than a rigid player, who happened to choose a beneficial strategy from the beginning.
 (In biology, for example, both approaches can make a species successful: they can be adaptive on the individual level by learning and accommodating, or individuals can follow rigid action patterns, which can be changed only by mutation and recombination of genes in the next generation. Naturally, in real organisms, both can be present, but the proportions and importance can vary.)
 
+% No baisless faith theorem
+\paragraph{No faith from uncertainty:}
+Does the regret based framework prevent the Agent imagining that only one state of the world is possible i.e. developing faith in a specific arrangement of the world?
+
+Not excluding possible states or parameters is an important requirement for priors in Bayesian statistics\footnote{Sometimes referred to as Cromwell's rule \cite{book:Lindley,book:BayesianSocialScience}.}, because Bayes' rule can not modify values with zero probability (after receiving any amount of evidence these probabilities remain zero if we simply follow a Bayesian update).
+Even if we do not strictly follow Bayesian statistics, having a decision making framework which -- without overwhelming evidence -- somehow concludes that one state certainly takes place while rules out all other states, sounds strange.
+
+It can be proven that for the suggested decision-making framework the equilibrium prior $\pi^*$ can be extreme (or concentrated on one single state) only if is totally degenerate\footnote{For the technical definition of degeneracy in game theory see \cite{book:AlgorithmicGameTheory,book:HandbookOfGameTheoryVol3,web:DegeneracySage,chapter:EquilibriaForTwoPersonGames}.} i.e. every prior is an equilibrium prior. This can happen, if an action dominates all other actions, i.e. it is better then all other actions in every possible states of the world.
+
+
+\paragraph{Certain actions:}
+\label{par:CertainActions}
+We do not have definite knowledge about the state of the world in an uncertain situation. Does this imply that we cannot develop a determination to choose a specific action with certainty?
+
+The answer to this general question is clearly ``no''. There can be uncertain situations where one action is better than all other actions. In this case, we can choose the best action with certainty regardless of our uncertainty about the precise state of the world (because it does not change which action is the best).
+As a simple example, take the following decision-making problem (the Agent needs to choose a row, while columns represent the unknown parameter; the entries stand for the utilities for a specific action-state pair):
+
+\[
+U =
+\begin{bmatrix}
+    1 & 3 \\
+    0 & 2
+\end{bmatrix}
+\]
+
+In this simple case, the first action (first row) gives better results compared to the second action in every case (in every column). Therefore, an Agent can choose the first action with certainty without any specific knowledge about the state.
+(The regret-based game theoretic framework gives the same equilibrium strategies, $\sigma^* = (1,0)$, and the equilibrium priors are totally degenerate, i.e. for all $p \in [0,1], \ \pi^*_p = (p,1-p)$ is an equilibrium prior.)
+
+{\it Certain non-dominating actions:}
+A refined question can be: Are there non-dominating actions that one could (or should) choose with certainty in an uncertain situation?
+
+The suggested framework says ``yes''. A small finite decision problem can be given as an example which captures such behaviour: 
+
+\[
+U =
+\begin{bmatrix}
+    0 & 1.5 \\
+    1 & 1 \\
+    1.5 & 0
+\end{bmatrix}
+\]
+
+Maybe many readers would agree that it is not against intuition to always choose the middle column, which safely provides a relatively high utility in any state of the world.
+
+However, a continuous generalisation might be the most suitable to match this kind of equilibrium strategy more closely with intuition.
+Imagine a betting game with two possible outcomes (Red or Black). The Agent has to bet some portion of her capital to Black and the other part to Red in a double-or-nothing game.
+(We can assume for the sake of well-definedness that the Agent's utility is logarithmic\footnote{In case of repeatable multiplicative gambles -- where the Agent can reinvest all her gained capital in successive rounds -- a ``natural'' objective to optimise for is the growth factor \cite{Kelly} or the doubling rate \cite{book:InformationTheory} of the process. The ``typical behaviour'' of the capital in such repeated multiplicative gambles is exponential growth or exponential shrinking. The growth factor equals the exponent, i.e. the logarithm of the capital growth after one round (while the doubling rate equals the base two logarithm). For more about the utility functions for multiplicative processes, see appendix E in \cite{arxiv:StatisticalGamesKonczer2024}.} (this is most ``natural'' if the Agent plays multiple rounds and she can reinvest her capital in consecutive gambles). However, the equilibrium strategy is robust regarding the precise form of the utility function.)
+This is a continuous game in which the Agent can select a continuous betting ratio $p' \in (0,1)$ while the parameter set is discrete $\Theta = \{\text{Red},\text{Black}\}$.
+
+I think most readers would agree that if we have absolutely no information about the possible state of the world -- Red or Black --, then we should always choose an equal splitting of our capital (corresponding to $p'=1/2$) because this hedges the situation perfectly. With this strategy, for any outcome, we will lose half of our capital (which was put on the alternative) but double half of our capital put on the occurring outcome. Therefore, our total capital will not change regardless of the outcomes -- making this strategy equivalent to not entering the gamble.
+If we generalise the suggested framework to continuous cases by taking suitable limits, then it is not hard to compute that this pure strategy is the proposed action by the game-theoretic framework as well.
+
+If we accept this exact $50\%-50\%$ splitting ratio as the desired solution for this decision-making dilemma, then we found a case where a certain action seems preferable in a situation even if it is not dominating. (To see that it can't be dominating, it is enough to see that if we know that Red will occur, we should bet all our capital to Red, $p'=1$, and if we are sure that Black will come out, then bet all our capital to Black, $p'=0$.)
+
+This continuous case can be made discrete if we allow only finite jumps in the splitting ratio -- for instance, it can change only with $1\%$, i.e. $p' \in \{1\%,\dots,99\% \}$.
+To relate back this gambling example to the discrete decision-making example with three choices, the restriction of splitting ratios to $p' \in \{19\%, 50\%, 81\% \}$, assuming a $5.2\times$ multiplying factor and exactly logarithmic (with base $2$, i.e. representing doubling rate) utility function yields the following finite utility matrix:
+
+\[
+0.72 \times U_r \approx
+\begin{bmatrix}
+    0 & 1.5 \\
+    1 & 1 \\
+    1.5 & 0
+\end{bmatrix}
+\]
+
+After multiplying by $0.72$, we get back the utility matrix of the first -- non-dominating -- example; therefore, these two problems can be considered equivalent (in most decision-making frameworks); relating the example to a restricted gambling problem, where hedging is a natural approach.
+
+\paragraph{Taking chances:}
+\label{par:TakingChances}
+Is it correct to risk potentially bad outcomes in the face of uncertainty? What is the argument for daring a dangerous act if we cannot even associate probabilities with the potential consequences?
+
+I think there is no unquestionable derivation which could prove that one must take chances sometimes. Still, I believe some entrepreneurial instinct is present in all potential readers of this text. The following story tries only to embed the decision-making problem into a simple, relatable context and then uses a rudimentary argument by increasing and decreasing size and/or stakes.
+
+{\it Barley and wheat:}
+Imagine being a farmer 10000 years ago on the now arid lands of Mesopotamia\footnote {For a report investigating the climate in the Fertile Crescent see an article here \cite{article:ClimateCradleOfCivilization}.}
+in the time of the agricultural revolution, when the land was fertile and the climate was suitable for the domestication and cultivation of crops.
+
+You acquired a new piece of arable land. The climate is usually calm here, but you depend on the rainfall for irrigation, which is notoriously hard to predict and changed considerably in the past generations. You know that there were both rainy and dry seasons, but neither the landscape nor non-existent records can serve with more information. 
+
+There are two already domesticated crops available to you, the ancestors of barley and wheat. You have enough seeds from both crops to plant the whole field, but you can also diversify seeds in any proportion.
+
+Barley is more resilient but less valuable. It can be used to feed animals and to brew beer. However, for human consumption, products from wheat are more desirable, but yields from wheat are sensitive to the amount of rainfall during the growing season.
+
+To capture the prospects of your potential harvest, the potential gains can be collected in a table\footnote{A more realistic ratio for wheat and barley might be $1.2$. See \cite{paper:ComparingPerCapitaIncomeMesopotamia} for reference.}:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|cc}
+        Crop $\backslash$ Weather & Dry & Ideal \\
+        \hline
+        Wheat & $0 \times$ amount & $1.5 \times$ amount \\
+        Barley & $1 \times$ amount & $1 \times$ amount \\
+    \end{tabular}
+    \caption{Consequence table of the Mesopotamian farmer, capturing potential gains from both crops, using barley as a unit.}
+    \label{tab:FarmersYields}
+\end{table}
+
+The decision-making problem the Mesopotamian farmer faces is what portion of his land to sow with barley and so how much wheat to sow -- if any.
+
+I assume that for most readers, sowing the whole available land with wheat feels overly risky.
+On the other hand, I believe there are acceptable arguments against growing barley only -- i.e. not sowing a single seed of wheat.
+Perhaps the specific proportion is not universally agreed on, but I think we can argue for risking planting some non-zero amount of wheat in the field.
+
+I think most readers need no convincing to choose some wheat besides barley, but for those who are reluctant to do so, I would tell the following:
+Suppose you initially imagined a small patch of arable land; maybe one are ($100\ m^2$). If you are unwilling to sow one single seed of wheat, then I suggest imagining a larger land, say an acre, a hectare, or several hectares.
+This is, of course, not a proof, but it seems to me that a person not willing to cultivate any amount of wheat on larger and larger available land looks and feels increasingly absurd and extreme.
+
+Therefore, I think it is fair to expect that an experienced farmer will cultivate a small but finite portion of riskier wheat besides the more reliable barley, even if weather prospects are unknown for the growing season.
+
+{\it Discrete choices:}
+In the previous story, the farmer was allowed to make a practically continuous diversification of crops. To make a smooth transition from continuous to discrete decision-making dilemmas, let's imagine that he has to choose exactly one kind of crop for the whole field. (Wheat and barley might need different equipment to cultivate, and if bringing and using two kinds of equipment to the field is much more expensive than a single set of tools, then this circumstance naturally restricts continuous diversification to a discrete choice.)
+
+So what if we have the same utility table as previously, but we need to choose exactly one option:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|cc}
+        Crop $\backslash$ Weather & Dry & Ideal \\
+        \hline
+        Wheat & $0 \times$ area in are & $1.5 \times$ area in are \\
+        Barley & $1 \times$ area in are & $1 \times$ area in are \\
+    \end{tabular}
+    \caption{Consequence table of the Mesopotamian farmer forced to make a discrete choice, capturing potential gains from both crops, using barley as a unit.}
+    \label{tab:FarmersYields02}
+\end{table}
+
+In this case, our choice will depend much more on the potential consequences of our decision. If this plot is our primary food source and a bad wheat season would lead to starvation, then our Mesopotamian farmer will almost surely sow the safer barley. However, if this new piece of land is only an additional plot besides other stable food sources, then choosing with some probability the more valuable wheat might not seem like a reckless choice.
+
+Here again, an exact optimal strategy is hard to suggest, but I think it can be argued that wheat can be chosen with some non-zero probability.
+An argument -- or rather a demonstration -- can be constructed by decreasing field sizes:
+Suppose you initially imagined a large field of additional arable land, maybe several hectares. (This is not your only and primary food source.) If you are unwilling to sow wheat on the whole area, then I suggest imagining a smaller land, let's say, one hectare an acre, an are, or an even smaller patch of land.
+This is, of course, not a proof, but it seems to me that a person unwilling to give any chance of sowing wheat on smaller and smaller available land looks and feels increasingly untenable.
+
+{\it A potential consistency:}
+One can wonder what happens with a large piece of land if it is subdivided among many farmers who can freely choose from discrete options. I think it is at least remarkable if a decision-making doctrine would lead to choices where the individual farmers collectively -- but not collaboratively -- give rise to a diversification ratio which would be chosen by a wealthy farmer owning the whole land -- capable of splitting the crops continuously.
+In the proposed framework, assuming linear utility functions i.e. zero risk aversion, the expected ratio of wheat and barley field are exactly the same $1:2$ (or $1/3$ wheat and $2/3$ barley)\footnote{Similar ratios are used in practice for mixed cropping: ``The crop ratio commonly used is barley 67\% and wheat 33\%'' \cite{thesis:MixedCropping}. In reality, yield ratios (and economic or nutritional values) might differ, and the possible scenarios are more varied. However, the close match signals that such reasoning is not giving a catastrophically wrong suggestion.} ratio as the equilibrium value for the continuous diversification ratio for any finite subdivision of the land. As the number of small-land farmers goes to infinity, the ratio converges (almost surely) to this ratio.
+
+I do not intend to portray this property as a necessary requirement for decision-making doctrines, but -- at least in my view -- the property seems nice and encouraging, strengthening the consistency of the framework.
+
+
 \paragraph{Compatibility with Bayesian decision making:}
 An important aspect of a formal system is the symmetries it respects.
 It is natural to ask: What symmetries does the suggested framework have?
@@ -345,12 +553,12 @@ Remarkably, the game theoretic decision-making doctrine respects the same symmet
 It is important to point out that this property is not automatically satisfied for fictional two-person games. An Agent imagining a zero-sum game would not realize the same symmetry (only a restricted symmetry, the positive affine transformation group).
 
 \paragraph{Why Nash equilibrium?}
-Some may object to using Nash equilibrium\footnote{Nash equilibrium is a central concept of Game Theory \cite{book:EssentialGameTheory,book:GameTheory,review:NeumannMorgensternGameThoery,book:GameTheoryOriginal}, corresponding to a set of strategies in which no player's expected outcome can be improved by changing one's own strategy.} as the solution concept for the imagined game.
+Some may object to using Nash equilibrium\footnote{Nash equilibrium is a central concept of Game Theory \cite{book:EssentialGameTheory,book:GameTheory,book:GameTheoryAlive,review:NeumannMorgensternGameThoery,book:GameTheoryOriginal}, corresponding to a set of strategies in which no player's expected outcome can be improved by changing one's own strategy.} as the solution concept for the imagined game.
 
 To take the objection against Nash equilibrium seriously, it might be useful to list a few alternatives:
 \begin{itemize}
-    \item An interesting alternative might be the so-called Berge equilibrium\footnote{For reference see \cite{book:BergeEquilibrium}. A weakness of this solution concept is that it does not always exist \cite{paper:NoBergeEquilibria}.}, which can be viewed as a formalization of the ``golden rule'', assuming that the agents are more concerned about the other's expected utility than their own.
-    \item Another alternative might be the ``logit equilibrium'' (which could be alternatively called a Boltzmann-Nash equilibrium)\footnote{To give references from the scientific literature I might point to \cite{paper:LogitEquilibrium,arxiv:WolpertEquilibrium} to provide starting points for further exploration of the concept.}, in which expected utilities play the role of (negative-) energy, while a temperature-like factor can be used to tune the randomization of the actions. (In general, the ``temperatures'' could be different for different players.)
+    \item An interesting alternative might be the so-called Berge equilibrium\footnote{For reference see \cite{book:BergeEquilibrium}. A weakness of this solution concept is that it does not always exist \cite{paper:NoBergeEquilibria} -- even for games with finite actions.}, which can be viewed as a formalization of the ``golden rule'', assuming that the agents are more concerned about the other's expected utility than their own.
+    \item Another alternative might be the ``logit equilibrium'' (which could be alternatively called a Boltzmann-Nash equilibrium)\footnote{To give references from the scientific literature I might point to \cite{paper:LogitEquilibrium,arxiv:WolpertEquilibrium} to provide entry points for further exploration of the concept.}, in which expected utilities play the role of (negative-) energy, while a temperature-like factor can be used to tune the randomization of the actions. (In general, the ``temperatures'' could be different for different players.)
     \item Correlated equilibrium\footnote{See \cite{paper:CorrelatedEquilibrium} for foundational reference and \cite{book:EssentialGameTheory} for a concise introduction.} could be another candidate to replace Nash equilibrium solutions.
 \end{itemize}
 
@@ -376,7 +584,7 @@ What does randomization in mixed strategies really mean, and how can the Agent t
 I think this question can lead to very complex concepts, but it could also be answered very simply: random acts are what we expect and do when we play rock-paper-scissors (or alternatively Matching Pennies\footnote{Also known as ``Guess The Hand'' or ``Hand Game'' \cite{book:CulinIndianGames,book:PrehistoricGames} which can be traced back to prehistoric times.}).
 When the rules are set for such simple games, then even before the first round, we have a belief about what we expect from our opponent. I suggest promoting this expectation for the yet unknown choice to the definition of a random choice.
 On the other hand, for our own strategy, randomization means that we might follow a very complex algorithm, incorporate data from external sources, or take any necessary measures to make our choice of action as unpredictable as possible.
-Strictly speaking, we have two different concepts: randomization and expecting a random choice.
+Strictly speaking, we have two different concepts: randomization and expecting a random move.
 
 I think the concrete realization of randomization is the one which leads to deeper questions.
 In practice, agents or players will use various methods to choose from their actions in games that have mixed equilibrium. This might include pseudorandom numbers\footnote{See a standard reference by Knuth \cite{book:KnuthVol2}.} or the result of any complex computation or algorithm\footnote{The concepts of ``computational irreducibility'' \cite{paper:Wolfram1984,paper:Wolfram1985,book:NKS,book:IlachinskiCellularAutomata,book:SchiffCellularAutomata,paper:ComputationalIrreducibilityAndCorseGraining} and the ``no-shortcut principle'' \cite{paper:NoShortCut,paper:Lloyd2012FreeWill} can give further insight to what can be produced even by classical computation.}. However, what might look complex for one player might look regular for another, and if the regularity can be spotted, then it can be exploited.
@@ -422,14 +630,14 @@ Reaching a well-defined continuum limit might be a desirable property of a metap
 However, continuity or smoothness does not seem to be a property, which, in its absence, could exclude metaphysical constructions.
 Analytic properties might be reassuring but not essential.
 
-It has been shown in a previous more technical paper that the calculation of an equilibrium with continuous action space is feasible\footnote{See the technical paper on Statistical Games \cite{arxiv:konczer2024statisticalgames} and for further resources the related \href{https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames}{GitHub repository}.}. There are other works demonstrating that handling continuous state spaces is also possible\footnote{For examples see \cite{Kashyap1971,Kashyap1974} and an example in a slightly modified setting can be found in \cite{paper:Abbott2018,paper:Abbott2023}.}. 
+It has been shown in a previous more technical paper that the calculation of an equilibrium with continuous action space is feasible\footnote{See the technical paper on Statistical Games \cite{arxiv:StatisticalGamesKonczer2024} and for further resources the related \href{https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames}{GitHub repository}.}. There are other works demonstrating that handling continuous state spaces is also possible\footnote{For examples see \cite{Kashyap1971,Kashyap1974} and an example in a slightly modified setting can be found in \cite{paper:Abbott2018,paper:Abbott2023}.}. 
 
 {\it Correspondence with Bayesian and ``Frequentist'' decision making:}
 The 4. limiting case can give much stricter requirements for acceptable behaviours in the face of uncertainty:
 This is where the general correspondence principle\footnote{In theoretical physics the correspondence principle was most famously utilized by Bohr in the context of quantum theory \cite{sep:Correspondence,book:BohrCorrespondence}, however as a general principle it can be applied to any new theories: ``The most important heuristic restriction is the General Correspondence Principle. Roughly speaking, this is the requirement that any acceptable new theory L should account for the success of its predecessor S by ‘degenerating’ into that theory under those conditions under which S has been well confirmed by tests.'' \cite{book:CorrespondencePost}.} can be effectively utilized to connect the proposed framework with decision-making under risk (where the Agent can associate probabilities with the possible states of the world).
 In particular, it seems a reasonable requirement that if the amount of ``relevant data'' goes to infinity, the behaviour should converge to both ``Frequentist'' and Bayesian decision-making strategies.
 
-It has been shown that -- at least in a simplest toy model -- this decision-making framework can mimic both ``Frequentist'' and Bayesian methods by tuning a parameter of the utility function which can be associated with relative risk aversion\footnote{For details see \cite{arxiv:konczer2024statisticalgames} and for references for power utilities, also known as isoelastic utilities, and relative risk aversion parameter see \cite{book:EconomicsDictionary,book:Arrow, paper:Pratt}.}.
+It has been shown that -- at least in a simplest toy model -- this decision-making framework can mimic both ``Frequentist'' and Bayesian methods by tuning a parameter of the utility function which can be associated with relative risk aversion\footnote{For details see \cite{arxiv:StatisticalGamesKonczer2024} and for references for power utilities, also known as isoelastic utilities, and relative risk aversion parameter see \cite{book:EconomicsDictionary,book:Arrow, paper:Pratt}.}.
 In the limit where the amount of data goes to infinity, the Bayesian version of the betting game can be characterized by a subset of priors in the context of Bayesian decision-making, while the risk-neutral betting (or alternatively the scenario guessing ``Fisher game'') approximates a decision-making process based on maximum likelihood.
 
 A nuanced question in the case of convergence is the metric -- or topology -- in which we investigate convergence. There might be metrics in which two heuristics are convergent, while in other metrics they might be divergent. 
@@ -437,6 +645,7 @@ For example, the equilibrium priors for Bayesian betting games do not converge t
 A more suitable and sophisticated technique to measure the ``distance'' (or ``divergence''\footnote{As in statistics or in information geometry \cite{book:AmariInformationGeometry}. A well-known example is Kullback–Leibler (KL) divergence, also known as relative entropy \cite{paper:InformationGeometry,book:AmariInformationGeometry,paper:KullbackLeibler1951}.}) of two decision-making heuristics might be the ``Delegation premium'' or alternatively the ``Independence tax''. This could measure how much tax a decision maker with given preferences would be willing to pay to follow her own optimal heuristics instead of an alternative decision-making process. 
 Using this distance, it seems that the game theoretic decision-making -- with logarithmic utility function -- converges to any Bayesian decision-making (with non-extreme prior) as the amount of observed relevant data goes to infinity, i.e. game-theoretic Agents would pay less and less tax to use their own strategies instead of Bayesian methods (with some fixed non-extreme prior).
 The asymptotic comparison of decision-making strategies is an important and interesting future direction, but the first results seem promising.
+
 
 \paragraph{One dimensional, real-valued utilities:}
 Is it enough to associate one real number to consequences measuring their ``utility''?
@@ -459,9 +668,10 @@ This might open an interesting direction for understanding real-world Agents. On
 (There are, however, framings which have a similar flavour, such as the Free will theorem by Conway and Kochen\footnote{See further details in the following papers: \cite{paper:ConwayKochen2006,arxiv:ConwayKochen2008}.} (although not associating preferences to elementary particles).)
 I am not convinced that such an animated description of the world and decision-makers is the ``right'' approach toward a unified theory. However, it is conceivable for me that it might yield a dual description besides the Naturalistic framework. (By duality, I mean that a dictionary between two theories or frameworks can be found that can describe the ``same thing'' in a ``different language''\footnote{For more context and examples for dualities in Physics and Mathematics see \cite{nlab:Duality}. (A prominent example in theoretical physics is anti-de Sitter/conformal field theory (AdS/CFT) correspondence \cite{arxiv:Polchinski2015Dualities,paper:AdS/CFTIntegrability}.)}. However, some things might be more suitable for one language, and other things might be more suitable for another.)
 
-In ``continental philosophy'' (called this way by ``analytical philosophers''), phenomenology advocated by Husserl and Merleau-Ponty\footnote{For reference see \cite{sep:Phenomenology}, and the \emph{Phenomenology of Perception} by Merleau-Ponty \cite{book:PhenomenologyOfPerception}.} might be considered to be such a dual description. (In natural sciences, Ernst Mach’s \emph{Analysis of Sensations}\footnote{See \cite{sep:ErnstMach,book:AnalysisOfSensations} as reference.} might also belong here.) Starting with the Agent's Experiences, referring to ``Natural laws'' only as organizing principles. I think this can be a perfectly valid dual understanding of the world, where reality is defined as an equivalence class of subjective experiences.
+In ``continental philosophy'' (called this way by ``analytical philosophers''), phenomenology advocated by Husserl and Merleau-Ponty\footnote{For reference see \cite{sep:Phenomenology}, and the \emph{Phenomenology of Perception} by Merleau-Ponty \cite{book:PhenomenologyOfPerception}.} might be considered to be such a dual description. (In natural sciences, Ernst Mach’s \emph{Analysis of Sensations}\footnote{See \cite{sep:ErnstMach,book:AnalysisOfSensations} as reference.} might also belong here.) Starting with the Agent's Experiences, referring to ``Natural laws'' only as organizing principles\footnote{To my knowledge Carnap attempted something similar in the ``Aufbau'' \cite{book:CarnapAufbau}.}. I think this can be a perfectly valid dual understanding of the world, where reality is defined as an equivalence class of subjective experiences.
 I do not see a huge difference between an Agent adopting a Naturalistic or Phenomenological viewpoint because I do not think this would necessarily cause dramatic differences in the Agent’s behaviour.
 (I think actions are what really separate metaphysical constructions, not the actual beliefs (or the chosen language to articulate these beliefs).)
+
 
 \paragraph{Randomized decisions:}
 Some may feel uneasy about a theory that sometimes suggests randomized decision-making\footnote{See an early criticism from Chernoff \cite{paper:Chernoff1954}.}.
@@ -485,11 +695,41 @@ I think the assumption -- elevated to the level of axiom -- leading to this view
 However, in my view, framing decision theory as a study of preferences -- i.e. assuming a pairwise preference relation from the Agent on the set of actions (or possibly mixed strategies) -- is not the most suitable conceptual frame and is prone to demand or reject properties which might be natural for preferences, but overly restrictive for realistic decision-making.
 Untangling the web and history of various popular ``axioms'' for decision-making appearing in scientific literature and reevaluating the feasibility of these axioms and their consequences is a laborious project, which is out of the scope of this essay.
 
-\paragraph{Menu dependent choices:}
+\paragraph{Menu-dependent choices:}
 One might fear that the suggested framework might not satisfy the requirement of the so-called ``independence of irrelevant alternatives''\footnote{Savage wrote in 1954 \cite{book:Savage}:
 ``Suppose, to take a striking case, that one $f_r$, say $f_{r'}$ is the unique minimax for the narrow problem and a different one, $f_{r''}$ is the unique minimax for the wide problem. It is absurd, as Chernoff says in effect, to recommend $f_{r'}$, as the best act among the $f_r$'s when only the $f_r$'s are available and then to recommend $f_{r''}$ as the best for an even wider class of possibilities. Fancy saying to the butcher, 'Seeing that you have geese, I'll take a duck instead of a chicken or a ham.' ''. 
 
-Further, Chernoff in 1954 introduced an axiom (or postulate) for decision making excluding such choice functions \cite{paper:Chernoff1954}.}.
+Further, Chernoff, in 1954, introduced an axiom (or postulate) for decision-making, excluding such choice functions \cite{paper:Chernoff1954}.}.
+
+I believe there is nothing wrong with ``menu-dependent choices''. In fact, if the reader found the paragraphs ``\textbf{\nameref{par:CertainActions}}'' and ``\textbf{\nameref{par:TakingChances}}'' convincing, then it is straightforward to show a case where the reader is willing to accept menu-dependent decisions.
+Consider a ``restricted'' and an ``extended'' decision making problem, represented by $U_{\text{rest}}$ and $U_{\text{ext}}$ respectively:
+
+\[
+U_{\text{rest}} =
+\begin{bmatrix}
+    0 & 1.5 \\
+    1 & 1
+\end{bmatrix},
+\quad
+U_{\text{ext}} =
+\begin{bmatrix}
+    0 & 1.5 \\
+    1 & 1 \\
+    1.5 & 0
+\end{bmatrix}
+\]
+
+The restricted problem is essentially the situation we faced when we had to make a discrete choice to sow barley or wheat in our allegorical Mesopotamian story.
+The conclusion at that time was that it might be acceptable -- if not desirable -- to take some chances and try our luck with wheat sometimes, even if the weather is uncertain. The game-theoretical framework suggests $\sigma^*_\text{rest} = (1/3,2/3)$ equilibrium strategy to play, i.e. choosing wheat (the first row) with probability $1/3$ and barley (the second row) with probability $2/3$.
+
+However, the extended decision-making problem can be mapped to the capital-splitting gambling problem discussed in the mentioned previous paragraph. In that case, we concluded that the safe and relatively valuable middle row can be chosen with certainty. Formally the equilibrium strategy for the extended dilemma is: $\sigma^*_\text{ext} = (0, 1, 0)$.
+
+The two dilemmas differ only in the third row. It is absent in the restricted dilemma but included in the extended version.
+Therefore, if we accept the previously recalled strategies, then seemingly only because of the appearance of an ``unpreferred'' alternative -- the third row (which is not chosen at all in any of these examples) -- we changed a mixed strategy of the first two rows to a pure strategy, always choosing only the second row.
+
+If all these results are acceptable to the reader, then we demonstrated a case in which our strategy is not independent of ``irrelevant alternatives'' -- and does not feel overly irrational.
+
+\dots
 
 \pgfornament[height=0.6cm]{72}
 
@@ -613,9 +853,14 @@ Reference\footnote{For relevant references see the papers of Jörg Stoye on the 
 If decision-making is an art, then why would anyone want to construct a theory out of it?
 
 Even if every real-life situation is different, there might be some typical decision-making problems that occur frequently and can give good starting points for developing our own heuristics that suit our own situation.
-I will mention three main branches of prototypical decision-making problems and one simple modification generalizing the Target (which might be in a very different domain from which we gathered the Data or where the parameters of the model are understood).
+An important observation -- or maybe assumption -- is that two decision-making problems can be considered similar (or more formally equivalent) if they have the same number of actions and states, and the utilities associated with the action-state pairs can be linked with a single positive affine transformation.
+This is both a modest and an extraordinary claim. Modest because it does not tell anything about possible ``optimal'' strategies in these decision-making problems. But it is extraordinary because it claims that we might be able to reason about widely different decision-making problems in the same way if they share a small set of common features.
+
+I will mention three main branches of prototypical decision-making problems and one simple modification generalizing the Target (which might be in a very different domain from which we gathered the Data or where the model parameters are understood).
 
 While I vigorously defend the Agent's right to define her own utility function in a way she finds most appropriate, I think it is illuminating to list a few default utility functions and make suggestions about ``natural'', ``neutral'' or ``scientific'' utility functions which might be suitable for ``purely scientific'' inquiry.
+
+\dots
 
 \pgfornament[height=0.6cm]{72}
 
@@ -625,6 +870,11 @@ While I vigorously defend the Agent's right to define her own utility function i
 \pgfornament[height=0.6cm]{72}
 
 \paragraph{Reinforcement learning as a testing ground:}
+\dots
+
+\pgfornament[height=0.6cm]{72}
+
+\paragraph{Foundations of Statistical Physics:}
 \dots
 
 \pgfornament[height=0.6cm]{72}
@@ -644,7 +894,7 @@ The interpretation of probability in the suggested game theoretic framework is i
     \hfill --- Ariel Rubinstein\footnote{See the paper at \cite{paper:Rubinstein1991}.} 1991.
     \end{quote}
 
-Although in standard introductions to game theory, the concept of mixed strategies is built on the historically earlier formalisation of probability theory, and standard devices of chance such as dice and coins are used to ground the concept, in my view, the direction of grounding could be reversed.
+Although in standard introductions to game theory, the concept of mixed strategies is built on the historically earlier formalisation of probability theory, and standard devices of chance such as dice and coins are used to ground the concept. In my view, the direction of grounding could be reversed.
 %My suggestion is to take simple games as the prototypical circumstance where probability and randomisation emerge, and understand other concepts in probability theory as an abstraction and generalisation of such game theoretic situations.
 I suggest using simple games as the starting point where probability and randomization emerge, and viewing other concepts in probability theory as abstractions of these game-theoretic situations.
 For example, the concept: ``a random choice where the probability of choosing Heads or Tails is $50\%-50\%$'' could mean a process that an agent would consider when playing Matching Pennies against an unknown opponent. ``A belief or expectation that Heads or Tails will happen with $50\%-50\%$ chance'' means a similar expectation an Agent has when thinking about the potential moves of an unknown opponent in a Matching Pennies game.
@@ -702,7 +952,7 @@ Given a (real-)strategy profile, we can introduce the following ``average regret
 \[
 R_i (a_1,\dots,a_N;\theta | \underline{\sigma}) = \max_{b_i} 
 \left (
-\sum_{a_1,\dots,a_N} U_i(a_1,\dots,a_i \leftarrow b_i,\dots,a_N;\theta) \ 
+\sum_{a_1,\dots,a_N} U_i(a_1,\dots,(a_i \leftarrow b_i),\dots,a_N;\theta) \ 
 \sigma_1(a_1) \dots \sigma_N(a_N)
 \right )
 - U_i(a_1,\dots,a_N;\theta)
@@ -714,7 +964,7 @@ Introducing the ``expected'' (relative to both ``real'' strategies and ``imagina
 
 \[
 EU_i = 
-\sum_{a_1,\dots,a_N,\theta} 
+\sum_{a_1,\dots,a_N;\theta} 
 U_i(a_1,\dots,a_N;\theta) \ \sigma_1(a_1) \dots \sigma_N(a_N) \pi_i(\theta)
 \]
 
@@ -722,7 +972,7 @@ and ``expected'' average regrets:
 
 \[
 ER_i =
-\sum_{a_1,\dots,a_N,\theta} 
+\sum_{a_1,\dots,a_N;\theta} 
 R_i(a_1,\dots,a_N;\theta | \underline{\sigma}) \ \sigma_1(a_1)\dots\sigma_N(a_N) \pi_i(\theta)
 \]
 
@@ -734,7 +984,7 @@ An \emph{extended equilibrium} strategy profile $\langle \underline{\sigma}^*; \
 EU_i \ge
 \sum_{a_1,\dots,a_N;\theta} 
 \left (
-U_i(a_1,\dots,a_i \leftarrow b_i,\dots,a_N;\theta)
+U_i(a_1,\dots,(a_i \leftarrow b_i),\dots,a_N;\theta)
 \right ) \ 
 \sigma^*_1(a_1) \dots \sigma^*_N(a_N) \pi^*_i(\theta)
 \]
@@ -745,7 +995,7 @@ U_i(a_1,\dots,a_i \leftarrow b_i,\dots,a_N;\theta)
 ER_i \ge
 \sum_{a_1,\dots,a_N;\theta} 
 \left (
-R_i(a_1,\dots,a_N;\theta \leftarrow \theta' | \underline{\sigma}^*)
+R_i(a_1,\dots,a_N;(\theta \leftarrow \theta') | \underline{\sigma}^*)
 \right ) \ 
 \sigma^*_1(a_1) \dots \sigma^*_N(a_N) \pi^*_i(\theta)
 \]
@@ -940,7 +1190,7 @@ However, in my view, optimism can have a more abstract and deeper meaning than a
 
 {\it Formalization of Optimism:}
 A naive or extreme optimist might imagine a fictional player controlling the parameters who has exactly the same preferences and utilities as her own.
-In the case of a nontrivial utility function, this is an extremely friendly and reassuring outlook to the unknown factors, but (unless the utility functions are not chosen or adopted very-very wisely), this leads to an extreme behaviour: The Agent will always choose the action, which yields the highest reward, while she assumes that the unknown is always cooperates fully and tunes the uncertain parameter to make her possible to win the greatest reward\footnote{Also known as ``maximising the maximums'' strategy of an ``unbridled optimist'' in decision theory \cite{book:ResnikDecisionTheory}}.
+In the case of a nontrivial utility function, this is an extremely friendly and reassuring outlook to the unknown factors, but (unless the utility functions are not chosen or adopted very-very wisely), this leads to an extreme behaviour: The Agent will always choose the action, which yields the highest reward, while she assumes that the unknown is always cooperates fully and tunes the uncertain parameter to make her possible to win the greatest reward\footnote{Also known as ``maximising the maximums'' strategy of an ``unbridled optimist'' in decision theory \cite{book:ResnikDecisionTheory}.}.
 
 Because of the behaviour it induces, I think extreme optimism is not a viable alternative to the proposed regret-based framework. However, it does not mean that there could not be a more tempered way to increase the agent's ``optimism''\footnote{An example, known in decision theory might by the Hurwitz criteria \cite{paper:Milnor,web:HurwiczCriterion}. ``Optimism'' is tunable by an $\alpha \in [0,1]$ parameter in that framework.}.
 
@@ -961,14 +1211,15 @@ Nevertheless, this is a nuanced property, which many decision-makers may easily 
 As in the case of the ``black or white thinking'', I see no unquestionable arguments to rule out decision-making heuristics, which are constructed to be more optimistic\footnote{Primarely in some social situations, enhanced optimism might yield a more adaptive behaviour. I feel a close analogy with successful behavioural strategies in iterated evolutionary games, which can get more and more forgiving as malicious agents vanish and cooperative agents start to dominate the population. For reference, see the book of Robert Axelrod \cite{book:Axelrod}.}. Still, because of its simplicity and sound induced behaviour, I think the original regret-based approach does not need a severe optimism enhancement to remain suggestible when we face uncertain factors.
 
 
-\section*{Virtues of a metaphysical framework}
+\section*{Virtues of a metaphysical framework (under construction)}
 
 A compelling aspect of science is that its claims are testable by experiments. Of course, there are further ``theoretical virtues'' of scientific theories\footnote{See references in the context of the philosophy of science \cite{paper:TheoreticalVirtues,book:TheoreticalVirtues}.} some of which I will list and discuss.
 
 The biggest obstacle to applying scientific techniques to evaluate the suggested framework is that its elements and aim are inherently not scientific.
-We can not talk scientifically about the ``intentions behind unknown factors'' or ``strategies of Nature'' because these can not be contrasted with experiments.
+We can not talk scientifically about the ``intentions behind unknown factors'' or ``strategies of Nature'' because these can not be contrasted with experiments\footnote{This realization concerned me greatly. A quote borrowed from Wolfgang Pauli feels appropriate: ``I've done a terrible thing today, something that no
+theoretical physicist should ever do. I have suggested something which can never be verified experimentally.'' \cite{paper:PuliQuote}. Pauli was talking about the neutrino, which was experimentally verified 26 years later. In case of uncertainty, however, I see no possible advancement in technology that could make statements about it empirically testable.}.
 ``Properties of the unknown'', by definition, disappear -- as a mirage -- immediately when we gain knowledge by performing an experiment.
-Therefore, what we are contemplating here is not a scientific or a physical theory, but a metaphysical construction\footnote{Maybe I need to clarify what I mean by ``metaphysical construction'' here. To function and operate in the world, agents require not only data about their environment but also some further structure, which they use to organise and translate their empirical knowledge into actions. I call these extra structures in Agents' model-making factions metaphysical constructions because they are not derived directly from empirical data. Therefore, metaphysical constructions are created and used by the Agents to navigate in the world and fill the gaps in their knowledge, to acquire meaning or goals, but most crucially, to translate experience to action.}.
+Therefore, what we are contemplating here is not a scientific or a physical theory, but a metaphysical construction\footnote{Maybe I need to clarify what I mean by ``metaphysical construction'' here. To function and operate in the world, Agents require not only data about their environment but also some further structure, which they use to organise and translate their empirical knowledge into actions. I call these extra structures in Agents' model-making factions metaphysical constructions because they are not derived directly from empirical data. Therefore, metaphysical constructions are created and used by the Agents to navigate in the world and fill the gaps in their knowledge, to acquire meaning or goals, but most crucially, to translate experience to action.}.
 However, even if we might lose a very important tool in science, experimental testability or the possibility of falsification, we might keep or transfer the remaining theoretical virtues from science and mathematics\footnote{For an inexhaustive list of aspects of ``good mathematics'' see the following paper \cite{arxiv:GoodMathematics}.} to judge and compare metaphysical constructions.
 
 \begin{itemize}
@@ -978,7 +1229,7 @@ However, even if we might lose a very important tool in science, experimental te
     \item Scope: unifying power
     \item Simplicity
     \item Fruitfulness
-    \item Beauty
+    \item Beauty\footnote{Some disagree in the context of science \cite{book:HossenfelderLostInMath,arxiv:LostInMathReview}.}
     \item Applicability
     \item + Independent discovery or application
     \item + Sustainability
@@ -991,6 +1242,8 @@ A big difference between seeking the truth and looking for fixed points is that 
 
 Another severe complication of judging metaphysical constructions appears to be the circumstance that we always need a metaphysical construction to make judgements. Therefore, there seems to be no outer, objective view of metaphysical systems. What we can do is only analyse a system $\mathscr{M}_X$ from another system's point of view $\mathscr{M}_Y$ and make relative assessments $\mathbb{A}(\mathscr{M}_Y || \mathscr{M}_X)$.
 (In a previous section, the ``Independence tax'' was an example of such a relative assessment.)
+
+\dots
 
 %Divergence function, assessment $\mathbb{A}(\mathscr{M}_Y || \mathscr{M}_X)$ or $\mathbb{A}_{\mathscr{M}_X}(\mathscr{M}_Y)$, judgements, or any statement.
 
@@ -1011,9 +1264,100 @@ However, humans often rely on external tools or practices to generate random cho
 
 Besides strategic decision-making, people used randomization devices for fun since prehistoric times in the form of children's play and gambling. Even if gambling has been often discouraged, the interaction and fascination with unpredictable outcomes seems to be deeply embedded in many cultures all over time and space\footnote{See an ethnographic and historical investigation of gambling in \cite{paper:GamblingAcrossCultures}.}.
 
+\paragraph{Validity of Game theory:}
+The descriptive power of Game theory in human behaviour is a separate empirical question. Even if translating consequences to utilities is nontrivial, experimental data is mostly in-line with predictions from Game theory\footnote{For reference and an extensive amount of examples see \cite{book:BehavioralGameTheory}.}.
+
 \paragraph{Ellsberg paradox:}
-{\it Cognitive science of decision making}
-Brain studies show that humans might have dedicated brain areas involved in decision-making and accessing uncertain factors\footnote{For reference see \cite{thesis:NeuralDecisionMaking}.}.
+To demonstrate the aversion of uncertainty -- or ambiguity -- compared to risk i.e. risky outcomes with known probabilities for humans, Daniel Ellsberg suggested and popularized an experiment in 1961\footnote{Almost the same construction was described by Keynes in 1921 \cite{book:TreatiseOnProbability}. Ellsberg in his 1961 paper after describing the experiment refers to anecdotal evidence: ``Judging from a large number of responses, under absolutely nonexperimental conditions [\dots]'' to backup his claim \cite{paper:Ellsberg1961}.}.
+
+The following description is borrowed from a paper from 2017 (with some modifications to match the text to the figure and the original paper of Ellsberg):
+
+\begin{quote}
+
+Consider two urns each containing 100 balls (see Figure~\ref{fig:Ellsberg}).
+The balls are either black or red. It is known that the first urn contains
+exactly 50 black and 50 red balls. For the second urn however, the
+composition of the colors is unknown.
+
+\strut
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{img/Ellsberg-urn_alpha.png}
+    \caption{The two Ellsberg urns: Urn 1 on the left contains well defined proportions of black and red balls, whereas for Urn 2 on the right the proportions are unknown.}
+    \label{fig:Ellsberg}
+\end{figure}
+
+\strut
+
+Subjects hold bets on the color of the balls to be drawn from the urns. A 
+\emph{bet on black }``$b$'' yields $100$ Euro if the ball drawn from the urn
+is black. Otherwise the payoff is zero. Similarly, \emph{betting on red }``$%
+r$'', the subject earns $100$ Euro if a red ball is drawn and nothing
+otherwise. Table~\ref{tab:Ellsberg} summarizes this choice problem.
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+& \multicolumn{2}{|c}{\emph{Urn 1}} & \multicolumn{2}{|c|}{\emph{Urn 2}} \\ 
+\hline
+& 50 & 50 & \multicolumn{2}{|c|}{100} \\ \hline
+& \emph{Black} & \emph{Red} & \emph{Black} & \emph{Red} \\ \hline
+$b$ (\emph{bet on black}) & $100$ & $0$ & $100$ & $0$ \\ \hline
+$r$ (\emph{bet on red}) & $0$ & $100$ & $0$ & $100$ \\ \hline
+\end{tabular}%
+\caption{Payoff table (in Euros) for betting on \emph{black} or \emph{red} in the two urns.}
+\label{tab:Ellsberg}
+\end{table}
+
+
+Holding a bet first on\emph{\ black} ($b$) and then on \emph{red }($r$),
+subjects had to choose the urn on which they wanted to bet.
+
+A large number of subjects, about 60 percent, choose to bet on the draw from
+Urn 1 for both bets\footnote{%
+The fact that subjects prefer to bet on the urn with the known proportion of
+colors could be confirmed in many repetitions of the Ellsberg experiment. 
+\cite{paper:AmbiguityReview} reviewed 39 experimental studies of the
+Ellsberg experiments. They report a median number of 59 percent of ambiguity
+averse subjects across all studies which they reviewed.}. These choices
+clearly contradict the assumption that these subjects were maximizing subjective expected utility.
+
+    
+    \hfill --- Ellsberg's suggested thought experiment\footnote{The description has been borrowed from \cite{paper:EllsbergHilbert}, which is based on the original paper \cite{paper:Ellsberg1961}.}.
+    \end{quote}
+
+
+
+
+
+Empirical evidence has been gathered shortly in 1964 which supported ambiguity aversion\footnote{See \cite{paper:EmpiricalEllsbergBecker1964} and a more recent review citing several experimental results in \cite{paper:ExperimentalEllsbergReviewCamerer1992}.}
+
+%{\it Psychological perspective:}
+%\footnote{See \cite{paper:AmbiguityAndRationalityFrisch1988}.}
+
+{\it Cognitive science of decision making:}
+Brain studies show that humans might have dedicated brain areas involved in decision-making and accessing uncertain factors\footnote{For reference see \cite{thesis:NeuralDecisionMaking,paper:NeuroeconomicsOfDecisionMaking}.}.
+
+{\it Ellsberge paradox and the proposed framework:}
+At first glance -- with a naive and faulty application of the framework -- the Ellsberg paradox might seem natural. If the Agent imagines an adversarial player behind the uncertain (or ambiguous) factors, trying to prevent her from winning, then she will choose always the non-ambiguous urn. (In this thought process the Agent is assuming a zero-sum game, therefore she assumes that when she could bet on red, the ambiguous urn is full of black balls and full of red if she has the opportunity to bet on black.)
+
+However if we faithfully follow the procedure suggested in the beginning of this essay, and the Agent assumes that the fictional player maximizes her regret instead of negative utility, then the effect vanishes. 
+Lets examine the case, when the agent can bet on red balls. In this case if the trickster always provides an urn with full of black balls, then it can cause no regret. It created the worst situation, but the Agent can always choose the risky urn, therefore doing the best she can, without feeling any regret.
+To cause regret, the trickster needs to give sometimes better then $50$-$50$ chances in the ambiguous urn. To maximize it’s objective the trickster will sometimes provide an urn full of red balls -- beside an urn full of black balls.
+How often will the trickster choose a favourable composition? How the Agent is ought to play in equilibrium? The regret of choosing the ambiguous urn if it is full of back balls is $1/2 \ U(\text{``red''})+ 1/2 \ U(\text{``black''}) – \ U(\text{``black''}) = 1/2 \ U(\text{``red''})- 1/2 \ U(\text{``black''})$, and the regret of choosing the risky urn if the ambiguous urn is full of red balls is $U(\text{``red''}) - (1/2 \ U(\text{``red''})+ 1/2 \ U(\text{``black''})) = 1/2 \ U(\text{``red''})- 1/2 \ U(\text{``black''})$. (In all other cases the regret is zero, because the Agent could not have been making a better choice.) The two non-zero regrets are the same, therefore -- by realizing that for the Agent utility and negative regret differ only in an action-independent factor -- the game theoretical problem can be reduced to a simple Matching Pennies game. In which the equilibrium solution is choosing randomly for both players with 50\%-50\% chance (for the Agent choosing the risky urn with 50\%, and choosing the ambiguous urn with 50\%, while for the imaginary trickster choose an urn full of black balls with 50\% and fill the urn with red balls with 50\%).
+The result remains the same if the Agent’s utility is not proportional to monetary gains, therefore in particular the Agent’s risk aversion is not changing this result.
+
+There are variations of the dilemma and the thought process, however, which can alter the result.
+The result may change in repeated scenarios if the Agent is risk averse i.e. (in frameworks compatible with expected utility theory) her utility function is concave.
+If the number of repetitions goes to infinity, while keeping the maximum winnable amount to 100 Euros, then the dilemma now practically changes to an ``auction problem’’, where either we get 50 Euros, or gaining potentially 0 or 100 Euros with the ambiguous urn.
+This changes the potential regrets as well, resulting a higher probability of choosing the risky urn for a risk averse Agent in equilibrium. This effect appears for small repetitions as well e.g. for two rounds. While this might explain some related phenomena such as ``home bias'' in finance\footnote{``Home bias is the tendency for investors to invest in stocks that are, literally, closer to home. For example, investors in most countries tend to invest heavily in stocks from their home country and very little in stocks from foreign countries.'' \cite{thesis:NeuralDecisionMaking}. For further references see \cite{paper:HomeBiasDisappearing,paper:HomeBias1991,paper:PuzzlesInMacroeconomics}.}, the same effect can be understood in the subjective expected utility theory with extreme priors (having more weight at the extreme ends of the ball distributions). Further, the construction of Ellsberg explicitly states that the choice is made once i.e. this is a one-shot decision problem.
+
+We have to conclude that the Ellsberg paradox remains a paradox -- reflecting the framework's deeper compatibility with subjective expected utility theory --  however I believe this framework opens more avenues to understand the experimental results.  
+
+\dots
 
 \pgfornament[height=0.6cm]{72}
 
@@ -1024,19 +1368,47 @@ Brain studies show that humans might have dedicated brain areas involved in deci
 
 \subsection*{Animal behaviour}
 
+\paragraph{Advocating for compassion:}
 I have to confess that I was reluctant to mention and cite the results of biological experiments because most of the time, I read the papers with feeling sorrow for the animals.
-I convinced myself to write about the results found in these papers only because I might have a chance to promote the expansion of the circle of compassion\footnote{Circle of altruism is a similar concept in Peter Singer's book \cite{book:ExpandingCircle}.}.
-(My concern is not primarily focused on suffering -- although this makes the matter more painful to comprehend -- but the alienation of living beings, treating them as subjects or sometimes as objects, and therefore preventing them from realizing their potential and engaging fully in the dance of life and being. I don't think that it is only harmful to ``them''; I believe it is harmful to us if we distance ourselves from the majority of living beings because the price for alienation -- and the capacity of being cruel -- is the feeling of isolation and boundedness. I am not advocating for treating animals and other living beings in the same way we treat humans. I promote practices which don't cause the evaporation of compassion and where animals are not viewed as subjects but as partners by whom we can engage and hopefully foster a mutually beneficial relationship. On the other hand, if we expand our circle of compassion to a broader range of living beings, then we enrich ourselves and can feel more connected and more at home in the world. Because compassion and love are not getting less if given; it is just getting more.)
+I convinced myself to write about the results found in these papers only because I might have a chance to promote the expansion of the circle of compassion\footnote{Circle of altruism is a similar concept in Peter Singer's book \cite{book:ExpandingCircle}, where he argues for the extension of ethics and morality by applying ``rationality''. 
 
-\pgfornament[height=0.6cm]{72}
+Similar concepts, however, are compatible with various theological and philosophical frameworks. In the Neo-Confucian tradition an ``anthropocosmic'' vision emerged as the natural transcendence of egoism, parochialism, nationalism and anthropocentrism \cite{paper:TuWeimingNewConfucianHumanism}. 
 
-\paragraph{Playing a Nash equilibrium:}
-Primates (rhesus monkeys) randomize their choices according to Nash equilibrium\footnote{See \cite{paper:PrimateRandomArticle}.}.
+In Indian religions (Hinduism, Buddhism and Jainism) animals are regarded as sentient beings \cite{book:EncyclopediaOfBuddhism} and their respect is derived from the central concept of ``ahimsa'' -- a principle of nonviolence \cite{britannica:Ahimsa}. 
 
-\pgfornament[height=0.6cm]{72}
+Abrahamic religions view animals usually rather instrumentally. However, in the Judeo-Christian tradition if one interprets the scripture in Genesis not as ``rule over'' or ``have dominion over [\dots] animals'' but rather as stewardship and care, then the scripture is mostly compatible with a compassionate coexistence and cooperation with animals and non-human beings \cite{book:OnAnimalsInChristianity}. The folklore surrounding Francis of Assisi in Catholicism is a further testimony that a non-exploitative relationship -- at least in theory -- is compatible with this worldview. There are attempts to accommodate Islam to a more compassionate animal welfare as well \cite{paper:AnimalWelfareIslam}.
 
-\paragraph{Ambiguity aversion:}
-Ambiguity aversion has been observed in primates\footnote{See for example \cite{paper:ChimpanzeesBonobosAmbiguity,paper:PrimatesAmbiguity,paper:RhesusMacaquesAmbiguity}}
+I do not try to indicate that all the mentioned worldviews imply compassion toward non-human beings, but it seems that effort has been made to accommodate them to a more inclusive view of being and coexistence. The driving force of this push might be an emergent tendency of our times. I may very well be under the spell of this prevailing sentiment, yet even after self-critical reflection I still believe this concern is worth addressing. 
+}.
+(My concern is not primarily focused on suffering -- although this makes the matter more painful to comprehend -- but the alienation of living beings, treating them as subjects or sometimes as objects\footnote{The objectification of animals can be spotted even at the language level. In contemporary English, farm animals appear more often in contexts similar to tools and raw materials then contexts referring to sentient beings i.e. people, wild animals or pets \cite{thesis:Anita}.}, and therefore preventing them from realizing their potential and engaging fully in the dance of life and being. I don't think that it is only harmful to ``them''; I believe it is harmful to us if we distance ourselves from the majority of living beings because the price for alienation -- and the capacity of being cruel -- is the feeling of isolation and boundedness. I am not advocating for treating animals and other living beings in the same way we treat humans. I promote practices which don't cause the evaporation of compassion and where animals are not viewed as subjects but as partners by whom we can engage and hopefully foster a mutually beneficial relationship. On the other hand, if we expand our circle of compassion to a broader range of living beings, then we enrich ourselves and can feel more connected and more at home in the world. Compassion and love are not getting less if given; it is just getting more.)
+
+However, sadly, I can not point confidently to any institute or research center which I could promote as an example. This is partially because of my lack of first-hand experience and therefore the unreliability of my impressions about the circumstances in such facilities, but more importantly because in the present era we are so distant from a respectful compassionate and wise coexistence with other life forms and Nature as a whole that even the best examples might sound as cosmeticized cruelty from a more enlightened point of view.
+
+To mention a few institutes, the \href{https://www.ab.mpg.de/}{Max Planck Institute of Animal Behavior} and the \href{https://janegoodall.org/}{Jane Goodall Institute} are hopefully setting a good example in high quality non-invasive, observational animal research. I might mention the Skylab\footnote{As an example a research paper elaborating on the method can be found here \cite{paper:SkyLabLin2024}.} concept in Center for the Evolutionary Origins of Human Behavior \href{https://www.ehub-kyoto-u.com/en}{EHUB} of Kyoto University in Japan where the participation in cognitive tests of chimpanzees is voluntary (rewarded by food), but overall the animals are still captive. A promising initiative for animal testing in biomedical studies has been proposed by providing \href{https://www.nytimes.com/2006/11/24/business/in-trials-for-new-cancer-drugs-family-pets-are-benefiting-too.html}{experimental oncological treatment} for dogs with cancer.
+
+The list is of course not exhaustive and I am sure that I am not aware of many good examples. (And on the other hand I am not sure that there are no flaws and misconduct in the examples I gave.) But my point is not to judge or boycott institutes, but rather show that high quality research is possible with true mutualism between humans and animals\footnote{For example in \cite{paper:Domestication} domestication is defined in the following way: ``Domestication is a sustained multigenerational, mutualistic relationship in which one organism assumes a significant degree of influence over the reproduction and care of another
+organism in order to secure a more predictable supply of a resource of interest, and through which the partner organism gains advantage over individuals that remain outside this relationship, thereby benefitting and often increasing the fitness of both the domesticator and the target domesticate.''}. My hope is that these examples pointing to a better direction can bring one step closer to a mindset shift, where humans recognize that they are in an unseparable unity with others life forms and the world and where instead of exploitation and conquering we will engage in cooperation.
+
+\paragraph{Values of science and morality:}
+In the previous paragraph I chose to advocate for a cause, but -- coming back to the main focus of the present essay -- it also serves as an example where ``scientific values'' can clash with personal moral values.
+(Of course the problem can be framed as a question of separation and unity as well, but even in that case it shows that curiosity is sometimes in conflict with causing harm.)
+It is a reminder that even ``scientific values'' should not be pushed to the extremes, and even for research usually a holistic approach is needed to balance between sometimes non-aligned values.
+
+\paragraph{Ambiguity aversion in animals:}
+
+There is empirical evidence showing that animals from several species show ambiguity aversion in laboratory settings.
+
+However experimental results are reported mostly from non-human primates (apes and monkeys), suggesting that some cognitive similarity to humans is needed to observe such behaviour.
+
+
+\begin{itemize}
+    \item In non-human primates Ambiguity aversion has been observed\footnote{Decision-making of Capuchin monkeys \cite{thesis:AmbiguityAversionInCapuchinMonkeys}, Rhesus macaques \cite{paper:RhesusMacaquesAmbiguity}, Orangutans, Gorillas, Chimpanzees and Bonobos has been studied in \cite{paper:PrimatesAmbiguity} and \cite{paper:PrimateRandomArticle}. See also \cite{paper:ChimpanzeesBonobosAmbiguity}.};
+    \item Studies found that several animals were able to find and act according to Nash equilibrium strategies in economic games\footnote{See a study focusing on non-human primates \cite{paper:EconomicGamesPrimates}. Rhesus monkeys randomize their choices according to Nash equilibrium, see \cite{paper:PrimateRandomArticle} for reference.}.
+\end{itemize}
+
+In the light of the previous paragraphs, my personal opinion is that in the area of economic behaviour no further experimental research is needed on captive animals. (While observational studies and more compassionatly/thoughtfully designed experiments could be illuminating.)
+
+\dots
 
 \pgfornament[height=0.6cm]{72}
 
