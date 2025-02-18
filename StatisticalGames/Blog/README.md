@@ -8,7 +8,7 @@
 This is an informal introduction and summary of a longer manuscript on [Statistical Games](https://arxiv.org/abs/2402.15892).
 I try to keep the material self-contained but to bring the paper closer, I will often mention specific sections and parts in the manuscript.
 This blog post therefore aims to be a companion to the relatively long and more technical document available on arXiv.
-For those who appreciate mathematical formalization, properly stated theorems and even proofs, I suggest to delve deeper to the actual manuscript:
+For those who appreciate mathematical formalization, properly stated theorems and even proofs, I suggest to delve deeper to the actual paper:
 [arXiv:2402.15892](https://arxiv.org/abs/2402.15892).
 
 However, even if abstract formulas are not your cup of tee, in this post I tried my best to address the matter in a widely understandable way, so I encourige readers to carry on.
@@ -22,8 +22,10 @@ Although the incomprehensible complexity of the whole world prevents us from rea
 
 One approach - which migh sound scientific and "objective" - used as a refined heuristics is decision-making aided with statistics. However, the most well-known interpretations and frameworks for [Probability theory](https://en.wikipedia.org/wiki/Probability_interpretations) and (theoretical-) [Statistics](https://plato.stanford.edu/entries/statistics/) seem to focus more on making rigorous statements (often only in various limiting cases) than guiding an Agent with only a finite amount of data.
 
-My aim was to construct a broader framework where Statistics and Probability theory are not separate disciplines, operating with their own concepts, but where these are ingredients of a whole decision-making process of an Agent who needs to make actions having incomplete information.
-After substantial mathematical idealisations, - by which we restrict the possible states of the environment and the Agent's possible actions - the best framework to analyse this decision-making process appears to be [Game Theory](https://www.britannica.com/science/game-theory).
+My aim was to construct a broader framework where Statistics and Probability theory are not separate disciplines, operating with their own concepts, but where these are ingredients of an integrated decision-making process of an Agent who needs to make actions having incomplete information.
+To construct a theory, mathematical idealisations has to be made - these will be discussed later - but after these simplifications the best framework to analyse this decision-making process appears to be [Game Theory](https://www.britannica.com/science/game-theory).
+
+[comment]: <> (After substantial mathematical idealisations, - by which we restrict the possible states of the environment and the Agent's possible actions - the best framework to analyse this decision-making process appears to be [Game Theory](https://www.britannica.com/science/game-theory).)
 
 
 ## Why Game Theory?
