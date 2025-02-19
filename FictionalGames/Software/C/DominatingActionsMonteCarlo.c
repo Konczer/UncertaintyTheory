@@ -11,11 +11,17 @@
  * $ g++ DominatingActionsMonteCarlo.c -lm -O3 -o DominatingActionsMonteCarlo
  * 
  * Usage:
- * DominatingActionsMonteCarlo N M n_max [seed]
+ * DominatingActionsMonteCarlo N M n_max [seed] [rand_type]
  * 
  * Example:
  * $ ./DominatingActionsMonteCarlo 4 6 1000000 2025
  * $ 4532
+ * 
+ * $ ./DominatingActionsMonteCarlo 4 6 1000000 2025 "rand"
+ * $ 4532
+ * 
+ * $ ./DominatingActionsMonteCarlo 4 6 1000000 2025 "drand48"
+ * $ 4474
  */
 
 #include <stdio.h>
@@ -24,12 +30,6 @@
 #include <string.h>
 #include <time.h>
 
-#ifdef __linux__
-    #include <sys/types.h>
-    #ifdef HAVE_BSD_STDLIB_H
-        #include <bsd/stdlib.h> // For arc4random on Linux, this needs libbsd-dev, on linux it can be installed: $ sudo apt install libbsd-dev
-    #endif
-#endif
 
 // Macro to generate a single Gaussian random number using the Box-Muller transform
 #define GENERATE_GAUSSIAN(result) { \
@@ -44,6 +44,7 @@
     double u2 = drand48(); \
     result = sqrt(-2.0 * log(u1)) * cos(2.0 * M_PI * u2); \
 }
+
 
 // Macro to generate a single Gaussian random number using the Box-Muller transform
 #define GENERATE_TWO_GAUSSIANS(resX, resY) { \
@@ -153,6 +154,7 @@ int dominance_check_drand48(int M, int N) {
     return 1; // True
 }
 
+
 int main(int argc, char *argv[]) {
     int N, M, n_max, seed;
     int i, result;
@@ -174,6 +176,7 @@ int main(int argc, char *argv[]) {
     } else {
         seed = time(NULL);
     }
+
     srand(seed);
     srand48(seed);
 
@@ -181,14 +184,14 @@ int main(int argc, char *argv[]) {
         rng_type = argv[5];
     }
 
-    // Run the dominance check function n_max times
-    result = 0;
-    for (i = 0; i < n_max; i++) {
-        if (strcmp(rng_type, "drand48") == 0) {
-            result += dominance_check_drand48(M, N);
-        } else {
-            result += dominance_check(M, N);
-        }
+    
+
+    if (strcmp(rng_type, "drand48") == 0) {
+        // Run the dominance check function n_max times
+        result = 0; for (i = 0; i < n_max; i++) {result += dominance_check_drand48(M, N);} 
+    } else {
+        // Run the dominance check function n_max times
+        result = 0; for (i = 0; i < n_max; i++) {result += dominance_check(M, N);}
     }
     
     printf("%d\n", result);
