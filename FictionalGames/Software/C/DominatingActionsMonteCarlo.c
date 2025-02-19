@@ -1,4 +1,11 @@
 /**
+ * Two pseudo-random generators can be chosed:
+ * rand()
+ * https://man7.org/linux/man-pages/man3/rand.3.html
+ * 
+ * drand48()
+ * https://man7.org/linux/man-pages/man3/drand48.3.html
+ * https://www.ibm.com/docs/en/zos/2.4.0?topic=functions-drand48-pseudo-random-number-generator
  * 
  * Compilation examples:
  * Using gcc
