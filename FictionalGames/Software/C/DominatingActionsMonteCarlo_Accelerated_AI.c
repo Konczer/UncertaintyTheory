@@ -14,7 +14,7 @@
  * DominatingActionsMonteCarlo_Accelerated N M n_max [seed]
  * 
  * Examples:
- * $ ./DominatingActionsMonteCarlo_Accelerated 4 6 1000000 2025
+ * $ ./DominatingActionsMonteCarlo_Accelerated_AI 4 6 1000000 2025
  * The output is probabilistic, a few generated values were:
  * $ 4596   $ 4636  $ 4634  $ 4628
  * 
