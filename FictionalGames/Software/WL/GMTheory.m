@@ -59,6 +59,12 @@ res = iFunctionF1[arg, OptionValue["Method"],OptionValue["WorkingPrecision"]];
     ]
 
 
+iFunctionF1[Nn_Integer,0,me_,WP_]:=1/(Nn-1)/;Nn>=2
+
+
+iFunctionF1[Nn_Integer,1,me_,WP_]:=1/(Nn-1)/;Nn>=2
+
+
 (* Original FunctionF1 *)
 iFunctionF1[Nn_Integer,pp_,"OriginalInfinite",WP_]:=Module[
 {},
@@ -74,7 +80,7 @@ NIntegrate[(E^((2*(-1 + pp)*pp*InverseErf[-1 + 2*r]^2)/(1 - 2*pp + 2*pp^2))*r^(-
 
 
 (* Original FunctionF1 *)
-iFunctionF1[Nn_Integer,pp_,"PartsrMaxTransform",WP_]:=Module[
+iFunctionF1[Nn_Integer,pp_?NumericQ,"PartsrMaxTransform",WP_]:=Module[
 {},
 1 - NIntegrate[(1 + Erf[InverseErf[-1 + 2*rm^(-2 + Nn)^(-1)]/Sqrt[1 - 2*pp + 2*pp^2]])/2,{rm,0,1},WorkingPrecision->WP]
 ]/;Nn>=2
@@ -118,7 +124,7 @@ res = iFunctionf1[arg, OptionValue["Method"],OptionValue["WorkingPrecision"]];
     ]
 
 
-(* Original FunctionF1 *)
+(* Original Functionf1 *)
 iFunctionf1[Nn_Integer,pp_,"OriginalInfinite",WP_]:=Module[
 {},
 NIntegrate[
@@ -129,15 +135,15 @@ NIntegrate[
 ]/;Nn>=2
 
 
-(* Original FunctionF1 *)
+(* Original Functionf1 *)
 iFunctionf1[Nn_Integer,pp_,"rTransform",WP_]:=Module[
 {},
 NIntegrate[(E^((2*(-1 + pp)*pp*InverseErf[-1 + 2*r]^2)/(1 - 2*pp + 2*pp^2))*r^(-2 + Nn))/Sqrt[1 - 2*pp + 2*pp^2],{r,0,1},WorkingPrecision->WP]
 ]/;Nn>=2
 
 
-(* Original FunctionF1 *)
-iFunctionf1[Nn_Integer,pp_,"PartsrTransform",WP_]:=Module[
+(* Original Functionf1 *)
+iFunctionf1[Nn_Integer,pp_?NumericQ,"PartsrTransform",WP_]:=Module[
 {},
 NIntegrate[(2^(2 - Nn)*(-2 + Nn)*(1 + Erf[Sqrt[1 - 2*pp + 2*pp^2]*InverseErf[-1 + 2*r]])^(-3 + Nn)*
   (-1 + E^((1 - 2*pp)^2*InverseErf[-1 + 2*r]^2)*Sqrt[Pi]*(-1 + 2*pp)*Erf[(1 - 2*pp)*InverseErf[-1 + 2*r]]*InverseErf[-1 + 2*r]))/
@@ -186,9 +192,23 @@ res = iIpartial[arg, OptionValue["Method"],OptionValue["WorkingPrecision"]];
 
 (* Original FunctionF1 *)
 iIpartial[Nn_Integer,Mm_Integer,"OriginalInfinite",WP_]:=Module[
-{},
+{iiF1,iif1},
 
-Mm NIntegrate[FunctionF1[Nn, pp, "Method"->"PartsrMaxTransform","WorkingPrecision"->WP]^(Mm - 1) Functionf1[Nn,pp,"Method"->"PartsrTransform","WorkingPrecision"->WP],{pp, 0, 1},WorkingPrecision->WP]
+iiF1[pp_?NumericQ]:=
+1 - NIntegrate[(1 + Erf[InverseErf[-1 + 2*rm^(-2 + Nn)^(-1)]/Sqrt[1 - 2*pp + 2*pp^2]])/2,{rm,0,1},WorkingPrecision->WP];
+
+iif1[pp_?NumericQ]:=
+NIntegrate[(2^(2 - Nn)*(-2 + Nn)*(1 + Erf[Sqrt[1 - 2*pp + 2*pp^2]*InverseErf[-1 + 2*r]])^(-3 + Nn)*
+  (-1 + E^((1 - 2*pp)^2*InverseErf[-1 + 2*r]^2)*Sqrt[Pi]*(-1 + 2*pp)*Erf[(1 - 2*pp)*InverseErf[-1 + 2*r]]*InverseErf[-1 + 2*r]))/
+ (E^(2*(1 - 3*pp + 3*pp^2)*InverseErf[-1 + 2*r]^2)*Pi*Sqrt[1 - 2*pp + 2*pp^2]),
+{r,0,1},WorkingPrecision->WP];
+
+Mm NIntegrate[
+iiF1[pp]^(Mm - 1)
+iif1[pp],
+ {pp, 0, 1},
+ WorkingPrecision->WP
+ ]
 ]/;Nn>=2&&Mm>=1
 
 
