@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-(* :Title: GaussMatrices.m *)
+(* :Title: GMTheory.m *)
 
 (* :Author: Jozsef Konczer *)
 
@@ -12,10 +12,10 @@
 
 (* :Mathematica version: 13.0 *)
 
-(* :History: Last update February 24, 2025 *)
+(* :History: Last update March 4, 2025 *)
 
 
-BeginPackage["DominatingProbabilitiesForGaussianMatrices`"];
+BeginPackage["GMTheory`"];
 
 
 TwoRowDominatingProbability;
