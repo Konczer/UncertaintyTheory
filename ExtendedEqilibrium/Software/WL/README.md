@@ -117,6 +117,17 @@ git checkout main -- ExtendedEqilibrium/Software/WL
 
 ## Citation
 
+To cite the Mathematica package:
+
+```latex
+@software{UncertaintyGameSolve,
+    title={UncertaintyGameSolve},
+    author={Jozsef Konczer},
+    year={2025},
+    howpublished={GitHub. \url{https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium/Software/WL}},
+    note={Mathematica script for solving games with uncertainty}
+}
+```
 
 To cite the *Non-Cooperative Games with Uncertainty* paper, you can use the following BibTeX entry:
 
