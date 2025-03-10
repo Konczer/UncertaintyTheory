@@ -23,7 +23,7 @@ Remove["UncertaintyGames`Private`*"]
 
 Alternatively you can always quit the kernel by using `Quit[]`, however, this will remove all defined functions and variables.
 
-## Reinstallation in Mathematica
+### Reinstallation in Mathematica
 
 After removal, a repeated `Get` can cause the `::shdw` error message, if functions such as `MinimalUncertaintyGameSolve` remained in the ``Global` `` context. To avoid this use the following modified `Get` command:
 
@@ -31,6 +31,12 @@ After removal, a repeated `Get` can cause the `::shdw` error message, if functio
 Remove[Global`MinimalUncertaintyGameSolve]
 Get["https://raw.githubusercontent.com/Konczer/UncertaintyTheory/refs/heads/main/ExtendedEqilibrium/Software/WL/UncertaintyGameSolve.m"]
 ```
+
+## Example notebook
+
+An example [Mathematica](https://www.wolfram.com/mathematica/) notebook which uses `UncertaintyGameSolve` to reproduce results from the *Non-Cooperative Games with Uncertainty* paper is available on [GitHub](https://github.com/Konczer/UncertaintyTheory/blob/main/ExtendedEqilibrium/Software/WL/ExampleNotebook.nb).
+
+To view the notebook withour [Wolfram Mathematica](https://www.wolfram.com/mathematica/) you can use the free [Wolfram Player](https://www.wolfram.com/player/), or to interact with it you can copy `UncertaintyGameSolve.m` to a [Wolfram Cloud](https://www.wolframcloud.com/) online notebook.
 
 ## Usage
 

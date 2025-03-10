@@ -42,7 +42,10 @@ Assuming that no general has reliable knowledge about the weather or can reliabl
     - To Be Announced
 
  - Software:
-    - [UncertaintyGameSolve](https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium/Software/WL) a Wolfram Language (Mathematica) implementation to compute the Extended Equilibrium for minimal $|\mathcal{A}_1|=2$, $|\mathcal{A}_2|=2$, $|\Theta|=2$ games with uncertainty.
+    - [UncertaintyGameSolve](https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium/Software/WL) a Wolfram Language (Mathematica) implementation to compute the Extended Equilibrium for minimal ( $|\mathcal{A}_1|=2$, $|\mathcal{A}_2|=2$, $|\Theta|=2$ ) games with uncertainty.
+
+- Notebook:
+    - An [Example Notebook](https://github.com/Konczer/UncertaintyTheory/blob/main/ExtendedEqilibrium/Software/WL/ExampleNotebook.nb) showing the usage of the [UncertaintyGameSolve](https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium/Software/WL) package to reproduce results from the paper, such as the Extended Equilibrium solution for the Generals and the Weather game.
 
 - [LaTeX source](https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium/arXiv/LaTeX) and [local copy](https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium/arXiv/pdf) of the manuscript.
 
