@@ -1,0 +1,9 @@
+"Uncertainty and Game Theory"
+
+"""
+This paper introduces a framework for finite non-cooperative games where each player faces a globally uncertain parameter with no common prior. Every player chooses both a mixed strategy and projects an emergent subjective prior to the uncertain parameters. We define an "Extended Equilibrium" by requiring that no player can improve her expected utility via a unilateral change of strategy, and the emergent subjective priors are such that they maximize the expected regret of the players.
+
+This approach provides a framework that unifies regret-based statistical decision theory and game theory, yielding a tool for handling strategic decision-making in the presence of deeply uncertain parameters.
+
+https://arxiv.org/abs/2503.01889
+"""
