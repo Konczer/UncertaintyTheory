@@ -39,8 +39,10 @@ Assuming that no general has reliable knowledge about the weather or can reliabl
     - See its suprisingly accurate and clear AI generated [Overview](https://www.alphaxiv.org/overview/2503.01889) on alphaXiv.
 
 - Talks:
-    - To Be Announced
-
+    - For a talk given at 25 March 2025 in the [Rényi Institute of Mathematics](https://www.renyi.hu/esemenyek/szeminarium/jozsef-konczer-bizonytalansag-es-jatekelmelet) (Budapest, Hungary):
+        - See the English Title and Abstract [here](https://raw.githubusercontent.com/Konczer/UncertaintyTheory/refs/heads/main/ExtendedEqilibrium/Talks/20250325_Renyi/TitleAndAbstract.txt),
+        - See uploaded slides [here](https://raw.githubusercontent.com/Konczer/UncertaintyTheory/refs/heads/main/ExtendedEqilibrium/Talks/20250325_Renyi/pdf/ExtendedEquilibrium_I_20250325_Renyi.pdf) (and extra slides [here](https://raw.githubusercontent.com/Konczer/UncertaintyTheory/refs/heads/main/ExtendedEqilibrium/Talks/20250325_Renyi/pdf/ExtendedEquilibrium_II_20250325_Renyi.pdf)).
+    
  - Software:
     - [UncertaintyGameSolve](https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium/Software/WL) a Wolfram Language (Mathematica) implementation to compute the Extended Equilibrium for minimal ( $|\mathcal{A}_1|=2$, $|\mathcal{A}_2|=2$, $|\Theta|=2$ ) games with uncertainty.
 
