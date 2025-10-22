@@ -109,17 +109,14 @@ The *Hiding* player has to hide the stripped bone in her left or right hand (whi
 If the *Guessing* player guessed correctly, she wins the round and loses otherwise.
 
 <p align="center">
-<img src="img/HandGameBones.jpg" alt="Hand Game Bones" width="400" />
+  <img src="img/HandGameBones.jpg" alt="Hand Game Bones" width="400">
 </p>
-<center>
-Hand Game Bone sticks (image from 
-<a href="https://americanindian.si.edu/collections-search/object/NMAI_20228" 
-target="_blank">
-National Museum of the American Indian
-</a> )
-
-.
-</center>
+<p align="center">
+  <em>
+    Hand Game Bone sticks (image from 
+    <a href="https://americanindian.si.edu/collections-search/object/NMAI_20228">National Museum of the American Indian</a>).
+  </em>
+</p>
 
 (It is worth mentioning that the full form of this game was not only a pastime activity, but it was also used to settle disputes and conflicts among individuals and groups.)
 
