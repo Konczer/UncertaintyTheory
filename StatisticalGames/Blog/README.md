@@ -114,7 +114,7 @@ If the *Guessing* player guessed correctly, she wins the round and loses otherwi
 <p align="center">
   <em>
     Hand Game Bone sticks (image from 
-    <a href="https://americanindian.si.edu/collections-search/object/NMAI_20228">National Museum of the American Indian</a>).
+    <a href="https://americanindian.si.edu/collections-search/object/NMAI_20228" target=_blank>National Museum of the American Indian</a>).
   </em>
 </p>
 
@@ -210,13 +210,15 @@ In Game Theory, there is a formal definition for a strategy - or more precisely 
 It might sound like a circular definition at first - given that in a typical game, the other players' strategies influence one's own best responses in a given situation - but both mathematically and intuitively, such collective strategies can be found.
 
 <p align="center">
-<img src="img/RecursiveSculpture.jpg" alt="MetaPhysicsResearch" width="500" />
+  <img src="img/RecursiveSculpture.jpg" alt="Recursive sculpture" width="500">
 </p>
-<center>Sculpture: Sigmund (talking to Sigmund, talking to Sigmund, talking to Sigmund... ) by Michal Gabriel in Jinačovice, near Brno, Czech Republic (not far from Freiberg (Příbor), Freud's birth-town). Link for
-<a href="https://www.facebook.com/ObcojezycznaOpole/posts/pfbid0TUpQBM72SqMLJXzRo4VMs8Zg4CpXLS27JpvQcwSVGoqYgV7hrWfDFyCckfGhUkxcl" target="_blank">images source</a>
-
-.
-</center>
+<p align="center">
+  <em>
+    Sculpture: Sigmund (talking to Sigmund, talking to Sigmund, talking to Sigmund...) by Michal Gabriel in Jinačovice, near Brno, Czech Republic (not far from Freiberg (Příbor), Freud's birth-town). 
+    <a href="https://www.facebook.com/ObcojezycznaOpole/posts/pfbid0TUpQBM72SqMLJXzRo4VMs8Zg4CpXLS27JpvQcwSVGoqYgV7hrWfDFyCckfGhUkxcl"
+    target=_blank>Image source</a>.
+  </em>
+</p>
 
 To be precise, the definition of the [*Nash Equilibrium*](https://www.britannica.com/science/Nash-equilibrium) reads the follows:
 
@@ -230,12 +232,13 @@ As it has been spelled out by Rubinstein in a previous quote, these equilibria c
 ## Decision Theory and Uncertainty
 
 <p align="center">
-<img src="img/DALLEMetaPhysicsResearch.webp" alt="MetaPhysicsResearch" width="500" />
+  <img src="img/DALLEMetaPhysicsResearch.webp" alt="MetaPhysics Research Lab" width="500">
 </p>
-<center>Generated image by DALL·E to the prompt: "Metaphysics Research Lab" in February 2024 
-
-.
-</center>
+<p align="center">
+  <em>
+    Generated image by DALL·E to the prompt: "Metaphysics Research Lab" (February 2024).
+  </em>
+</p>
 
 > Every day, in our professional work and our personal lives, each of us must make a multitude of decisions, both major and minor, under various conditions of uncertainty and partial ignorance.
 
@@ -259,20 +262,17 @@ To show what John Maynard Keynes was uncertain about [in 1937](https://discovery
 
 In my experience, the ordinary, everyday meaning of uncertainty is clear and intuitive for people who are not theorising but need to live and function in the real world. 
 
+
 <p align="center">
-<img src="img/Wanderer.jpeg" alt="MetaPhysicsResearch" height="450" />
+  <img src="img/Wanderer.jpeg" alt="Wanderer above the Sea of Fog" height="450">
 </p>
-<center>Wanderer above the Sea of Fog (Der Wanderer über dem Nebelmeer) by Caspar David Friedrich. 
-
-(Original image from 
-<a href=https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg
-target=_blank>
-Wikimedia
-</a>
-) 
-
-.
-</center>
+<p align="center">
+  <em>
+    <em>Wanderer above the Sea of Fog</em> (Der Wanderer über dem Nebelmeer) by Caspar David Friedrich. Original image from 
+    <a href="https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg"
+    target=_blank>Wikimedia</a>.
+  </em>
+</p>
 
 However, the concept becomes harder to define as we attempt to formalise it, because it slips from the grasp of mainstream theories and frameworks.
 (I think this lack of formal language is an important reason why uncertainty fell out of the economic and scientific mainstream, relative to the 1920s and 1930s.)
@@ -319,19 +319,16 @@ The "Trickster" is assumed to care about our *regret* - the difference between t
 Keeping the Agent's expected utility maximizing aim, but assuming that the "Trickster" is focusing on regret instead of total loss, can be viewed as a built-in fear of missing out mechanism. We can reason that this "motivates" the "Trickster" to offer states that contain opportunities (because always offering only the worst case would be bad for us, but we could avoid feeling any regret). Therefore, this seemingly small change about the incentives of the imaginary adversary ultimately introduces hope and induces an explorative and much more adaptive mindset for the Agent. Turning pessimism to pragmatism.
 
 <p align="center">
-  <img src="img/RegretGhost.png" width="49%">
-  <img src="img/RegretGhosts.png" width="49%">
+  <img src="img/RegretGhost.png" alt="Dusty purple ghost figurine" width="49%">
+  <img src="img/RegretGhosts.png" alt="Group of ghost figurines" width="49%">
 </p>
-<center>
-Ghost figurines symbolising the regret maximizing "Trickster". (Original image source: 
-<a href=https://www.yorkghostmerchants.com/original-york-ghost/project-one-z2fga-7yhl2-njr7m-6j5fm-74j42-t7w6n
-target=_blank>
-Dusty Purple Ghost
-</a>
-by York Ghost Merchants (slightly colrized to match the color coding used in the paper)) 
-
-.
-</center>
+<p align="center">
+  <em>
+    Ghost figurines symbolising the regret-maximising “Trickster”. Original image source:
+    <a href="https://www.yorkghostmerchants.com/original-york-ghost/project-one-z2fga-7yhl2-njr7m-6j5fm-74j42-t7w6n" target="_blank">Dusty Purple Ghost</a>
+    by York Ghost Merchants (slightly colourised to match the colour coding used in the paper).
+  </em>
+</p>
 
 A natural question arises if we want to generalize the concept for multiple Agents: whose regret the "Trickster(s)" ought to care about?
 
@@ -361,19 +358,14 @@ Compared to the introduction the paper in question is much less philosophical. T
 For those who are interested in the "philosophical why" beyound this informal introduction I suggest to take a look to this separate document: [Essay on Uncertainty](https://raw.githubusercontent.com/Konczer/UncertaintyTheory/refs/heads/main/Essay/pdf/EssayOnUncertainty.pdf).
 
 <p align="center">
-<img src="img/StatisticalGames.png" alt="MetaPhysicsResearch" width="400" />
+  <img src="img/StatisticalGames.png" alt="Statistical Games figure" width="400">
 </p>
-
-<center>
-(Figure 6 in 
-<a href=https://arxiv.org/abs/2402.15892
-target=_blank>
-arXiv:2402.15892
-</a>
-)
-
-.
-</center>
+<p align="center">
+  <em>
+    (Figure 6 in
+    <a href="https://arxiv.org/abs/2402.15892" target="_blank">arXiv:2402.15892</a>.)
+  </em>
+</p>
 
 ### Aim of the paper
 
