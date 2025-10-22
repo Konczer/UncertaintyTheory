@@ -112,7 +112,13 @@ If the *Guessing* player guessed correctly, she wins the round and loses otherwi
 <img src="img/HandGameBones.jpg" alt="Hand Game Bones" width="400" />
 </p>
 <center>
-Hand Game Bone sticks (image from [National Museum of the American Indian](https://americanindian.si.edu/collections-search/object/NMAI_20228) ) 
+Hand Game Bone sticks (image from 
+<a href="https://americanindian.si.edu/collections-search/object/NMAI_20228" 
+target="_blank">
+National Museum of the American Indian
+</a> )
+
+.
 </center>
 
 (It is worth mentioning that the full form of this game was not only a pastime activity, but it was also used to settle disputes and conflicts among individuals and groups.)
@@ -209,7 +215,11 @@ It might sound like a circular definition at first - given that in a typical gam
 <p align="center">
 <img src="img/RecursiveSculpture.jpg" alt="MetaPhysicsResearch" width="500" />
 </p>
-<center>Sculpture: Sigmund (talking to Sigmund, talking to Sigmund, talking to Sigmund... ) by Michal Gabriel in Jinačovice, near Brno, Czech Republic (not far from Freiberg (Příbor), Freud's birth-town). Link for [images source](https://www.facebook.com/ObcojezycznaOpole/posts/pfbid0TUpQBM72SqMLJXzRo4VMs8Zg4CpXLS27JpvQcwSVGoqYgV7hrWfDFyCckfGhUkxcl)</center>
+<center>Sculpture: Sigmund (talking to Sigmund, talking to Sigmund, talking to Sigmund... ) by Michal Gabriel in Jinačovice, near Brno, Czech Republic (not far from Freiberg (Příbor), Freud's birth-town). Link for
+<a href="https://www.facebook.com/ObcojezycznaOpole/posts/pfbid0TUpQBM72SqMLJXzRo4VMs8Zg4CpXLS27JpvQcwSVGoqYgV7hrWfDFyCckfGhUkxcl" target="_blank">images source</a>
+
+.
+</center>
 
 To be precise, the definition of the [*Nash Equilibrium*](https://www.britannica.com/science/Nash-equilibrium) reads the follows:
 
@@ -225,7 +235,10 @@ As it has been spelled out by Rubinstein in a previous quote, these equilibria c
 <p align="center">
 <img src="img/DALLEMetaPhysicsResearch.webp" alt="MetaPhysicsResearch" width="500" />
 </p>
-<center>Generated image by DALL·E to the prompt: "Metaphysics Research Lab" in February 2024 </center>
+<center>Generated image by DALL·E to the prompt: "Metaphysics Research Lab" in February 2024 
+
+.
+</center>
 
 > Every day, in our professional work and our personal lives, each of us must make a multitude of decisions, both major and minor, under various conditions of uncertainty and partial ignorance.
 
@@ -252,7 +265,17 @@ In my experience, the ordinary, everyday meaning of uncertainty is clear and int
 <p align="center">
 <img src="img/Wanderer.jpeg" alt="MetaPhysicsResearch" height="450" />
 </p>
-<center>Wanderer above the Sea of Fog (Der Wanderer über dem Nebelmeer) by Caspar David Friedrich. (Original image from [Wikimedia](https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg)) </center>
+<center>Wanderer above the Sea of Fog (Der Wanderer über dem Nebelmeer) by Caspar David Friedrich. 
+
+(Original image from 
+<a href=https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg
+target=_blank>
+Wikimedia
+</a>
+) 
+
+.
+</center>
 
 However, the concept becomes harder to define as we attempt to formalise it, because it slips from the grasp of mainstream theories and frameworks.
 (I think this lack of formal language is an important reason why uncertainty fell out of the economic and scientific mainstream, relative to the 1920s and 1930s.)
@@ -303,7 +326,14 @@ Keeping the Agent's expected utility maximizing aim, but assuming that the "Tric
   <img src="img/RegretGhosts.png" width="49%">
 </p>
 <center>
-Ghost figurines symbolising the regret maximizing "Trickster". (Original image source: [Dusty Purple Ghost](https://www.yorkghostmerchants.com/original-york-ghost/project-one-z2fga-7yhl2-njr7m-6j5fm-74j42-t7w6n) by York Ghost Merchants (slightly colrized to match the color coding used in the paper)) 
+Ghost figurines symbolising the regret maximizing "Trickster". (Original image source: 
+<a href=https://www.yorkghostmerchants.com/original-york-ghost/project-one-z2fga-7yhl2-njr7m-6j5fm-74j42-t7w6n
+target=_blank>
+Dusty Purple Ghost
+</a>
+by York Ghost Merchants (slightly colrized to match the color coding used in the paper)) 
+
+.
 </center>
 
 A natural question arises if we want to generalize the concept for multiple Agents: whose regret the "Trickster(s)" ought to care about?
@@ -338,7 +368,14 @@ For those who are interested in the "philosophical why" beyound this informal in
 </p>
 
 <center>
-(Figure 6 in [arXiv:2402.15892](https://arxiv.org/abs/2402.15892))
+(Figure 6 in 
+<a href=https://arxiv.org/abs/2402.15892
+target=_blank>
+arXiv:2402.15892
+</a>
+)
+
+.
 </center>
 
 ### Aim of the paper
