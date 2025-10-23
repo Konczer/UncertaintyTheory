@@ -125,14 +125,14 @@ While the best strategy for the *Guessing* player remains to guess randomly and 
 
 Now let's see how this simple game can be formalised in the language of Game Theory.
 
-There are two players, Player 1 (the *Guessing* player) and Player 2 (the *Hiding* player). Both of them having "Action sets" $\mathcal{A}_1=\{\text{Left}, \text{Right}\}$ and $`\mathcal{A}_2=\{\text{Left}, \text{Right}\}`$ respectively.
+There are two players, Player 1 (the *Guessing* player) and Player 2 (the *Hiding* player). Both of them having "Action sets" $`\mathcal{A}_1=\{\text{Left}, \text{Right}\}`$ and $`\mathcal{A}_2=\{\text{Left}, \text{Right}\}`$ respectively.
 (For Player 1, the actions mean that she can guess Left or Right, while for Player 2, the actions mean that she can hide the stripped bone in her Left or Right hand.)
 
 
 Player 1 wins - and Player 2 loses - if both choose Right or both choose Left. Victory is denoted by $\textcolor{#E7A046}{\blacksquare}$. If the chosen and guessed hands differ, then Player 1 loses ($\textcolor{#25548A}{\blacksquare}$) - and Player 2 wins.
 
 The Hand Game is only one example that can be formally identified with [Matching Pennies](https://en.wikipedia.org/wiki/Matching_pennies) (I chose it to emphasise how deeply ingrained such games are in human cultures).
-In its "canonical" definition, the two players are usually called Even (Player 1) and Odd (Player 2), and their possible actions - which they can make independently and secretly - are choosing Heads or Tails ($\mathcal{A}_1=\mathcal{A}_2=\{H,T\}$). If the pennies match (both Heads or both Tails), then Even wins; and if the pennies do not match (one Heads and one Tails), then Odd wins.
+In its "canonical" definition, the two players are usually called Even (Player 1) and Odd (Player 2), and their possible actions - which they can make independently and secretly - are choosing Heads or Tails ($`\mathcal{A}_1=\mathcal{A}_2=\{H,T\}`$). If the pennies match (both Heads or both Tails), then Even wins; and if the pennies do not match (one Heads and one Tails), then Odd wins.
 
 (Another almost identical game is called [Odds and evens](https://en.wikipedia.org/wiki/Odds_and_evens_(hand_game)), but there are multiple situations in real life which such simple simultaneous choosing-guessing games can model. [Penalty kicks](https://blogs.cornell.edu/info2040/2022/09/21/the-game-theory-of-soccer-penalty-kicks/) in football (also known as soccer) being one of the [well-studied](http://www.palacios-huerta.com/docs/professionals.pdf) cases.)
 In the Statistical Games paper, the [Blind guessing](https://arxiv.org/pdf/2402.15892#subsubsection.2.1.1), a "maximally trivial" version of the general guessing game corresponds to the Matching Pennies. 
