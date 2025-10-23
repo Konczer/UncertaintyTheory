@@ -128,6 +128,10 @@ Now let's see how this simple game can be formalised in the language of Game The
 There are two players, Player 1 (the *Guessing* player) and Player 2 (the *Hiding* player). Both of them having "Action sets" $\mathcal{A}_1=\{\text{Left}, \text{Right}\}$ and $\mathcal{A}_2=\{\text{Left}, \text{Right}\}$ respectively.
 (For Player 1, the actions mean that she can guess Left or Right, while for Player 2, the actions mean that she can hide the stripped bone in her Left or Right hand.)
 
+There are two players, Player 1 (the *Guessing* player) and Player 2 (the *Hiding* player). Both of them having "Action sets" $\mathcal{A}_1=\&lbrace;\text{Left}, \text{Right}\&rbrace;$ and $\mathcal{A}_2=\&lbrace;\text{Left}, \text{Right}\&rbrace;$ respectively.
+(For Player 1, the actions mean that she can guess Left or Right, while for Player 2, the actions mean that she can hide the stripped bone in her Left or Right hand.)
+
+
 Player 1 wins - and Player 2 loses - if both choose Right or both choose Left. Victory is denoted by $\textcolor{#E7A046}{\blacksquare}$. If the chosen and guessed hands differ, then Player 1 loses ($\textcolor{#25548A}{\blacksquare}$) - and Player 2 wins.
 
 The Hand Game is only one example that can be formally identified with [Matching Pennies](https://en.wikipedia.org/wiki/Matching_pennies) (I chose it to emphasise how deeply ingrained such games are in human cultures).
@@ -180,7 +184,7 @@ If we take the mentioned Matching Pennies Game (alternatively, one can think of 
 The rules of these games are totally deterministic (no "device of chance" or any other "randomisation" is involved), but they have no deterministic *pure* solutions. If there were a computable function governing one player's action, then the other player could predict her moves and win in every round.
 Therefore, searching for an equilibrium is paradoxical among deterministic (and computable) decision functions. The postulation of equilibrium strategies (by which most people have direct experience) needs the introduction of a new kind of randomised *mixed* strategy that is not deterministic and/or predictable.
 
-In a sense, this step of abstraction has some parallels with the introduction of imaginary numbers. There, we assumed that the equation $x^2=-1$ has roots and termed them $\pm i$ i.e. the positive and negative imaginary unit. The fruits of this bold move are that it helps express solutions to any polynomial and that it simplifies the calculation of many mathematical problems, including those involving only real numbers, both in their definitions and in their solutions. (A classic example, in algebra is the ["Casus irreducibilis"](https://en.wikipedia.org/wiki/Casus_irreducibilis)).
+In a sense, this step of abstraction has some parallels with the introduction of imaginary numbers. There, we assumed that the equation $x^2=-1$ has roots and termed them $i$ and $-i$, the positive and negative imaginary unit. The fruits of this bold move are that it helps express solutions to any polynomial and that it simplifies the calculation of many mathematical problems, including those involving only real numbers, both in their definitions and in their solutions. (A classic example, in algebra is the ["Casus irreducibilis"](https://en.wikipedia.org/wiki/Casus_irreducibilis)).
 
 The power of imagination can help us not only in algebra but also in decision-making problems.
 In the case of Matching Pennies, we can also imagine (or postulate) that the game has an equilibrium solution and - to emphasise that choosing between the two options should be unbiased - say that in equilibrium, both players are choosing Heads and Tails with *Probability* $1/2=0.5$.
@@ -194,7 +198,7 @@ One can ground the concepts of probability and randomisation for mixed strategie
 As summarised - in a bit technical but profoundly accurate way - by Ariel Rubinstein in [Comments on the Interpretation of Game Theory](http://dx.doi.org/10.2307/2938166):
 > Mixed strategy can alternatively be viewed as the belief held by all other players concerning a player's actions. A mixed strategy equilibrium is then an $n$-tuple of common knowledge expectations, which has the property that all the actions to which a strictly positive probability is assigned are optimal, given the beliefs. A player's behaviour may be perceived by all the other players as the outcome of a random device, even though this is not the case.
 
-In fact, Neumann himself spent the whole *17. Mixed Strategies* part in the [Theory of Games and Economic Behavior](https://archive.org/details/in.ernet.dli.2015.215284) to discuss the nuances of the concept of randomisation in Game Theory.
+In fact, John von Neumann himself spent the whole *17. Mixed Strategies* part in the [Theory of Games and Economic Behavior](https://archive.org/details/in.ernet.dli.2015.215284) to discuss the nuances of the concept of randomisation in Game Theory.
 I think the thoughts of Gregory Chaitin on the matter are also worth linking:
 [Gregory Chaitin in a conversation with Stephen Wolfram](https://youtu.be/d8MWRkS1pek?t=2004)  (however, I have to note that I wasn't able to find the mentioned footnote by Neumann in the original book).
 
@@ -312,10 +316,10 @@ In a nutshell, the Game-theoretic framework for Decision-making under uncertaint
     - 0.) ⋆ There is an "Agent" who is part of the "World". The Agent can see only part of the World. Still, she can develop heuristics and, most importantly, perform actions;
     - 1.) The Agent considers only a finite number of possible Actions. (This set of Actions will be denoted by $\mathcal{A}$);
     - 2.) The Agent can (or is willing to) restrict the possible states of the world to a finite set. We will denote this set by $\Theta$ and call it the parameter set;
-    - 3.) Lastly, the Agent can associate utilities (or rewards) to all potential consequences, which depend both on her action and the state of the world. (This function (in the finite case representable by a table or a matrix) will be denoted by $U : \mathcal{A} \times \Theta \to \mathbb{R}$.)
+    - 3.) Lastly, the Agent can associate utilities (or rewards) to all potential consequences, which depend both on her action and the state of the world constituting a utility matrix (representable with a table).
 - then the game-theoretic framework suggests the following:
     - I.) Imagine that the unknown parameter (or the state of the world) has been chosen by an opponent whose utility function is the regret of the Agent;
-    - II.) Determine the optimal or equilibrium strategy for this fictional Game (this can be represented by a pair of potentially random strategies $(\sigma^*,\pi^*)$, and Game Theory can be helpful to formally derive them.);
+    - II.) Determine the optimal or equilibrium strategy for this fictional Game (this can be represented by a pair of potentially random strategies $( \sigma^* ,\pi^* )$, and Game Theory can be helpful to formally derive them.);
     - III.) Adopt the - potentially random - equilibrium strategy ($\sigma^∗$) of this imagined Game to choose an Action from the Action set ($\mathcal{A}$).
 
 Loosely, this can be interpreted as introducing an imaginary "Trickster" Player behind the veil of uncertainty, whose only aim is to maximise the Agent's regret. Half-jokingly, this is a formalization of the well-known [Murphy's law(s)](https://www.eit.edu.au/the-truth-behind-murphys-law/): "If anything can go wrong, it will" [...] "and at the worst possible time, in the worst possible way".
