@@ -125,10 +125,7 @@ While the best strategy for the *Guessing* player remains to guess randomly and 
 
 Now let's see how this simple game can be formalised in the language of Game Theory.
 
-There are two players, Player 1 (the *Guessing* player) and Player 2 (the *Hiding* player). Both of them having "Action sets" $\mathcal{A}_1=\{\text{Left}, \text{Right}\}$ and $\mathcal{A}_2=\{\text{Left}, \text{Right}\}$ respectively.
-(For Player 1, the actions mean that she can guess Left or Right, while for Player 2, the actions mean that she can hide the stripped bone in her Left or Right hand.)
-
-There are two players, Player 1 (the *Guessing* player) and Player 2 (the *Hiding* player). Both of them having "Action sets" $\mathcal{A}_1=\&lbrace;\text{Left}, \text{Right}\&rbrace;$ and $\mathcal{A}_2=\&lbrace;\text{Left}, \text{Right}\&rbrace;$ respectively.
+There are two players, Player 1 (the *Guessing* player) and Player 2 (the *Hiding* player). Both of them having "Action sets" $\mathcal{A}_1=\{\text{Left}, \text{Right}\}$ and $\mathcal{A}_2=\text{\{Left}, \text{Right\}}$ respectively.
 (For Player 1, the actions mean that she can guess Left or Right, while for Player 2, the actions mean that she can hide the stripped bone in her Left or Right hand.)
 
 
