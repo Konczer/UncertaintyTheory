@@ -281,6 +281,16 @@ My answer to this is that, of course, formalisation should not replace common se
 
 ### Navigating Uncertainty
 
+>  I do not think I know what I do not know // ὅτι ἃ μὴ οἶδα οὐδὲ οἴομαι εἰδέναι 
+-- **Socrates** (attributed by Plato in the [*Apology*](https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0169%3Atext%3DApol.%3Asection%3D21d), translated by [G. M. A. Grube](https://www2.hawaii.edu/~freeman/courses/phil100/04.%20Apology.pdf)) 399–360 BCE
+
+> If you know what you know and know what you don't know that is true knowledge //
+ 知之为知之，不知为不知，是知也
+-- Ancient Chinese saying attributed to **Confucius**, [*Analects [2.17]*](http://www.acmuller.net/con-dao/analects.html) (Paraphrased translation by [C. N. Yang](https://billmoyers.com/content/chen-ning-yang/)) 551–221 BCE
+
+
+
+
 We used a negative definition for uncertainty, a variable that can take some values, but we have no credible probability distribution that could characterise these possible values.
 This might be a valid definition, but to manage or make decisions in the face of uncertainty, it seems unavoidable to impose some structure on these variables or draw analogies with more familiar situations.
 
