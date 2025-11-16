@@ -470,7 +470,7 @@ In the [smallest nontrivial](https://arxiv.org/pdf/2402.15892#subsubsection.2.1.
 
 Therefore, Player 2 has three possible actions, i.e. sequences to choose from:
 
-- Choosing scenario A and the specific sequence $ (\textcolor{#FFFFFF}{\blacksquare},\textcolor{#FFFFFF}{\blacksquare} )$
+- Choosing scenario A and the specific sequence $` (\textcolor{#FFFFFF}{\blacksquare},\textcolor{#FFFFFF}{\blacksquare} )`$
 - Choosing scenario B and the specific sequence $ (\textcolor{#FFFFFF}{\blacksquare},\textcolor{#000000}{\blacksquare} )$
 - Choosing scenario B and the specific sequence $ (\textcolor{#000000}{\blacksquare},\textcolor{#FFFFFF}{\blacksquare} )$
 
