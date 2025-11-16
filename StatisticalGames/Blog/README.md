@@ -1437,7 +1437,7 @@ It can be rigorously proven – and the proof can be fond in [Appendix F](https:
 Formally:
 
 $$
-\lim_{\gamma \to 0} p'^*_{\gamma,k^*} = \nu^*
+\lim_{\gamma \to 0} p'^\ast_{\gamma,k^*} = \nu^\ast
 $$
 
 (See the precise statement in [Theorem 5.2](https://arxiv.org/pdf/2402.15892#theorem.5.2).)
