@@ -483,7 +483,7 @@ The guessing player needs to specify two things: which bit to sample, and based 
 
 Resulting in a total of $2 \times (2 \times 2) = 8$ possible actions.
 
-However, this set of actions is only a mindless enumeration of all possible choices for Player 1. By observing that scenario A never contains a 1 ($ \textcolor{#000000}{\blacksquare} $), we can immediately discard the actions, where she would guess A if she sampled 1 ($ \textcolor{#000000}{\blacksquare} $) (assuming that Player 1 prefers to win).
+However, this set of actions is only a mindless enumeration of all possible choices for Player 1. By observing that scenario A never contains a 1 ($` \textcolor{#000000}{\blacksquare} `$), we can immediately discard the actions, where she would guess A if she sampled 1 ($` \textcolor{#000000}{\blacksquare} `$) (assuming that Player 1 prefers to win).
 
 The reduced set of "not obviously wrong" actions for Player 1 is the following:
 
