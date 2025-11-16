@@ -454,7 +454,7 @@ The game has one unique Nash equilibrium: the players are
 guessing/choosing A or B with an equal 50% chance:
 
 $$
-\sigma^{*}_{1} = (1/2,1/2), \quad \sigma^{\star}_{2} = (1/2,1/2)
+\sigma^{\ast}_{1} = (1/2,1/2), \quad \sigma^{\ast}_{2} = (1/2,1/2)
 $$
 
 and both players have a 50% chance to win or lose.
@@ -499,8 +499,8 @@ In practice, serious players are, of course, not expected to always perform the 
 
 This simple Fisher game can be solved entirely by Game Theory – which is done in [Section 2.1.2](https://arxiv.org/pdf/2402.15892#subsubsection.2.1.2) in the paper – however, applying our intuition to the problem is perhaps illuminating as well:
 
-Scenario A is easier to identify, because it contains only 0-s ($\textcolor{#FFFFFF}{\blacksquare}$). (If Player 1 samples a $ \textcolor{#000000}{\blacksquare} $, she can be sure that scenario B was chosen. However, if she samples a $ \textcolor{#FFFFFF}{\blacksquare} $, she cannot be sure, because both scenarios contain $ \textcolor{#FFFFFF}{\blacksquare} $-s.) This makes scenario A a little less attractive to choose for Player 2; however, if she would never choose it, Player 1 could always guess B – regardless of the sampled bit – and win all the time.
-Still, even if Player 1 assumes that Player 2 will choose scenario A with less then 50% chance, when she samples a 0 ($ \textcolor{#FFFFFF}{\blacksquare} $), her "belief" of facing scenario A goes up in this case, and one might agree that guessing A with higher probability then guessing B is a sensible strategy in case of seeing a 0 ($ \textcolor{#FFFFFF}{\blacksquare} $).
+Scenario A is easier to identify, because it contains only 0-s ($`\textcolor{#FFFFFF}{\blacksquare}`$). (If Player 1 samples a $`\textcolor{#000000}{\blacksquare}`$, she can be sure that scenario B was chosen. However, if she samples a $`\textcolor{#FFFFFF}{\blacksquare}`$, she cannot be sure, because both scenarios contain $`\textcolor{#FFFFFF}{\blacksquare}`$-s.) This makes scenario A a little less attractive to choose for Player 2; however, if she would never choose it, Player 1 could always guess B – regardless of the sampled bit – and win all the time.
+Still, even if Player 1 assumes that Player 2 will choose scenario A with less then 50% chance, when she samples a 0 ($`\textcolor{#FFFFFF}{\blacksquare}`$), her "belief" of facing scenario A goes up in this case, and one might agree that guessing A with higher probability then guessing B is a sensible strategy in case of seeing a 0 ($`\textcolor{#FFFFFF}{\blacksquare}`$).
 
 With narrative-based reasoning, we have no better tools to carry out a more precise quantitative strategy; still, it can give a rough idea of what we expect from a reasonable formal theory.
 
