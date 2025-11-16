@@ -454,7 +454,7 @@ The game has one unique Nash equilibrium: the players are
 guessing/choosing A or B with an equal 50% chance:
 
 $$
-\sigma^{{*}}_{1} = (1/2,1/2), \quad \sigma^{{*}}_{2} = (1/2,1/2)
+\sigma^{*}_{1} = (1/2,1/2), \quad \sigma^{\star}_{2} = (1/2,1/2)
 $$
 
 and both players have a 50% chance to win or lose.
