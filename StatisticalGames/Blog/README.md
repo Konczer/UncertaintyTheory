@@ -442,13 +442,13 @@ This simplest Game, therefore, can be viewed as yet another manifestation of the
 
 This simplest sitation can be captured by a familiar utility matrix, which shows the winning ($\textcolor{#E7A046}{\blacksquare}$) and losing ($\textcolor{#25548A}{\blacksquare}$) outcomes for Player 1, depending on her guess (represented by the rows) and Player 2's choice (represented by the columns):
 
-$$
+$$`
 \underline{\underline{u}}_1=
 \begin{bmatrix}
 \textcolor{#E7A046}{\blacksquare} & \textcolor{#25548A}{\blacksquare} \\
 \textcolor{#25548A}{\blacksquare} & \textcolor{#E7A046}{\blacksquare}
 \end{bmatrix}
-$$
+`$$
 
 The game has one unique Nash equilibrium: the players are
 guessing/choosing A or B with an equal 50% chance:
