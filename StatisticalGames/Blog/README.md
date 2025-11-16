@@ -1,9 +1,3 @@
----
-title: my title
-author: my name
-date: today
-...
-
 # Statistical Games, an informal summary
 
 
@@ -84,7 +78,7 @@ There are a few frequent misconceptions about Game Theory, which I would address
     Therefore, the framework is applicable to navigate and recognise [non-zero-sum](https://en.wikipedia.org/wiki/Nonzero:_The_Logic_of_Human_Destiny) opportunities, and it can be used to create and stabilise cooperative behaviour. (In fact, [Mechanism Design](https://en.wikipedia.org/wiki/Mechanism_design) - a branch of Game Theory - can be viewed as the art of designing rules and incentive structures to create or enhance cooperative - or otherwise desired - behaviour.)
     
 - It is NOT the case that "Game Theory is grounded in Utilitarianism":
-    - In Game Theory, utility functions and utility matrices are subjective, personal, and even their units ($\text{util}_1, \text{util}_2,\dots$) are not automatically additive. This means that the [slogan of utilitarianism](https://plato.stanford.edu/entries/utilitarianism-history/): "greatest good for the greatest number", is not automatically compatible with the game theoretic framework. (Formally, because adding the utilities of different Players does not respect the invariances otherwise present in the theory - saying simply, adding different Player's utilities together does not make sense in Game Theory.)
+    - In Game Theory, utility functions and utility matrices are subjective, personal, and even their units ($`\text{util}_1, \text{util}_2,\dots`$) are not automatically additive. This means that the [slogan of utilitarianism](https://plato.stanford.edu/entries/utilitarianism-history/): "greatest good for the greatest number", is not automatically compatible with the game theoretic framework. (Formally, because adding the utilities of different Players does not respect the invariances otherwise present in the theory - saying simply, adding different Player's utilities together does not make sense in Game Theory.)
     
 
 - It is NOT the case that "Game Theory can be used only for pastime games of entertainment":
@@ -135,7 +129,7 @@ There are two players, Player 1 (the *Guessing* player) and Player 2 (the *Hidin
 (For Player 1, the actions mean that she can guess Left or Right, while for Player 2, the actions mean that she can hide the stripped bone in her Left or Right hand.)
 
 
-Player 1 wins - and Player 2 loses - if both choose Right or both choose Left. Victory is denoted by $\textcolor{#E7A046}{\blacksquare}$. If the chosen and guessed hands differ, then Player 1 loses ($\textcolor{#25548A}{\blacksquare}$) - and Player 2 wins.
+Player 1 wins - and Player 2 loses - if both choose Right or both choose Left. Victory is denoted by $`\textcolor{#E7A046}{\blacksquare}`$. If the chosen and guessed hands differ, then Player 1 loses ($`\textcolor{#25548A}{\blacksquare}`$) - and Player 2 wins.
 
 The Hand Game is only one example that can be formally identified with [Matching Pennies](https://en.wikipedia.org/wiki/Matching_pennies) (I chose it to emphasise how deeply ingrained such games are in human cultures).
 In its "canonical" definition, the two players are usually called Even (Player 1) and Odd (Player 2), and their possible actions - which they can make independently and secretly - are choosing Heads or Tails ($`\mathcal{A}_1=\mathcal{A}_2=\{H,T\}`$). If the pennies match (both Heads or both Tails), then Even wins; and if the pennies do not match (one Heads and one Tails), then Odd wins.
@@ -159,7 +153,7 @@ $$
 \end{bmatrix}
 $$
 
-In standard Game Theory, the entries of the utility matrices are usually real numbers, measuring some level of "desirability" of a given outcome for a given player, but often the specific numerical values do not change the optimal strategies of the players. This is the case here. The optimal strategies are the same unless both players *prefer* winning $\textcolor{#E7A046}{\blacksquare}$ over losing $\textcolor{#25548A}{\blacksquare}$.
+In standard Game Theory, the entries of the utility matrices are usually real numbers, measuring some level of "desirability" of a given outcome for a given player, but often the specific numerical values do not change the optimal strategies of the players. This is the case here. The optimal strategies are the same unless both players *prefer* winning $`\textcolor{#E7A046}{\blacksquare}`$ over losing $`\textcolor{#25548A}{\blacksquare}`$.
 In formal notation, this would mean:
 
 $$
@@ -167,7 +161,7 @@ $$
 \textcolor{#E7A046}{\blacksquare} \succ_2 \textcolor{#25548A}{\blacksquare}
 $$
 
-Or by introducing numerical utility functions $\text{u}_1$, $\text{u}_2$ (associating a real valued "desirability" to the abstract winning ($\textcolor{#E7A046}{\blacksquare}$) and losing ($\textcolor{#25548A}{\blacksquare}$) statuses) for Player 1 and Player 2 respectively:
+Or by introducing numerical utility functions $`\text{u}_1`$, $`\text{u}_2`$ (associating a real valued "desirability" to the abstract winning ($`\textcolor{#E7A046}{\blacksquare}`$) and losing ($`\textcolor{#25548A}{\blacksquare}`$) statuses) for Player 1 and Player 2 respectively:
 
 $$
 \text{u}_1(\textcolor{#E7A046}{\blacksquare}) >
@@ -187,10 +181,10 @@ If we take the mentioned Matching Pennies Game (alternatively, one can think of 
 The rules of these games are totally deterministic (no "device of chance" or any other "randomisation" is involved), but they have no deterministic *pure* solutions. If there were a computable function governing one player's action, then the other player could predict her moves and win in every round.
 Therefore, searching for an equilibrium is paradoxical among deterministic (and computable) decision functions. The postulation of equilibrium strategies (by which most people have direct experience) needs the introduction of a new kind of randomised *mixed* strategy that is not deterministic and/or predictable.
 
-In a sense, this step of abstraction has some parallels with the introduction of imaginary numbers. There, we assumed that the equation $x^2=-1$ has roots and termed them $i$ and $-i$, the positive and negative imaginary unit. The fruits of this bold move are that it helps express solutions to any polynomial and that it simplifies the calculation of many mathematical problems, including those involving only real numbers, both in their definitions and in their solutions. (A classic example, in algebra is the ["Casus irreducibilis"](https://en.wikipedia.org/wiki/Casus_irreducibilis)).
+In a sense, this step of abstraction has some parallels with the introduction of imaginary numbers. There, we assumed that the equation $`x^2=-1`$ has roots and termed them $`i`$ and $`-i`$, the positive and negative imaginary unit. The fruits of this bold move are that it helps express solutions to any polynomial and that it simplifies the calculation of many mathematical problems, including those involving only real numbers, both in their definitions and in their solutions. (A classic example, in algebra is the ["Casus irreducibilis"](https://en.wikipedia.org/wiki/Casus_irreducibilis)).
 
 The power of imagination can help us not only in algebra but also in decision-making problems.
-In the case of Matching Pennies, we can also imagine (or postulate) that the game has an equilibrium solution and - to emphasise that choosing between the two options should be unbiased - say that in equilibrium, both players are choosing Heads and Tails with *Probability* $1/2=0.5$.
+In the case of Matching Pennies, we can also imagine (or postulate) that the game has an equilibrium solution and - to emphasise that choosing between the two options should be unbiased - say that in equilibrium, both players are choosing Heads and Tails with *Probability* $`1/2=0.5`$.
 
 $$
 \Pr(H)=\Pr(T)=1/2=0.5
@@ -199,7 +193,7 @@ $$
 One can ground the concepts of probability and randomisation for mixed strategies in other disciplines (which is often the case in standard introductory texts on Game Theory); however, I argue that these simple games can serve as sufficiently firm ground on which probability can be defined (or rather postulated).
 
 As summarised - in a bit technical but profoundly accurate way - by Ariel Rubinstein in [Comments on the Interpretation of Game Theory](http://dx.doi.org/10.2307/2938166):
-> Mixed strategy can alternatively be viewed as the belief held by all other players concerning a player's actions. A mixed strategy equilibrium is then an $n$-tuple of common knowledge expectations, which has the property that all the actions to which a strictly positive probability is assigned are optimal, given the beliefs. A player's behaviour may be perceived by all the other players as the outcome of a random device, even though this is not the case.
+> Mixed strategy can alternatively be viewed as the belief held by all other players concerning a player's actions. A mixed strategy equilibrium is then an $`n`$-tuple of common knowledge expectations, which has the property that all the actions to which a strictly positive probability is assigned are optimal, given the beliefs. A player's behaviour may be perceived by all the other players as the outcome of a random device, even though this is not the case.
 
 In fact, John von Neumann himself spent the whole *17. Mixed Strategies* part in the [Theory of Games and Economic Behavior](https://archive.org/details/in.ernet.dli.2015.215284) to discuss the nuances of the concept of randomisation in Game Theory.
 I think the thoughts of Gregory Chaitin on the matter are also worth linking:
@@ -320,13 +314,13 @@ In a nutshell, the Game-theoretic framework for Decision-making under uncertaint
 
 - If we can make the following modelling assumptions:
     - 0.) ⋆ There is an "Agent" who is part of the "World". The Agent can see only part of the World. Still, she can develop heuristics and, most importantly, perform actions;
-    - 1.) The Agent considers only a finite number of possible Actions. (This set of Actions will be denoted by $\mathcal{A}$);
-    - 2.) The Agent can (or is willing to) restrict the possible states of the world to a finite set. We will denote this set by $\Theta$ and call it the parameter set;
+    - 1.) The Agent considers only a finite number of possible Actions. (This set of Actions will be denoted by $`\mathcal{A}`$);
+    - 2.) The Agent can (or is willing to) restrict the possible states of the world to a finite set. We will denote this set by $`\Theta`$ and call it the parameter set;
     - 3.) Lastly, the Agent can associate utilities (or rewards) to all potential consequences, which depend both on her action and the state of the world constituting a utility matrix (representable with a table).
 - then the game-theoretic framework suggests the following:
     - I.) Imagine that the unknown parameter (or the state of the world) has been chosen by an opponent whose utility function is the regret of the Agent;
-    - II.) Determine the optimal or equilibrium strategy for this fictional Game (this can be represented by a pair of potentially random strategies $( \sigma^* ,\pi^* )$, and Game Theory can be helpful to formally derive them.);
-    - III.) Adopt the - potentially random - equilibrium strategy ($\sigma^∗$) of this imagined Game to choose an Action from the Action set ($\mathcal{A}$).
+    - II.) Determine the optimal or equilibrium strategy for this fictional Game (this can be represented by a pair of potentially random strategies $`( \sigma^* ,\pi^* )`$, and Game Theory can be helpful to formally derive them.);
+    - III.) Adopt the - potentially random - equilibrium strategy ($`\sigma^∗`$) of this imagined Game to choose an Action from the Action set ($`\mathcal{A}`$).
 
 Loosely, this can be interpreted as introducing an imaginary "Trickster" Player behind the veil of uncertainty, whose only aim is to maximise the Agent's regret. Half-jokingly, this is a formalization of the well-known concept in pop-culture and engineering circles, [Murphy's law(s)](https://www.eit.edu.au/the-truth-behind-murphys-law/): "If anything can go wrong, it will" [...] "and at the worst possible time, in the worst possible way".
 Another often listed relevant [Murphy's general law](https://www.cs.cmu.edu/~fgandon/miscellaneous/murphy/) being: "Nature always sides with the hidden flaw".
@@ -408,7 +402,7 @@ This is a somewhat cautious approach to model building. However, in this way, I 
 Mathematical theorems have the virtue that they stay valid under various interpretations - ["The same equations have the same solutions"](https://www.physics.udel.edu/~watson/phys208/quotes/quote11.html) -, therefore, the formal results from this paper can be later used as supporting arguments for a completely Game-theoretical framework for statistics and maybe even probability theory.
 (However, for those who are not interested in such reinterpretation, the Game-theoretical results of the paper can still remain interesting, which was the main reason for separating the mathematical and philosophical parts of the work into supporting but separate branches of the same research program.)
 
-In these Games, Players do not choose and guess blindly. The chooser (Player 2) needs to produce a finite binary sequence with a given amount of $1$-s and $0$-s, while the guesser (Player 1) can sample a portion of the sequence and make her guess based on the collected sample.
+In these Games, Players do not choose and guess blindly. The chooser (Player 2) needs to produce a finite binary sequence with a given amount of $`1`$-s and $`0`$-s, while the guesser (Player 1) can sample a portion of the sequence and make her guess based on the collected sample.
 
 In the paper, I intentionally chose the simplest possible construction in which statistical concepts can first emerge. This has a downside because the investigated problem may seem too simple compared to most real-world statistical problems. However, by investigating the simplest toy model, I was able to talk about statistical and probabilistic concepts without introducing any external stochastic or random processes, and I was able to prove (or at least conjecture) rigorous results for various limiting cases and deformations of the construction.
 These cases were necessary to apply the [correspondence principle](https://en.wikipedia.org/wiki/Correspondence_principle#Generalized_correspondence_principle), i.e. identifying and matching the concepts of Game-theoretic guessing or betting Games with traditional statistical concepts.
@@ -420,27 +414,27 @@ Therefore, the main aim of the paper was to investigate a simple toy model in Ga
 To tie this informal summary closer to the actual manuscript, I thought it would be useful to spell out the definitions of the central game constructions explicitly:
 
 > **Definition 2.1** (Fisher game)**.** There are two players, Player 1 and Player 2.
-Player 2 needs to choose between scenario A or B first and then produce a binary sequence of length $M$ containing precisely $K_A$ or $K_B$ number of $1$-s. (Without losing generality, we will assume $K_A \le K_B$.)
-Following this, Player 1 (not knowing the actions of Player 2) can sample $N$ number of bits, and after observing their value, she guesses scenario A or B.
-If Player 1 guessed the scenario correctly, she wins the game ($\textcolor{#E7A046}{\blacksquare}$) and loses otherwise ($\textcolor{#25548A}{\blacksquare}$). 
+Player 2 needs to choose between scenario A or B first and then produce a binary sequence of length $`M`$ containing precisely $`K_A`$ or $`K_B`$ number of $`1`$-s. (Without losing generality, we will assume $`K_A \le K_B`$.)
+Following this, Player 1 (not knowing the actions of Player 2) can sample $`N`$ number of bits, and after observing their value, she guesses scenario A or B.
+If Player 1 guessed the scenario correctly, she wins the game ($`\textcolor{#E7A046}{\blacksquare}`$) and loses otherwise ($`\textcolor{#25548A}{\blacksquare}`$). 
 The above-defined Fisher game will be denoted as 
-$\mathfrak{Game}(N, K_A, K_B, M)$.$♢$
+$`\mathfrak{Game}(N, K_A, K_B, M)`$.$`♢`$
 
 In a less formal language:
 
 > In **Fisher games**, a Chooser player (Player 2) needs to choose from two distinct sets of binary sequences, A or B, while the Guessing player (Player 1) can sample from the sequence and then needs to guess if the sample came from A or B.
 The Guessing player wins if she guesses correctly.
-Fisher games are described by four integers: the length of the whole binary sequences $M$, the total number of 1-s in the sequences in A $K_A$, the total number of 1-s in the sequences in B $K_B$, and the number of bits the Guessing player can sample from the chosen sequence $N$.
-This game will be denoted as $\mathfrak{Game}(N, K_A, K_B, M)$.
+Fisher games are described by four integers: the length of the whole binary sequences $`M`$, the total number of 1-s in the sequences in A $`K_A`$, the total number of 1-s in the sequences in B $`K_B`$, and the number of bits the Guessing player can sample from the chosen sequence $`N`$.
+This game will be denoted as $`\mathfrak{Game}(N, K_A, K_B, M)`$.
 
 To build intuition about these guessing Games, we should start with the simplest cases.
 
 #### The simplest, statistically trivial case:
 
-The simplest, [statistically trivial case](https://arxiv.org/pdf/2402.15892#subsubsection.2.1.1) is when there are no bits to sample from, i.e. $N=0$. Formally, the smallest Fisher game is denoted by $\mathfrak{Game}(0, 0, 0, 0)$. Where Player 1 needs to guess blindly and Player 2 can freely choose between scenario A or B, without providing any samples for inspection.
+The simplest, [statistically trivial case](https://arxiv.org/pdf/2402.15892#subsubsection.2.1.1) is when there are no bits to sample from, i.e. $`N=0`$. Formally, the smallest Fisher game is denoted by $`\mathfrak{Game}(0, 0, 0, 0)`$. Where Player 1 needs to guess blindly and Player 2 can freely choose between scenario A or B, without providing any samples for inspection.
 This simplest Game, therefore, can be viewed as yet another manifestation of the previously discussed Matching Pennies Game.
 
-This simplest sitation can be captured by a familiar utility matrix, which shows the winning ($\textcolor{#E7A046}{\blacksquare}$) and losing ($\textcolor{#25548A}{\blacksquare}$) outcomes for Player 1, depending on her guess (represented by the rows) and Player 2's choice (represented by the columns):
+This simplest sitation can be captured by a familiar utility matrix, which shows the winning ($`\textcolor{#E7A046}{\blacksquare}`$) and losing ($`\textcolor{#25548A}{\blacksquare}`$) outcomes for Player 1, depending on her guess (represented by the rows) and Player 2's choice (represented by the columns):
 
 $$
 \underline{\underline{u}}_1=
@@ -465,33 +459,33 @@ $$
 
 #### Smallest nontrivial case
 
-In the [smallest nontrivial](https://arxiv.org/pdf/2402.15892#subsubsection.2.1.2) Fisher game, the choosing player (Player 2) needs to produce two bits. In scenario A, there can be only 0-s ($\textcolor{#FFFFFF}{\blacksquare}$), while in scenario B, there has to be precisely one 1 ($\textcolor{#000000}{\blacksquare}$) and one 0 ($\textcolor{#FFFFFF}{\blacksquare}$) in the sequence.
+In the [smallest nontrivial](https://arxiv.org/pdf/2402.15892#subsubsection.2.1.2) Fisher game, the choosing player (Player 2) needs to produce two bits. In scenario A, there can be only 0-s ($`\textcolor{#FFFFFF}{\blacksquare}`$), while in scenario B, there has to be precisely one 1 ($`\textcolor{#000000}{\blacksquare}`$) and one 0 ($`\textcolor{#FFFFFF}{\blacksquare}`$) in the sequence.
 
 Therefore, Player 2 has three possible actions, i.e. sequences to choose from:
 
 - Choosing scenario A and the specific sequence $` (\textcolor{#FFFFFF}{\blacksquare},\textcolor{#FFFFFF}{\blacksquare} )`$
-- Choosing scenario B and the specific sequence $ (\textcolor{#FFFFFF}{\blacksquare},\textcolor{#000000}{\blacksquare} )$
-- Choosing scenario B and the specific sequence $ (\textcolor{#000000}{\blacksquare},\textcolor{#FFFFFF}{\blacksquare} )$
+- Choosing scenario B and the specific sequence $` (\textcolor{#FFFFFF}{\blacksquare},\textcolor{#000000}{\blacksquare} )`$
+- Choosing scenario B and the specific sequence $` (\textcolor{#000000}{\blacksquare},\textcolor{#FFFFFF}{\blacksquare} )`$
 
-Nebulous statistical considerations start to appear when the guessing player (Player 1) can sample and observe at least one single bit from the chosen sequence, so in the smallest nontrivial Fisher game, we have $N=1$.
+Nebulous statistical considerations start to appear when the guessing player (Player 1) can sample and observe at least one single bit from the chosen sequence, so in the smallest nontrivial Fisher game, we have $`N=1`$.
 
 The guessing player needs to specify two things: which bit to sample, and based on the bit she observed, which scenario to guess. All possible actions can be found by enumerating all distinct decisions to these questions. 
 
 - Decide which bit to sample (the first or the second)
-  - which scenario to guess in case of observing a $ \textcolor{#FFFFFF}{\blacksquare} $ (A or B) and which scenario to guess in case of observing a $ \textcolor{#000000}{\blacksquare}$ (A or B)
+  - which scenario to guess in case of observing a $` \textcolor{#FFFFFF}{\blacksquare} `$ (A or B) and which scenario to guess in case of observing a $` \textcolor{#000000}{\blacksquare}`$ (A or B)
 
-Resulting in a total of $2 \times (2 \times 2) = 8$ possible actions.
+Resulting in a total of $`2 \times (2 \times 2) = 8`$ possible actions.
 
 However, this set of actions is only a mindless enumeration of all possible choices for Player 1. By observing that scenario A never contains a 1 ($` \textcolor{#000000}{\blacksquare} `$), we can immediately discard the actions, where she would guess A if she sampled 1 ($` \textcolor{#000000}{\blacksquare} `$) (assuming that Player 1 prefers to win).
 
 The reduced set of "not obviously wrong" actions for Player 1 is the following:
 
 - Sample the first bit:
-    - in case of observing a $ \textcolor{#FFFFFF}{\blacksquare} $, guess scenario A, in case of observing a $ \textcolor{#000000}{\blacksquare} $, guess scenario B
-    - in case of observing a $ \textcolor{#FFFFFF}{\blacksquare} $, guess scenario B, in case of observing a $ \textcolor{#000000}{\blacksquare} $, guess scenario B
+    - in case of observing a $` \textcolor{#FFFFFF}{\blacksquare} `$, guess scenario A, in case of observing a $` \textcolor{#000000}{\blacksquare} `$, guess scenario B
+    - in case of observing a $` \textcolor{#FFFFFF}{\blacksquare} `$, guess scenario B, in case of observing a $` \textcolor{#000000}{\blacksquare} `$, guess scenario B
 - Sample the second bit:
-    - in case of observing a $ \textcolor{#FFFFFF}{\blacksquare} $, guess scenario A, in case of observing a $ \textcolor{#000000}{\blacksquare} $, guess scenario B
-    - in case of observing a $ \textcolor{#FFFFFF}{\blacksquare} $, guess scenario B, in case of observing a $ \textcolor{#000000}{\blacksquare} $, guess scenario B
+    - in case of observing a $` \textcolor{#FFFFFF}{\blacksquare} `$, guess scenario A, in case of observing a $` \textcolor{#000000}{\blacksquare} `$, guess scenario B
+    - in case of observing a $` \textcolor{#FFFFFF}{\blacksquare} `$, guess scenario B, in case of observing a $` \textcolor{#000000}{\blacksquare} `$, guess scenario B
 
 In this way, we got a smaller Game, where Player 1 has 4 possible actions, while Player 2 has 3 possible actions.
 
@@ -506,7 +500,7 @@ With narrative-based reasoning, we have no better tools to carry out a more prec
 
 The formal (symmetric) solution of this simple Fisher game can be summarised in the following "Game table":
 
-**Symmetric equilibrium strategy for** $\mathfrak{Game}(N=1, K_A=0, K_B=1, M=2)$.
+**Symmetric equilibrium strategy for** $`\mathfrak{Game}(N=1, K_A=0, K_B=1, M=2)`$.
 
 <!-- T-shaped game table: solid middle divider + two action columns (no horizontal lines except the top bar) -->
 
@@ -589,25 +583,25 @@ Small particular cases are good for building intuition, but for the general solu
 
 This seemingly unjustified guesswork is perfectly valid in mathematics, as long as the final result is proven rigorously. But in a blog post, I might write a little more about the intuition behind the Ansatz, even if it is somewhat hand-wavy for a paper.
 
-It seems clear that Player 2 (the chooser) will randomise between the two scenarios, but it is not guaranteed that she will choose them with equal probability. (Therefore, we keep a free parameter $P$ for this mixing parameter.)
+It seems clear that Player 2 (the chooser) will randomise between the two scenarios, but it is not guaranteed that she will choose them with equal probability. (Therefore, we keep a free parameter $`P`$ for this mixing parameter.)
 Symmetry suggests that when a specific scenario is set, Player 2 can confuse Player 1 (the guesser) the most, by choosing uniformly from all possible sequences, i.e. including all permutations of the bits in her disposal.
 Analogously, Player 1 is expected to sample uniformly from the produced sequence, to prevent Player 2 from exploiting any bias in her sampling strategy.
 
 In simple win-lose gambles, it is advantageous to always bet on an outcome which is most probable. (For example, if we have a 70% chance of winning if we choose A and 30% if we choose B, then we should choose A (because if we ever choose B instead of A, then we decrease our chance of winning).)
-Because of this simple observation, in most cases, the taken sample will provide enough evidence that tilts the odds in favour of one scenario or the other. (Because of the joint randomised permutations, the evidence is basically the number of 1-s ($\textcolor{#000000}{\blacksquare}$), $k$ observed in the sample.)
-Therefore, for small enough $k$ – the number of 1-s – Player 1 is expected to guess A (because by convention the number of 1-s is less in scenario A than in B $K_A < K_B$), while for large enough $k$, she is expected to guess B.
+Because of this simple observation, in most cases, the taken sample will provide enough evidence that tilts the odds in favour of one scenario or the other. (Because of the joint randomised permutations, the evidence is basically the number of 1-s ($`\textcolor{#000000}{\blacksquare}`$), $`k`$ observed in the sample.)
+Therefore, for small enough $`k`$ – the number of 1-s – Player 1 is expected to guess A (because by convention the number of 1-s is less in scenario A than in B $`K_A < K_B`$), while for large enough $`k`$, she is expected to guess B.
 (This does not mean, of course, that Player 1 can be sure about her guess; it only means that she is expected to make a determined choice to maximise her chance of winning if the evidence is strong enough.)
 
-However, two questions remain: what should be the threshold values of $k$ – number of 1-s – to switch from guessing A to guessing B, and what should Player 1 do if the evidence is inconclusive, i.e. if the number of observed 1-s is exactly on the threshold?
-We can keep the critical value of the number of 1-s as an additional free parameter $k^\bullet$, and by borrowing intuition from the smallest nontrivial example, assume that a randomised guess might be part of Player 1's optimal strategy.
-Therefore, we can keep another free parameter $\nu$ to characterise the randomised guess if the number of 1-s takes precisely the critical value $k=k^\bullet$. 
-(The probability of guessing A in this critical case is assumed to be $\nu$, while the probability of guessing B is $1-\nu$.)
+However, two questions remain: what should be the threshold values of $`k`$ – number of 1-s – to switch from guessing A to guessing B, and what should Player 1 do if the evidence is inconclusive, i.e. if the number of observed 1-s is exactly on the threshold?
+We can keep the critical value of the number of 1-s as an additional free parameter $`k^\bullet`$, and by borrowing intuition from the smallest nontrivial example, assume that a randomised guess might be part of Player 1's optimal strategy.
+Therefore, we can keep another free parameter $`\nu`$ to characterise the randomised guess if the number of 1-s takes precisely the critical value $`k=k^\bullet`$. 
+(The probability of guessing A in this critical case is assumed to be $`\nu`$, while the probability of guessing B is $`1-\nu`$.)
 
-In summary, there are three characteristic parameters describing the equilibrium solution of a general Fisher game $\mathfrak{Game}(N, K_A, K_B, M)$:
+In summary, there are three characteristic parameters describing the equilibrium solution of a general Fisher game $`\mathfrak{Game}(N, K_A, K_B, M)`$:
 
-- $P^* \in (0,1)$, the probability of Player 2 choosing scenario A;
+- $`P^* \in (0,1)`$, the probability of Player 2 choosing scenario A;
 - $` k^* \in \{0,\dots,N \} `$, the threshold or critical value of the number of 1-s in the sample, under which Player 1 guesses scenario A and above which she guesses B;
-- $\nu^* \in [0,1)$, the probability of guessing A if the number of 1-s is exactly the critical value in the sample.
+- $`\nu^* \in [0,1)`$, the probability of guessing A if the number of 1-s is exactly the critical value in the sample.
 
 #### Links for the general solution
 
@@ -643,10 +637,10 @@ Instead of explicitly spelling out the formulae for the general solution in [The
   </em>
 </p>
 
-(The cover image of this section is also a relatively large, highly symmetric equilibrium Strategy plot for $\mathfrak{Game}(N=4, K_A=4, K_B=6, M=10)$, showing an intricate fractal-like pattern.)
+(The cover image of this section is also a relatively large, highly symmetric equilibrium Strategy plot for $`\mathfrak{Game}(N=4, K_A=4, K_B=6, M=10)`$, showing an intricate fractal-like pattern.)
 
 Further to show how the equilibrium parameters look for a gamut of larger games, see the computed results for approximately five thousand distinct Fisher games.
-This is a systematic exploration of all Fisher games with 100 bits in total ($M=100$) and 4 bits to sample ($N=4$), while varying the number of 1-s in both scenarios ($K_A$ and $K_B$) from 0 to 100.
+This is a systematic exploration of all Fisher games with 100 bits in total ($`M=100`$) and 4 bits to sample ($`N=4`$), while varying the number of 1-s in both scenarios ($`K_A`$ and $`K_B`$) from 0 to 100.
 
 <table>
   <tr>
@@ -677,7 +671,7 @@ This is a systematic exploration of all Fisher games with 100 bits in total ($M=
   </em>
 </p>
 
-Besides the primary equilibrium parameters of Fisher games ($P^*, k^*, \nu^*$), I plotted the values – or winning chances – $v^*$, for the same set of Games, and a composite parameter $s^* = (k^* + \nu^*)/(N+1)$.
+Besides the primary equilibrium parameters of Fisher games ($`P^*, k^*, \nu^*`$), I plotted the values – or winning chances – $`v^*`$, for the same set of Games, and a composite parameter $`s^* = (k^* + \nu^*)/(N+1)`$.
 
 <table>
   <tr>
@@ -702,9 +696,9 @@ Besides the primary equilibrium parameters of Fisher games ($P^*, k^*, \nu^*$), 
   </em>
 </p>
 
-The definition of $s^*$ might seem arbitrary for finite Fisher games; however, such a combination will become a proper continuous function as we take the limit in the length of the produced bit sequences ($M$), while keeping the density of 1-s in both scenarios constant.
+The definition of $`s^*`$ might seem arbitrary for finite Fisher games; however, such a combination will become a proper continuous function as we take the limit in the length of the produced bit sequences ($`M`$), while keeping the density of 1-s in both scenarios constant.
 
-In the paper, there are even more examples, including smaller ($N=4$, $M=10$) and larger ($N=15$,$M=100$) cases.
+In the paper, there are even more examples, including smaller ($`N=4`$, $`M=10`$) and larger ($`N=15`$,$`M=100`$) cases.
 
 ### Emerged Statistical concepts
 
@@ -717,7 +711,7 @@ A few emergent concepts which might be familiar from statistics:
 
 - **Type I and Type II errors**: The concepts of [Type I](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors#Type_I_error) ("false positive", the rejection of the null hypothesis when it is true) and [Type II](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors#Type_II_error) ("false negative", the failure to reject the null hypothesis that is false) errors were central to Neyman and Pearson and are still important concepts in Hypothesis testing in "Frequentist" statistics.
 The equilibrium policy in a Fisher game can be viewed as a statistical test for the hypothesis, stating that A is the correct scenario.
-Remarkably, the equilibrium property of the solution implies that the total error of this – partially randomised – strategy represents a "statistical test" which has a total error probability (Type I + Type II) independent of the occurrence of the scenarios $P$, i.e. "independent of the probability law a priori".
+Remarkably, the equilibrium property of the solution implies that the total error of this – partially randomised – strategy represents a "statistical test" which has a total error probability (Type I + Type II) independent of the occurrence of the scenarios $`P`$, i.e. "independent of the probability law a priori".
 
 - **Randomised sampling**: The randomisation of sampling in statistics (and particularly in Randomised Controlled Trial ([RCT](https://en.wikipedia.org/wiki/Randomized_controlled_trial)) studies) is a central concept which was present from the very early days of the discipline.
 (R. A. Fisher argued for the randomised experimental design from 1923-1924.)
