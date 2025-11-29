@@ -891,7 +891,7 @@ $\mathfrak{BGame}(N, K_A, K_B, M)$.$♢$
 The first part of the definition – including the selection of sequences and sampling – is the same as in Fisher games. The main difference is that in Bayesian games, Player 1 is not forced to definitely guess one of the scenarios, but she can continuously split her capital between the two alternatives.
 Because in this case the result of the Game is not a simple win-lose outcome, but a continuous amount of gained (or lost) capital, we had to specify a utility function for Player 1, and Player 2 as well.
 
-(The term "Bayesian game" appears in other contexts in the literature. However, the concept described here is not related to – or inspired by – [Bayesian games à la Harányi](https://en.wikipedia.org/wiki/Bayesian_game) (a common prior or distribution of "types" is an assumption that we deliberately try to avoid in this work). Alternatively, these could be called ["pre-Bayesian games"](https://web.archive.org/web/20170328225455/https://physics.ujep.cz/~jskvor/KVM/TeorieHer/shoham.pdf) or even a ["Secular Bayesian protocol"](https://www.inference.vc/the-secular-bayesian-using-belief-distributions-without-really-believing/).)
+(The term "Bayesian game" appears in other contexts in the literature. However, the concept described here is not related to – or inspired by – [Bayesian games à la Harsányi](https://en.wikipedia.org/wiki/Bayesian_game) (a common prior or distribution of "types" is an assumption that we deliberately try to avoid in this work). Alternatively, these could be called ["pre-Bayesian games"](https://web.archive.org/web/20170328225455/https://physics.ujep.cz/~jskvor/KVM/TeorieHer/shoham.pdf) or even a ["Secular Bayesian protocol"](https://www.inference.vc/the-secular-bayesian-using-belief-distributions-without-really-believing/).)
 
 #### Equilibrium strategies of Bayesian games
 
@@ -1450,9 +1450,115 @@ This result accomplishes several important things:
 
 ## Call for collaboration
 
+### Subsequent public and behind-the-scenes developments
+
+The result presented above grew from my deep fascination with uncertainty, probability, and statistics, and the whole work has been a labour of love.
+I dared to start this research program alone, but I don't wish to own the thoughts and future results personally.
+The uncovered relations, proved theorems, and relevant philosophical arguments are, in my view, public goods, and everybody is invited to apply, build upon, extend, critique, and improve them.
+
+Many developments have occurred since [Statistical Games](https://arxiv.org/abs/2402.15892) were first made public in February 2024. (Relevant references and additional materials related to this paper – such as slides for talks, open source software, notebooks, errata  – are collected on the project's [GitHub page](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames).)
+Related to the broader research program, notable public and behind-the-scenes developments can be listed:
+
+- I collected mostly philosophical arguments together in an (unfinished) essay – that are not (sometimes not yet) formalised thoughts which felt to be expressible more naturally in "wordy" human language –, (and made it public on [GitHub](https://github.com/Konczer/UncertaintyTheory/tree/main/Essay)): [Essay on Uncertainty](https://raw.githubusercontent.com/Konczer/UncertaintyTheory/refs/heads/main/Essay/pdf/EssayOnUncertainty.pdf);
+- The concept has been generalised for multiple Agents interacting with an uncertain environment and each other by introducing "Extended Equilibrium". In this equilibrium concept, Agents are assumed to adopt strategies and form subjective beliefs about the uncertain environment in such a way that no Agent expects better outcomes by unilaterally changing her strategy. (For the details, see the arXiv paper: [Non-Cooperative Games with Uncertainty](https://arxiv.org/abs/2503.01889) and/or the project's [GitHub page](https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium));
+- There is an array of unpublished results, including:
+  - Continuous parameter estimation problems, e.g. (the continuous version of the) [German tank](https://en.wikipedia.org/wiki/German_tank_problem) or the [taxi cab](https://web.archive.org/web/20250107001334/http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf) problem a.k.a. [serial number analysis](http://dx.doi.org/10.1080/01621459.1954.10501218);
+  - Using the framework to address the exploration vs. exploitation trade-off in [Reinforcement Learning](https://en.wikipedia.org/wiki/Reinforcement_learning) problems. (For the simplest possible ["Bandit"](https://tor-lattimore.com/downloads/book/book.pdf) (for a particular example of such a problem, see [Section 7.7](https://arxiv.org/pdf/2402.15892#subsection.7.7)), the Game-theoretic approach naturally suggests behavioural strategies, i.e acquisition functions, which display a balance between exploration and exploitation for finite horizon problems);
+  - Results related to the [Ellsberg paradox](https://en.wikipedia.org/wiki/Ellsberg_paradox). (Including comparison with [experimental findings](https://scispace.com/pdf/response-time-and-decision-making-an-experimental-study-1mhlc5u1oa.pdf).);
+  - A framework for dynamical systems that could handle non-equilibrium statistical physics, and converges to invariant measures in the long-time limit. (Concrete calculations has been made for the simplest [sawtooth map](https://en.wikipedia.org/wiki/Dyadic_transformation) (also known as Bernoulli map or dyadic transformation.) and preliminary results for probably the simplest Hamiltonian chaotic system, the geodesic flow on the [Bolza surface](https://en.wikipedia.org/wiki/Bolza_surface) (a [genus 2 compact Riemann surface](https://en.wikipedia.org/wiki/Genus_g_surface#Genus_2) with constant negative curvature) also called [Hadamard's billiard](https://en.wikipedia.org/wiki/Hadamard%27s_dynamical_system).)
+  - And several other topics listed in [Section 7: Future work and extension](https://arxiv.org/pdf/2402.15892#section.7).
+
+### An invitation for collaboration
+
+The outlined program of reformulating statistics – and possibly probability theory – in a Game-theoretic framework is far from being complete, and it seems clear that this endeavour is much bigger than what one person can achieve alone.
+The results and work I made public address some important aspects of the program, but it is rather a fertile ground for further questions and investigations than a finished piece of work.
+(Even the uploaded manuscript would need some polishing, because of its rushed preparation and sometimes sketchy style.)
+
+If you found this read and this playful approach to statistics interesting, then consider engaging with the project. There are multiple ways to get involved (the list is, of course, not exhaustive; the set of possibilities is much larger than what I can imagine):
+
+- Relatively low effort engagement options:
+  - Give feedback or ask questions publicly on [alphaXiv](https://www.alphaxiv.org/pdf/2402.15892);
+  - Reach out to me (you can find contact details on the [paper](https://www.arxiv.org/pdf/2402.15892) as well as on my [homepage](https://konczer.github.io/)), and give feedback, ask questions and/or let's discuss collaboration opportunities privately;
+  - Reshare, repost, repurpose the material on social media, online forums, email lists, word of mouth, etc. All materials are free to use under [Attribution (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license. I am much more interested in creating and spreading useful, high-quality content than getting credit, but I am grateful for every citation, and I try to make citations easy.
+- Contributing by code:
+    - Feel free to contribute to the [Statistical Games](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames) or the broader [Uncertainty theory](https://github.com/Konczer/UncertaintyTheory/tree/main) on GitHub by opening issues, suggesting features, reporting bugs, or making pull requests.
+ There is an uploaded Python package, [statgames](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/Software/Python/statgames), which can be further developed, but there are many other opportunities for small and large coding contributions as well.
+- Academic collaboration options:
+  - I am happy to talk about the topic at seminars, workshops, conferences, both online and offline. Let me know if some aspects of this line of research align with your group's or department's interests. Feel free to contact or invite me!
+  - Cite my work. The essential concepts in this blogpost can be found in two arXiv papers, and one (unfinished, live) essay:
+    - [Statistical Games](https://www.arxiv.org/abs/2402.15892)
+    - [Non-Cooperative Games with Uncertainty](https://arxiv.org/abs/2503.01889)
+    - [Essay on Uncertainty](https://github.com/Konczer/UncertaintyTheory/blob/main/Essay/pdf/EssayOnUncertainty.pdf)
+  - For Mathematicians:
+    - Completing and checking proofs. 
+ In general, the topic provides a fertile ground for various mathematical explorations. To mention a few immediate problems: the asymptotic analysis (see [Appendix D](https://arxiv.org/pdf/2402.15892#appendix.D)) requires delicate inequalities for rigorous proofs. Another mathematically interesting topic might be the generalisation of the fixed point property of isoelastic utility functions (Theorem E.4 in [E.3.2](https://arxiv.org/pdf/2402.15892#subsubsection.E.3.2)) to more general settings.
+  - For Statisticians:
+    - Finding problems which can be effectively addressed by the Game-theoretic approach. Calculating exact equilibria is feasible only for small and/or simple problems, but questions related to multiple-hypothesis testing, sequential analysis, problems with high symmetry, etc., might be within reach.
+ (Approximative methods could really open up possibilities for practical applications.)
+  - For Computer Scientists:
+    - Finding effective and scalable algorithms to calculate or approximate equilibrium strategies. The [Blahut–Arimoto algorithm](https://en.wikipedia.org/wiki/Blahut%E2%80%93Arimoto_algorithm) appears to be a promising candidate for approximate calculations, but it would need some modifications and generalisation for continuous cases.
+  - Machine Learning researchers:
+    - One of the most direct links between Machine Learning architectures and the Game-theoretic framework might be through [Generative Adversarial Networks (GANs)](https://en.wikipedia.org/wiki/Generative_adversarial_network), and [Self-play](https://en.wikipedia.org/wiki/Self-play) techniques typically in Reinforcement Learning.
+ I am happy to discuss ways to accommodate such architectures to tackle problems containing deep uncertainty.
+    - The [modification of loss function](https://arxiv.org/abs/1702.05659) for neural networks from the standard cross-entropy to isoelastic utility functions (or other utility functions) could be an interesting research direction as well. (There are some results with [Rényi divergences](https://doi.org/10.18523/2617-7080320203-10), but I think this area is largely unexplored yet.)
+    - [Active learning](https://en.wikipedia.org/wiki/Active_learning_(machine_learning)) is, in my view, closely related to [optimal experimental designs](https://en.wikipedia.org/wiki/Optimal_experimental_design) in the field of statistics. Both areas are deeply entangled with uncertainty; therefore, a more nuanced approach to it could enhance both fields.
+    - Reinforcement learning:
+       - The framework could naturally define acquisition functions, which automatically balance exploration and exploitation. However, in practice, this definition is implicit; therefore, for realistic problems, only approximate methods can be feasible. Still, it could provide a solid theoretical foundation, a benchmark for various heuristics, and insights into how to design better acquisition functions.
+       - A framework can be extended to incorporate [Multi-Agent Reinforcement Learning](https://www.marl-book.com/) under uncertainty, where multiple Agents interact with each other and an uncertain environment. (This is related to the [Extended Equilibrium](https://arxiv.org/abs/2503.01889) concept mentioned above.)
+  - Physicists:
+    - I believe the framework could address the foundations of Statistical Physics. If we ask "What is Statistical Physics used for?", a natural answer is: "To help make decisions and form strategies for which the outcome is dependent on some large-scale property of a complex physical system."
+ Therefore, the physical system in question can be embedded in a decision-making problem, and the Game-theoretic framework can be applied to it.
+ (I think this is a wiser approach than associating our ignorance about a system with a uniform probability distribution.) To restore answers and strategies based on standard invariant measures, however, we need to allow the Agent to give an initial stir or be able to blow on the system. (This initial perturbation can be gentle, but has to be finite.)
+ By this approach, we can naturally handle "non-equilibrium" statistical physics and address the process of reaching the equilibrium as well.
+ (See [Section 7.8](https://arxiv.org/pdf/2402.15892#subsection.7.8) where the construction – without the later added steering concept – is briefly outlined.)
+    - There are various use cases for parameter estimation and data prediction in experimental physics. For high-stakes, low-data measurements, data analysis and future experimental design must be performed with the utmost care. In such cases, the Game-theoretic framework could provide valuable tools.
+    - The framework is easily generalisable to quantum mechanics. It can be used to evaluate and design measurements for [quantum state tomography](https://en.wikipedia.org/wiki/Quantum_tomography) (also known as [quantum state estimation](https://arxiv.org/abs/2104.02911), which is also related to [quantum metrology](https://en.wikipedia.org/wiki/Quantum_metrology)).
+ After defining a suitable utility or loss function (depending on the quantum state and our estimation) and a set of potential measurements, a Game can be imagined, giving a strategy for the experimenter to choose the measurement and make an estimation (while generating a prior over the set of possible quantum states).
+ (This straightforward generalisation does not require deviating from standard quantum mechanics and its [Copenhagen interpretation](https://en.wikipedia.org/wiki/Copenhagen_interpretation), i.e. the [Born rule](https://en.wikipedia.org/wiki/Born_rule) – or more generally the formalism of positive operator-valued measure ([POVM](https://en.wikipedia.org/wiki/POVM)) – can be used to calculate outcome probabilities.) For a brief description and references, see [Section 7.9](https://arxiv.org/pdf/2402.15892#subsection.7.9).
+    - I am not sure how the probabilistic interpretation of quantum mechanics could be derived from decision-theoretic principles, but there are claims – such as this [paper of David Deutsch](https://arxiv.org/abs/quant-ph/9906015) (later developed to the [Deutsch-Wallace theorem](https://arxiv.org/abs/2010.11591)) and approaches in [QBism](https://en.wikipedia.org/wiki/Quantum_Bayesianism) – which suggest that this might be possible. If I could team up with researchers with solid knowledge in these areas, then I would happily work on foundational questions in quantum mechanics from this angle as well.
+  - For Economists
+    - The benefits of a faithful formalisation of deep or Knightian uncertainty in economics would, I think, be huge. Knight and Keynes were the most prominent early thinkers about uncertainty in economics, but the concept seemingly fell out of fashion in mainstream, which relies mostly on – often subjective – probabilistic models.
+ However, a rigorous and scalable definition of deep uncertainty could enhance our modelling and mitigation strategies, avoid prematurely committing to unsupported assumptions, and make our economic systems more robust.
+    - Topics, often discussed in the field of [Behavioural Economics](https://en.wikipedia.org/wiki/Behavioral_economics) (such as [ambiguity aversion](https://en.wikipedia.org/wiki/Ambiguity_aversion) or more specifically the [Ellsberg paradox](https://en.wikipedia.org/wiki/Ellsberg_paradox)) might be addressed in this framework. Perhaps some "irrational" human behaviours could be explained as coherent strategies rather than merely faulty reasoning and decision-making heuristics.
+    - I see some parallels between the concepts and properties investigated in [Appendix E](https://arxiv.org/pdf/2402.15892#appendix.E) and [Ergodic Economics](https://en.wikipedia.org/wiki/Ergodicity_economics). Perhaps these connections could be explored and developed further.
+  - Cognitive Scientists
+    - There are findings in cognitive science on [neural foundations of economic decision-making](https://web.archive.org/web/20250316042146/https://thesis.library.caltech.edu/470/) (Ambiguous decision-making problems seem to be connected to the amygdala and the orbitofrontal cortex.) A coherent theoretical foundation for decision-making under uncertainty could inform further research and experimental design to understand better the neural and biological processes used by humans – and potentially other living organisms – to navigate an uncertain environment.
+  - Philosophers:
+    - I had to admit to myself that reasoning about different structures and properties that we project onto unknown parts of reality is not a strictly scientific, but rather partly a metaphysical endeavour. (If we refer to probability theory and statistics to use empirical data to evaluate and judge theories, then how can we test frameworks about probability theory and statistics themselves?)
+ However, even if choosing between alternative frameworks is not decidable by experiments, there might be more delicate methods and arguments which can differentiate between various approaches. Philosophy, I think, is the field where such delicate matters can be best addressed and discussed.
+ A few philosophical questions might be: 
+       - Can probability be defined with no circular definition (or is the best we can do a self-consistent theory)? 
+       - What are the "virtues" of metaphysical frameworks? (e.g. Simplicity, explanatory power, internal consistency, external consistency with other accepted frameworks, usefulness, beauty, etc.?)
+       - How and on what basis can we compare different frameworks?
+       - Where are the limits of imagined possibilities? Can we address extreme cases, such as problems similar to [Pascal's wager](https://plato.stanford.edu/entries/pascal-wager/), in a satisfactory way?
+  - Interdisciplinary research groups:
+    - The topic is by its very nature interdisciplinary. If you are part of an interdisciplinary group – such as the [Santa Fe Institute](https://www.santafe.edu/) – you could consider taking a more holistic approach. I would be more than happy to engage in such environments.
+- Applied, industrial, business and policy-making collaboration options:
+  - [AI alignment](https://en.wikipedia.org/wiki/AI_alignment), in my view, is a much more fundamental requirement than it is often presented. Alignment, in its basic form, is about constructing loss functions, incentive structures, and pipelines that prevent and mitigate unwanted and unexpected consequences. (In an age where we have systems which can more and more effectively optimise and achieve goals, we have to be more and more careful what we wish for.)
+ I strongly believe that a more nuanced approach to uncertainty could help design more cautious and better-aligned AI systems.
+  - [AI safety](https://en.wikipedia.org/wiki/AI_safety) is, I think, a broader, more complex but also exceedingly important topic. Predicting how deployed AI systems will impact and change our societies, economies, political systems, cultures, or armed conflicts is a huge challenge. Deciding what kind of changes we wish to accelerate or avoid is an even less unclear, [wicked problem](https://en.wikipedia.org/wiki/Wicked_problem) that might not have a single correct answer, only dilemmas with trade-offs. However, given the potential dangers of this new and powerful technology, developing policies, safety measures, and guidelines is crucial.
+ A principled way of reasoning about uncertainty could help hedge between dangers and opportunities, and might help design safe but forward-looking AI policies.
+  - [Climate change](https://en.wikipedia.org/wiki/Climate_change) and the related environmental, social and geopolitical risks are among the most pressing issues of our time. Effective policy-making has to strike a balance between environmental and various other risk mitigation and global cooperation. However, the consequences of climate change are global, potentially catastrophic, and contain tipping points and irreversible changes.
+ Therefore, careful hedging and the acknowledgement of deep uncertainty might be essential to address these challenges.
+  - Industrial discovery of resources and raw materials is often a high-stakes, low-data problem. There is potentially huge potential in, for example, [geological Hydrogen](https://royalsociety.org/-/media/policy/projects/natural-hydrogen/natural-hydrogen-policy-briefing.pdf),
+ which is highly underdiscovered, and could provide a carbon-free energy source for humanity until we develop the appropriate infrastructure to generate, distribute and store energy from renewable sources. (If not finding alternative ways to generate electricity, such as the slowly but steadily developing [nuclear fusion reactors](https://en.wikipedia.org/wiki/Fusion_power).)
+ An integrated approach that considers not only geological and geophysical data indicating potential deposits but also economic potential could lead to more strategic discovery processes and lower the risk for businesses venturing into such projects.
+ A similar approach could be used for general [mineral and other resource discovery](https://pubs.geoscienceworld.org/segweb/segdiscovery/article-abstract/doi/10.5382/Geo-and-Mining-02/586319/Mineral-Exploration-Discovering-and-Defining-Ore?redirectedFrom=fulltext).
+  - Finance, automated trading is a natural area where a more principled decision-making and hedging strategy could prove lucrative (and even bring a stabilising effect to the markets if widely adopted).
+
+## Epilogue
+
+Thank you for reading and engaging with this blog post and the topic in general. In the end I feel appropriate the quote a paragraph from the [Acknowledgement](https://arxiv.org/pdf/2402.15892#section.8):
+
+> I want to express my deep gratitude to all readers of this relatively long and sometimes technical
+work. I do believe that a substantial part of a theoretical work’s value comes from the readers and the
+ideas emerging from the interaction. If this work can inspire anybody to think deeper about probability,
+uncertainty, statistics or decision-making by reading, skimming or appreciating mathematical details,
+that brings me great joy and gratification.
+
 <!--
 
-Many developments have occurred since Statistical Games were made public. Relevant references are collected on the project's [GitHub page](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames).
+
 
 - 
 
