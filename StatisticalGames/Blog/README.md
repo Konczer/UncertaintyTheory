@@ -13,7 +13,7 @@ For those who appreciate mathematical formalisation, properly stated theorems an
 
 However, even if abstract formulas are not your cup of tea, in this post, I tried my best to address the matter in a widely understandable way, so I encourage readers to carry on.
 
-Further, if you prefer starting to read immediately the summary of the paper and not engaging with the relatively lengthy philosophical and cultural embedding of the work to a greater project, then I suggest jumping immediately to the **Statistical Games** section below.
+Further, if you prefer starting to read immediately the summary of the paper and not engaging with the relatively lengthy philosophical and cultural embedding of the work to a greater program, then I suggest jumping immediately to the **Statistical Games** section below.
 
 ## Introduction
 
@@ -339,7 +339,7 @@ Another often listed relevant [Murphy's general law](https://www.cs.cmu.edu/~fga
   </em>
 </p>
 
-However, before painting too pessimistic a picture, I need to highlight two things about this framework:
+However, before painting a too pessimistic picture, I need to highlight two things about this framework:
 
 - It assumes that we are not defenseless against the "Trickster". Even if we think that there will be rain if we don't carry an umbrella and clear skies if we do, we assume that by randomising our choice, we can protect ourselves to some extent against always suffering the worst outcomes. In other words, we don't project mind-reading abilities to the "Trickster", only the aim of being our adversary. In this way, unpredictability can be utilised on the Agent's side, just as in Matching Pennies or Rock-Paper-Scissors.
 - Another important clarification is that we don't assume that the "Trickster" is a totally malevolent Demon i.e. we are not projecting a strictly zero-sum game to the uncertain situation. (A zero-sum construction was the initial approach of [Abraham Wald](https://en.wikipedia.org/wiki/Abraham_Wald) in his work on [Statistical decision functions](https://catalog.hathitrust.org/Record/000469182), but it proved to be too pessimistic and lacks adaptivity in some realistic cases.)
@@ -413,19 +413,12 @@ Therefore, the main aim of the paper was to investigate a simple toy model in Ga
 
 To tie this informal summary closer to the actual manuscript, I thought it would be useful to spell out the definitions of the central game constructions explicitly:
 
-> **Definition 2.1** (Fisher game)**.** There are two players, Player 1 and Player 2.
+> [**Definition 2.1**](https://arxiv.org/pdf/2402.15892#definition.2.1) (Fisher game)**.** There are two players, Player 1 and Player 2.
 Player 2 needs to choose between scenario A or B first and then produce a binary sequence of length $`M`$ containing precisely $`K_A`$ or $`K_B`$ number of $`1`$-s. (Without losing generality, we will assume $`K_A \le K_B`$.)
 Following this, Player 1 (not knowing the actions of Player 2) can sample $`N`$ number of bits, and after observing their value, she guesses scenario A or B.
 If Player 1 guessed the scenario correctly, she wins the game ($`\textcolor{#E7A046}{\blacksquare}`$) and loses otherwise ($`\textcolor{#25548A}{\blacksquare}`$). 
 The above-defined Fisher game will be denoted as 
 $`\mathfrak{Game}(N, K_A, K_B, M)`$.$`♢`$
-
-In a less formal language:
-
-> In **Fisher games**, a Chooser player (Player 2) needs to choose from two distinct sets of binary sequences, A or B, while the Guessing player (Player 1) can sample from the sequence and then needs to guess if the sample came from A or B.
-The Guessing player wins if she guesses correctly.
-Fisher games are described by four integers: the length of the whole binary sequences $`M`$, the total number of 1-s in the sequences in A $`K_A`$, the total number of 1-s in the sequences in B $`K_B`$, and the number of bits the Guessing player can sample from the chosen sequence $`N`$.
-This game will be denoted as $`\mathfrak{Game}(N, K_A, K_B, M)`$.
 
 To build intuition about these guessing Games, we should start with the simplest cases.
 
@@ -784,7 +777,7 @@ An optimal tic-tac-toe game will remain the same if we double or make the price 
 
 The concept of *utility* i.e. a measure of "desirability" or "value", starts to be relevant if there are more then two outcomes and some form of randomisation – either by a "device of chance" (dice, cards, roulette wheel, [Teetotum](https://en.wikipedia.org/wiki/Teetotum), [Dreidel](https://en.wikipedia.org/wiki/Dreidel) etc.) or other player's random move – plays a role in determining the final outcome.
 
-You will act differently in a casino, when our only chance to achieve something important in the outside world is to hit the jackpot. Such a gambler might put and risk all her chips on one outcome, because her chance of winning might be slim, but playing cautiously can't bring her closer to her goals.
+You will act differently in a casino, when your only chance to achieve something important in the outside world is to hit the jackpot. Such a gambler might put and risk all her chips on one outcome, because her chance of winning might be slim, but playing cautiously can't bring her closer to her goals.
 On the other hand, more moderate gamblers will diversify and hedge their odds, and stay away from all-in strategies.
 
 As a concrete example, assume there are two gamblers, both with a starting capital of 100 EUR. They can play an almost fair double or nothing game with two outcomes A and B (both outcomes have a reliable $50\%$ chance). The portion put on the rolled outcome can be doubled, but in each round the casino takes $1\%$ from the doubled amount as a fee. The first player needs 198 EUR to achieve something important in the outside world, while the second player just doesn't want to lose more than 50 EUR.
@@ -801,7 +794,7 @@ One might ask: are there some "natural" choices for this seemingly completely su
 
 I found two compelling arguments that could help in selecting "default" utility functions – one evolutionary and one stability argument.
 
-In the paper [Appendix E](https://arxiv.org/pdf/2402.15892#appendix.E), this topic is dedicated.
+In the paper [Appendix E](https://arxiv.org/pdf/2402.15892#appendix.E), is dedicated to this topic.
 
 The observation: "different utility functions can quantitatively change gamblers' behaviour" can be illustrated by plotting how a particular family of utility functions impacts the splitting ratios of gamblers as a function of seeing a specific outcome (A) with probability $P$ in a double-or-nothing gamble.
 
@@ -814,7 +807,7 @@ The observation: "different utility functions can quantitatively change gamblers
   </em>
 </p>
 
-The particular family of utility functions, appearing to be natural or special, are the so-called isoelastic or constant relative risk aversion (CRRA) utility functions. The members of this family can be characterised by a single parameter $\gamma > 0$, associated with the gambler's so-called relative risk aversion. Intuitively, small (close to $0$) $\gamma$ values correspond to risk-neutral or brave players, while large $\gamma \gg 1$ values correspond to risk-averse or cautious players.
+The particular family of utility functions, appearing to be natural or special, are the so-called isoelastic or constant relative risk aversion ([CRRA](https://en.wikipedia.org/wiki/Isoelastic_utility)) utility functions. The members of this family can be characterised by a single parameter $\gamma > 0$, associated with the gambler's so-called relative risk aversion. Intuitively, small (close to $0$) $\gamma$ values correspond to risk-neutral or brave players, while large $\gamma \gg 1$ values correspond to risk-averse or cautious players.
 
 Formally, these utility functions – translating an amount of capital $c$ to "value" or "utility" – can be expressed as follows (however, what matters more is their impact on a gambler's splitting ratios):
 
@@ -826,18 +819,18 @@ $$
 u_{\gamma=1}(c) = \log(c)
 $$
 
-As it can be seen in [Figure 46](https://arxiv.org/pdf/2402.15892#figure.caption.181) risk neutral or brave players are quick to commit considerable portion of their capital when they see a winning opportunity (blueish line on the graph), while risk averse or shy players (redish lines) prefer to opt out from the gambel, and start to commit only when the winning chances are high.
+As it can be seen in [Figure 46](https://arxiv.org/pdf/2402.15892#figure.caption.181), risk neutral or brave players are quick to commit considerable portion of their capital when they see a winning opportunity (blueish line on the graph), while risk averse or shy players (redish lines) prefer to opt out from the gamble, and start to commit only when the winning chances are high.
 
-A player with relative risk aversion $\gamma=1$ (purple line) has a logarithmic utility function, and commits exactly proportionally to the winning chances.
+A player with relative risk aversion $`\gamma=1`$ (purple line) has a logarithmic utility function, and commits exactly proportionally to the winning chances.
 
 #### Gambling replicators
 
 The evolutionary reasoning goes as follows:
-Assume that there is a double-or-nothing gamble for resources, which can be directly translated to reproduction, i.e. the doubling factor in capital translates to doubling factor in population. Let's assume that seeing A has a $P=70\%$ chance, and so seeing B is $(1-P)=30\%$. We can let organisms or "replicators" have any arbitrary – but hereditary – splitting ratios $p'_i \in [0,1]$, meaning that the $i$-th species is betting her capital $p'_i$ portion to A and $(1-p'_i)$ to B.
+Assume that there is a double-or-nothing gamble for resources, which can be directly translated to reproduction, i.e. the doubling factor in capital translates to doubling factor in population. Let's assume that seeing A has a $`P=70\%`$ chance, and so seeing B is $`(1-P)=30\%`$. We can let organisms or "replicators" have any arbitrary – but hereditary – splitting ratios $`p'_i \in [0,1]`$, meaning that the $`i`$-th species is betting her capital $`p'_i`$ portion to A and $`(1-p'_i)`$ to B.
 
-For simplicity, let's assume that there are only two distinct replicators living and multiplying next to each other, operating with splitting ratios $p'_1$ and $p'_2$.
+For simplicity, let's assume that there are only two distinct replicators living and multiplying next to each other, operating with splitting ratios $`p'_1`$ and $`p'_2`$.
 
-There are multiple ways to define evolutionary success in such a random environment, but for a very broad range of success metrics, it can be shown that after numerous rounds, there is a saddle point at $p'^*_1=P$ and $p'^*_2=P$. This essentially means that if a replicator allocates her capital in a $P:(1-P)$ proportion to A and B, then no other replicator with a different splitting ratio can outgrow her in the long run.
+There are multiple ways to define evolutionary success in such a random environment, but for a very broad range of success metrics, it can be shown that after numerous rounds, there is a saddle point at $`p'^*_1=P`$ and $`p'^*_2=P`$. This essentially means that if a replicator allocates her capital in a $`P:(1-P)`$ proportion to A and B, then no other replicator with a different splitting ratio can outgrow her in the long run.
 
 <p align="center">
   <img src="img_II/Contest_Up1p2.png" alt="Statistical Games figure" height="500">
@@ -866,7 +859,7 @@ Intermediate states or objects often don't represent for us a special value in t
 
 The same can be said about intermediate states in which an agent can find itself. These states might not hold internal value for her, but they can bring her closer to or farther from her ultimate goals. To decorate intermediate states with instrumental values or utilities, one can use the so-called [Bellman equations](https://en.wikipedia.org/wiki/Bellman_equation), which calculate how much expected terminal utility an agent can expect in an intermediate state, given that she will play or gamble optimally from there on to reach a terminal state.
 
-Such a calculation is mostly tractable if a gambler is participating in multiple successive rounds of capital splitting gamble, and she has a specific, subjective terminal utility function associated with her capital at the final $n$-th round.
+Such a calculation is mostly tractable if a gambler is participating in multiple successive rounds of capital splitting gamble, and she has a specific, subjective terminal utility function associated with her capital at the final $`n`$-th round.
 In this construction, we can "propagate back" the utility function from the final round, and, round by round, associate intermediate instrumental utility functions for non-terminal, intermediate capital values.
 
 Without delving into the technical details, it turns out that isoelastic utility functions are stable under instrumentalisation. Furthermore, general terminal utility functions appear to converge to isoelastic instrumental utility functions upon successive application of the instrumentalisation operator.
@@ -875,18 +868,18 @@ Loosely speaking, the result suggests that "rational" players are expected to va
 
 I think this is a compelling argument for considering the family of constant relative risk aversion (CRRA) utility functions as "natural" or, at the very least, special.
 
-#### Definition of the Bayesian games
+#### Definition of Bayesian games
 
 After this necessary detour about utility functions, we have all the ingredients to define Bayesian games:
 
 > [**Definition 3.1**](https://arxiv.org/pdf/2402.15892#subsection.3.2) (Bayesian game)**.** There are two players, Player 1 and Player 2.
-Player 2 needs to choose between scenario A or B first and then produce a binary sequence of length $M$ containing precisely $K_A$ or $K_B$ number of $1$-s. (Without losing generality, we will assume $K_A \le K_B$.)
-Following this, Player 1 (not knowing the actions of Player 2) can sample $N$ number of bits.
-After observing their values, she determines what portion of her capital $p'$ she places on scenario A (while the other $1-p'$ portion is placed on scenario B).
+Player 2 needs to choose between scenario A or B first and then produce a binary sequence of length $`M`$ containing precisely $`K_A`$ or $`K_B`$ number of $`1`$-s. (Without losing generality, we will assume $`K_A \le K_B`$.)
+Following this, Player 1 (not knowing the actions of Player 2) can sample $`N`$ number of bits.
+After observing their values, she determines what portion of her capital $`p'`$ she places on scenario A (while the other $`1-p'`$ portion is placed on scenario B).
 The portion Player 1 places on the scenario, chosen by Player 2, will be doubled, while the other part of her capital will be lost.
 For this specific game, we will assume that Player 1 has a logarithmic utility function and that Player 1 and Player 2 are playing a zero-sum game.
 The above-defined Bayesian game will be denoted as 
-$\mathfrak{BGame}(N, K_A, K_B, M)$.$♢$
+$`\mathfrak{BGame}(N, K_A, K_B, M)`$.$`♢`$
 
 The first part of the definition – including the selection of sequences and sampling – is the same as in Fisher games. The main difference is that in Bayesian games, Player 1 is not forced to definitely guess one of the scenarios, but she can continuously split her capital between the two alternatives.
 Because in this case the result of the Game is not a simple win-lose outcome, but a continuous amount of gained (or lost) capital, we had to specify a utility function for Player 1, and Player 2 as well.
@@ -896,9 +889,9 @@ Because in this case the result of the Game is not a simple win-lose outcome, bu
 #### Equilibrium strategies of Bayesian games
 
 **Smallest nontrivial example**:
-To show the similarities and differences between Fisher games and Bayesian games, we can revisit the smallest nontrivial example, now in the continuous, Bayesian casino: $\mathfrak{BGame}(N=1, K_A=0, K_B=1, M=2)$.
+To show the similarities and differences between Fisher games and Bayesian games, we can revisit the smallest nontrivial example, now in the continuous, Bayesian casino: $`\mathfrak{BGame}(N=1, K_A=0, K_B=1, M=2)`$.
 
-Without going into the details – which by the way can be found in [Section 3.4](https://arxiv.org/pdf/2402.15892#subsection.3.4) – this Game with continuous actions can be exactly and uniquely solved. Unsurprisingly, the equilibrium sequence selection and sampling strategies are uniform randomisation among all possible sequences and indices, just like in the Fisher game. In this specific minimal game, if we see a 1 ($ \textcolor{#000000}{\blacksquare} $), Player 1 can be sure that Player 2 chose scenario B, therefore she can push all her capital to B (formally speaking, $p'^*_{k=1} = 0$). Therefore, the only two nontrivial relevant questions are: what portion of her capital should Player 1 place on A if she sees a 0 ($ \textcolor{#FFFFFF}{\blacksquare} $) and so she can't be sure, i.e. what is $p'^*_{k=0}$? And a related question: what is the probability of Player 2 choosing scenario A over scenario B, i.e. what is $P^*$?
+Without going into the details – which by the way can be found in [Section 3.4](https://arxiv.org/pdf/2402.15892#subsection.3.4) – this Game with continuous actions can be exactly and uniquely solved. Unsurprisingly, the equilibrium sequence selection and sampling strategies are uniform randomisation among all possible sequences and indices, just like in the Fisher game. In this specific minimal game, if we see a 1 ($` \textcolor{#000000}{\blacksquare} `$), Player 1 can be sure that Player 2 chose scenario B, therefore she can push all her capital to B (formally speaking, $`p'^*_{k=1} = 0`$). Therefore, the only two nontrivial relevant questions are: what portion of her capital should Player 1 place on A if she sees a 0 ($` \textcolor{#FFFFFF}{\blacksquare} `$) and so she can't be sure, i.e. what is $`p'^*_{k=0}`$? And a related question: what is the probability of Player 2 choosing scenario A over scenario B, i.e. what is $`P^*`$?
 
 Again, I think "common sense" suggests that scenario B should be chosen a little more often, because it contains more possible sequences and is therefore more difficult to detect. However, if Player 1 samples a 0, then she "should" bet a little more on A than B.
 
@@ -919,20 +912,20 @@ Again, I think "common sense" suggests that scenario B should be chosen a little
   </tr>
 </table>
 
-For any choosing probability $P$ of Player 2, we can find the optimal response of Player 1, and calculate the expected gain or utility she can realise. Essentially, this gain (relative to an "insider player") can be seen in the left image with the blue curve. It reaches its minimum at $P^* \approx 0.447$ (to be precise at $P^*=1/\sqrt{5}$). This is in line with the intuition that B is expected to be chosen a little more often than A ($P^* < 0.5$).
+For any choosing probability $`P`$ of Player 2, we can find the optimal response of Player 1, and calculate the expected gain or utility she can realise. Essentially, this gain (relative to an "insider player") can be seen in the left image with the blue curve. It reaches its minimum at $`P^* \approx 0.447`$ (to be precise at $`P^*=1/\sqrt{5}`$). This is in line with the intuition that B is expected to be chosen a little more often than A ($`P^* < 0.5`$).
 
-By straightforward calculations, we can also find the optimal splitting ratio for Player 1, if she sees a 0 ($ \textcolor{#FFFFFF}{\blacksquare} $) in her sample.
-This is remarkably not else than the reciprocal of the [golden ratio](https://en.wikipedia.org/wiki/Golden_ratio): $p'^*_{k=0} = (\sqrt{5}-1)/2 \approx 0.618$.
-Which again fulfils the expectation that Player 1 should put a little more portion of her capital to A than to B, if she sees a 0 in her sample (because even if she expects A to be chosen less often, the observational data of seeing a 0 shifts her beliefs enough to get $p'^*_{k=0} > 0.5$).
+By straightforward calculations, we can also find the optimal splitting ratio for Player 1, if she sees a 0 ($` \textcolor{#FFFFFF}{\blacksquare} `$) in her sample.
+This is remarkably not else than the reciprocal of the [golden ratio](https://en.wikipedia.org/wiki/Golden_ratio): $`p'^*_{k=0} = (\sqrt{5}-1)/2 \approx 0.618`$.
+Which again fulfils the expectation that Player 1 should put a little more portion of her capital to A than to B, if she sees a 0 in her sample (because even if she expects A to be chosen less often, the observational data of seeing a 0 shifts her beliefs enough to get $`p'^*_{k=0} > 0.5`$).
 
 **Solution of the general Bayesian game**:
-Remarkably, in the Game-theoretic solution of Bayesian games, the emergent formula for the splitting ratios $p'$ earily resembles the famous Bayes rule, justifying the name of this family of continuous games. 
+Remarkably, in the Game-theoretic solution of Bayesian games, the emergent formula for the splitting ratios $`p'`$ earily resembles the famous Bayes rule, justifying the name of this family of continuous games. 
 
 $$
 p'_k(P) = \frac{P \ p_k(A)}{P \ p_k(A) + (1-P) \ p_k(B)}
 $$
 
-Where $p_k(A)$ and $p_k(B)$ are internal variables, which can be associated with the probabilities of seeing $k$ number of 1-s in the sample if scenario A or B were chosen. In equilibrium, Player 1 and Player 2 are choosing/sampling uniformly from all possible sequences and indices (which allows us to express $p_k(A)$ in terms of the [hypergeometric distribution](https://en.wikipedia.org/wiki/Hypergeometric_distribution)).
+Where $`p_k(A)`$ and $`p_k(B)`$ are internal variables, which can be associated with the probabilities of seeing $`k`$ number of 1-s in the sample if scenario A or B were chosen. In equilibrium, Player 1 and Player 2 are choosing/sampling uniformly from all possible sequences and indices (which allows us to express $`p_k(A)`$ in terms of the [hypergeometric distribution](https://en.wikipedia.org/wiki/Hypergeometric_distribution)).
 
 <p align="center">
   <img src="img_II/NeonBayes.jpg" alt="Statistical Games figure" width="500">
@@ -946,14 +939,14 @@ Where $p_k(A)$ and $p_k(B)$ are internal variables, which can be associated with
   </em>
 </p>
 
-However, while Bayes' rule remains silent about the "prior" and focuses only on how to update our beliefs given some evidence, in Bayesian games, the "prior" $P^*$ is an emergent part of the equilibrium solution.
-Because of the "most natural" logarithmic utility function, Shannon entropy, and further information-theoretic concepts emerge naturally. In this language, the Bayesian game construction selects an equilibrium $P^*$ value (a would-be prior in the Bayesian framework), by which the conditional entropy of model labels (scenarios A or B) given the sampled data is maximised. (See the remarks in [Section 3.6](https://arxiv.org/pdf/2402.15892#subsection.3.6) for more details on these.)
+However, while Bayes' rule remains silent about the "prior" and focuses only on how to update our beliefs given some evidence, in Bayesian games, the "prior" $`P^*`$ is an emergent part of the equilibrium solution.
+Because of the "most natural" logarithmic utility function, Shannon entropy, and further information-theoretic concepts emerge naturally. In this language, the Bayesian game construction selects an equilibrium $`P^*`$ value (a would-be prior in the Bayesian framework), by which the conditional entropy of model labels (scenarios A or B) given the sampled data is maximised. (See the remarks in [Section 3.6](https://arxiv.org/pdf/2402.15892#subsection.3.6) for more details on these.)
 
 The general solution for Bayesian games is spelt out in [Theorem 3.2](https://arxiv.org/pdf/2402.15892#theorem.3.2) and proven in [Appendix B](https://arxiv.org/pdf/2402.15892#appendix.B).
 
 #### Examples and Visualisations
 
-As images speak more and look better, especially in a blog post. Let the solutions of an array of Bayesian games speak for themselves.
+As images speak louder and look better, especially in a blog post. Let the solutions of an array of Bayesian games speak for themselves.
 
 <table>
   <tr>
@@ -1061,16 +1054,16 @@ Again, just like in Fisher games, several basic concepts of Bayesian statistics 
 
 - **Exchangeability**: Because of the joint randomisation of Player 1 and Player 2 of sequence selection and sampling, the order of observed bits in the sample is irrelevant. This gives rise to an effective "exchangeability" property, which is central to Bayesian statistics (making, for example, [de Finetti's representation theorem](https://en.wikipedia.org/wiki/De_Finetti%27s_theorem) valid).
 
-- **Shannon entropy and information theoretic concepts**: Because of the logarithmic utility function, [Shannon entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) and further information-theoretic concepts emerge naturally. The equilibrium "prior" $P^*$ can be interpreted as the value which maximises the conditional entropy of model labels (scenarios A or B) given the sampled data.
-I want to emphasise that assuming a logarithmic utility function was not a reversal-engineering step to impose information-theoretic concepts. An evolutionary and a stability argument point to this utility function; therefore, it can be expected that concepts related to it will be important for organisms with a long evolutionary history.
+- **Shannon entropy and information theoretic concepts**: Because of the logarithmic utility function, [Shannon entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) and further information-theoretic concepts emerge naturally. The equilibrium "prior" $`P^*`$ can be interpreted as the value which maximises the conditional entropy of model labels (scenarios A or B) given the sampled data.
+I want to emphasise that assuming a logarithmic utility function was not a reverse-engineering step to impose information-theoretic concepts. An evolutionary and a stability argument point to this utility function; therefore, it can be expected that concepts related to it will be important for organisms with a long evolutionary history.
 
 - **"Objective" priors** (also known as ["Uninformative" priors](https://en.wikipedia.org/wiki/Prior_probability#Uninformative_priors)):
 are important parts of non-fully subjective Bayesian statistics. Besides Bayes' rule, which describes (or prescribes) how to update beliefs given some new data (or evidence), many additional principles were suggested to come up with a "default" or "objective" prior distribution in the absence of "well-founded" subjective beliefs.
 (Maximum entropy priors, Jeffreys priors, Transformation groups priors, etc.)
-The so-called [Reference priors](https://arxiv.org/pdf/0904.0156), introduced by José M. Bernardo and James O. Berger, are formally the closest (but not the same) concept to the emergent prior $P^*$ in Bayesian games. (One main difference being that Reference priors are maximising the [mutual information](https://en.wikipedia.org/wiki/Mutual_information) between parameters and data, while in Bayesian games the emergent prior maximises the [conditional entropy](https://en.wikipedia.org/wiki/Conditional_entropy) of model labels given the data.)
+The so-called [Reference priors](https://arxiv.org/pdf/0904.0156), introduced by José M. Bernardo and James O. Berger, are formally the closest (but not the same) concept to the emergent prior $`P^*`$ in Bayesian games. (One main difference being that Reference priors are maximising the [mutual information](https://en.wikipedia.org/wiki/Mutual_information) between parameters and data, while in Bayesian games the emergent prior maximises the [conditional entropy](https://en.wikipedia.org/wiki/Conditional_entropy) of model labels given the data.)
 
 - **Emergence of probability distributions**: The definition of Bayesian games was deterministic, just like Fisher games. Still, randomised strategies in sampling (and sequence selection) and internal probabilistic concepts emerged naturally, which can be interpreted in the same way as mixed strategies in Game-theoretical equilibria.
-Remarkably, the continuous splitting ratios $p'^*_k$ take exact values, and because of the concavity of the utility function, there is no randomisation in determining the splitting ratios (after the randomised sampling).
+Remarkably, the continuous splitting ratios $`p'^*_k`$ take exact values, and because of the concavity of the utility function, there is no randomisation in determining the splitting ratios (after the randomised sampling).
 
 
 <p align="center">
@@ -1085,15 +1078,15 @@ Remarkably, the continuous splitting ratios $p'^*_k$ take exact values, and beca
 
 ### Binomial versions of Fisher and Bayesian games
 
-I think it is intuitively clear what we can expect in such Games if we allow longer and longer bit sequences ($M \to \infty$), while keeping the density of 1-s in both scenarios constant (i.e. $K_A/M \to x_A$ and $K_B/M \to x_B$).
+I think it is intuitively clear what we can expect in such Games if we allow longer and longer bit sequences ($`M \to \infty`$), while keeping the density of 1-s in both scenarios constant (i.e. $`K_A/M \to x_A`$ and $`K_B/M \to x_B`$).
 
-If we were to approach the problem from a standard theoretical statistical angle, this construction would be easier to start with. One does not need to bother with allowed intervals of the number of sampled 1-s, the sampling probabilities are easier to get. (In scenraio A the seeing $k$ number of 1-s in $N$ samples is simply $x_A^k$ times $(1-x_A)^{N-k}$ times the number of [combination](https://en.wikipedia.org/wiki/Combination) of exactly $k$ 1-s in $N$ bits, resulting a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) for $k$. The same argument goes for scenario B.)
+If we were to approach the problem from a standard theoretical statistical angle, this construction would be easier to start with. One does not need to bother with allowed intervals of the number of sampled 1-s, the sampling probabilities are easier to get. (In scenraio A the seeing of $`k`$ number of 1-s in $`N`$ samples is simply $`x_A^k`$ times $`(1-x_A)^{N-k}`$ times the number of [combination](https://en.wikipedia.org/wiki/Combination) of exactly $`k`$ 1-s in $`N`$ bits, resulting a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) for $`k`$. The same argument goes for scenario B.)
 
 However, by starting with finite Games in sampling and sequence size, we were able to demonstrate how statistical concepts and the notion of probability distributions emerge naturally from such deterministic setups. More specifically, we did not need to assume that a stochastic process generated the observable bit sequences; rather, the equilibrium assumption led us to strategies that could be interpreted *as if* the sequences were generated by random processes.
 
 If we assume that the length of the bit sequences from which Player 1 can sample is infinite, then the sampling/sequence selecting parts of the strategies go through a combinatorial explosion and are not tractable anymore. Still, by first defining and understanding the finite cases, we can approach such idealised problems as limits of finite Games.
 
-Because the intuitive meaning of limiting values is probably clear to most readers, while the technical derivation and proofs are somewhat technical, from now on, the results will be demonstrated without colourful plots, and I will write about only a few notable surprises after the images.
+Because the intuitive meaning of limiting values is probably clear to most readers, while the derivation and proofs are somewhat technical, from now on, the results will be demonstrated with colourful plots, and I will only write about a few notable surprises after the images.
 
 (Binomial games are discussed in [Section 4.1](https://arxiv.org/pdf/2402.15892#subsection.4.1), and the main theorems are proven in [Appendix C](https://arxiv.org/pdf/2402.15892#appendix.C).)
 
@@ -1165,7 +1158,7 @@ Because the intuitive meaning of limiting values is probably clear to most reade
 <p align="center">
   <em>
     <a href="https://arxiv.org/pdf/2402.15892#figure.caption.85" target="_blank">Figure 27</a>:
- P(xA, xB ) for Binomial Bayesian games
+ P(xA, xB ) for Binomial Bayesian games. Contour lines show 1% difference.
   </em>
 </p>
 
@@ -1225,29 +1218,29 @@ Because the intuitive meaning of limiting values is probably clear to most reade
 
 (For further plotted examples, see [Section 4.2](https://arxiv.org/pdf/2402.15892#subsection.4.2) in the paper.)
 
-The strangest pattern appears for Binomial Fisher games, especially in the first purple plots, which depict the equilibrium choosing probabilities $P^*(x_A,x_B)$ and may look a little concerning.
+The strangest pattern appears for Binomial Fisher games, especially in the first purple plots, which depict the equilibrium choosing probabilities $`P^*(x_A,x_B)`$ and may look a little concerning.
 
-Seeing discontinuities or scars on the plot, rather than a smooth (or at least continuous) dependence on the continuous density parameters $x_A$ and $x_B$, might be unexpected and can be viewed as a pathology.
-However, Binomial Fisher games, on Player 1's side behave nicely, and the previously constructed composite $s^*=(k^*+\nu^*)/(N+1)$ variable depends continuously on $x_A$ and $x_B$.
+Seeing discontinuities or scars on the plot, rather than a smooth (or at least continuous) dependence on the continuous density parameters $`x_A`$ and $`x_B`$, might be unexpected and can be viewed as a pathology.
+However, Binomial Fisher games, on Player 1's side behave nicely, and the previously constructed composite $`s^*=(k^*+\nu^*)/(N+1)`$ variable depends continuously on $`x_A`$ and $`x_B`$.
 
 If we recall that these simple Games are supposed to be prototypes for decision-making problems in the face of uncertainty, then we can take the pragmatic position that until the equilibrium strategies for Player 1 appear to be reasonable, pathologies on Player 2's side can be accepted and swept under the rug.
 (In general, various strange and counter-intuitive phenomena can emerge with the parameters characterising the "other side's" equilibrium strategies – which are peculiar and interesting formally – but need not concern us until the strategy for Player 1 remains regular.)
 
-As an additional minor comment, it is interesting to note that in Binomial Bayesian games the emergent "prior" $P^*(x_A,x_B)$ remains very close to $50\%$ for most parameter values (deviating typically only $1-2\%$).
-(And both the prior and the splitting ratios are nice, smooth functions of the continuous $x_A$ and $x_B$ parameters.)
+As an additional minor comment, it is interesting to note that in Binomial Bayesian games the emergent "prior" $`P^*(x_A,x_B)`$ remains very close to $`50\%`$ for most parameter values (deviating typically only $`1-2\%`$).
+(And both the prior and the splitting ratios are nice, smooth functions of the continuous $`x_A`$ and $`x_B`$ parameters.)
 
 ### The asymptotic regime (when data goes to infinity)
 
 The case, where the sample size goes to infinity, i.e., Player 1 has more and more data to make her decision, is both an interesting and boring limiting case.
 Interesting, because the asymptotic behaviour of various equilibrium parameters is a delicate mathematical matter, and boring, because as we have more and more data, even simplistic heuristics can provide good answers for guessing or betting on the correct scenario. (If Player 1 can collect an increasing amount of relevant data, then she can be almost sure about the scenario, i.e. in this limit, the data speaks so loudly that initial context or beliefs become irrelevant.)
 
-Mathematically, this limiting case was the most challenging, and in the end, only a convincing conjectured formula has been derived. Half-jokingly, we could say, that this is another example of [Fredkin's paradox](https://en.wikipedia.org/wiki/Fredkin%27s_paradox): "The more equally attractive two alternatives seem, the harder it can be to choose between them [...]" (Because as the amount of observed data goes to infinity, in practice any heuristic assuming a $P\in(0,1)$ would work well. Choosing the optimal $P^*$ proved to be hard, and at the same time not that important.)
+Mathematically, this limiting case was the most challenging, and in the end, only a convincing conjectured formula has been derived. Half-jokingly, we could say, that this is another example of [Fredkin's paradox](https://en.wikipedia.org/wiki/Fredkin%27s_paradox): "The more equally attractive two alternatives seem, the harder it can be to choose between them [...]" (Because as the amount of observed data goes to infinity, in practice any heuristic assuming a $`P\in(0,1)`$ would work well. Choosing the optimal $`P^*`$ proved to be hard, and at the same time not that important.)
 Nevertheless, for those who like analytical delicacies, this problem can present a set of challenges, and a rigorous proof might involve fine inequalities, asymptotic analysis, special functions, and other delicate mathematical tools.
 (This topic is discussed in [Section 4.3](https://arxiv.org/pdf/2402.15892#subsection.4.3) and calculations presented in [Appendix D](https://arxiv.org/pdf/2402.15892#appendix.D) of the paper.)
 
 #### Binomial Fisher games in the asymptotic regime
 
-In case of Binomial Fisher games, the composite variable $s^*_N(x_A,x_B)$ characterising Player 1's strategy converges to a well-defined limit:
+In case of Binomial Fisher games, the composite variable $`s^*_N(x_A,x_B)`$ characterising Player 1's strategy converges to a well-defined limit:
 
 <p align="center">
   <img src="img_II/FisherLimitPolicy.png" alt="Statistical Games figure" height="500">
@@ -1261,16 +1254,16 @@ In case of Binomial Fisher games, the composite variable $s^*_N(x_A,x_B)$ charac
 
 Remarkably, we would obtain the same limiting decision rule and boundary if we applied the [maximum likelihood principle](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation), i.e., choose scenario A if the likelihood of observing the sampled data given scenario A is higher than that of scenario B, and vice versa.
 
-While $P^*_N(x_A,x_B)$, describing Player 2's equilibrium choosing probability, is cut by more and more scars, and does not converge, but rather takes values between two limiting upper and lower envelopes. (Conjecture for the limiting upper and lower bounds can be found in [Conjecture 4.1](https://arxiv.org/pdf/2402.15892#conjecture.4.1) of the paper.)
+While $`P^*_N(x_A,x_B)`$, describing Player 2's equilibrium choosing probability, is cut by more and more scars, and does not converge, but rather takes values between two limiting upper and lower envelopes. (Conjecture for the limiting upper and lower bounds can be found in [Conjecture 4.1](https://arxiv.org/pdf/2402.15892#conjecture.4.1) of the paper.)
 
 #### Binomial Bayesian games in the asymptotic regime
 
 The situation is somewhat different in Binomial Bayesian games.
-Although the equilibrium prior $P^*_N(x_A,x_B)$ is smooth for any finite $N\in \mathbb{N}$, numerical evidence and formal derivation suggest that a finite oscillation remains even in the limit $N \to \infty$.
+Although the equilibrium prior $`P^*_N(x_A,x_B)`$ is smooth for any finite $`N\in \mathbb{N}`$, numerical evidence and formal derivation suggest that a finite oscillation remains even in the limit $`N \to \infty`$.
 
 (To gather reliable numerical evidence, controlled and effective numerical methods had to be applied to the problem. Most of the results have been obtained using Newton's method, extended by an exact error bound calculation made possible by a global upper bound of a relevant second derivative. (For details see the paragraph **Controlled Newton–Raphson method** in [Section 3.7.1](https://arxiv.org/pdf/2402.15892#subsubsection.3.7.1)))
 
-To show the raw numerical evidence, see the following plot, where several equilibrium $P^*_N(x_A,x_B)$ values are plotted for large $N$ sampling numbers (from 1 to 300 with stepsize $\Delta N =5$).
+To show the raw numerical evidence, see the following plot, where several equilibrium $`P^*_N(x_A,x_B)`$ values are plotted for large $`N`$ sampling numbers (from 1 to 300 with stepsize $`\Delta N =5`$).
 
 <p align="center">
   <img src="img_II/Prior_Numerics.svg" alt="Statistical Games figure" height="500">
@@ -1293,9 +1286,9 @@ And then to compare the results of a rather complicated and not completely rigor
 </p>
 
 For the exact conjectured form of the asymptotic formula, see [Conjecture 4.3](https://arxiv.org/pdf/2402.15892#conjecture.4.3) in the paper.
-The connection between the numerically calculated values and the asymptotic formula is convincingly demonstrated by the above plot. The diamonds (◇) are almost always "capturing" the corresponding coloured dots (●), i.e. the asymptotic expression is getting closer to the numerical values as $N$ increases.
+The connection between the numerically calculated values and the asymptotic formula is convincingly demonstrated by the above plot. The diamonds (◇) are almost always "capturing" the corresponding coloured dots (●), i.e. the asymptotic expression is getting closer to the numerical values as $`N`$ increases.
 
-Although finite oscillations appear to remain in the asymptotic regime, a simplified approximate formula for the limiting prior might be worth mentioning. See below the contour plot of this "good approximation" of the $P^*_N(x_A,x_B)$ equilibrium prior values for large $N$:
+Although finite oscillations appear to remain in the asymptotic regime, a simplified approximate formula for the limiting prior might be worth mentioning. See below the contour plot of this "good approximation" of the $`P^*_N(x_A,x_B)`$ equilibrium prior values for large $`N`$:
 
 <p align="center">
   <img src="img_II/BayesianPrior.png" alt="Statistical Games figure" height="500">
@@ -1306,7 +1299,7 @@ Although finite oscillations appear to remain in the asymptotic regime, a simpli
   </em>
 </p>
 
-I think that these analytical and numerical results demonstrate that the construction makes sense and gives reasonable suggestions even in the $N \to \infty$ limit. Well-behaved asymptotic limits are important and reassuring, because this can demonstrate that equilibrium strategies in the limit correspond to classical "frequentist" and Bayesian statistical approaches.
+I think that these analytical and numerical results demonstrate that the construction makes sense and gives reasonable suggestions even in the $`N \to \infty`$ limit. Well-behaved asymptotic limits are important and reassuring, because this can demonstrate that equilibrium strategies in the limit correspond to classical "frequentist" and Bayesian statistical approaches.
 
 ### General Statistical Games
 
@@ -1348,7 +1341,7 @@ Because of that, it can happen that a devoted "Frequentist" concludes that all h
 
 On the other hand, "Bayesian" philosophy commits itself to quantifying our uncertainty about the plausibility of models by probability distributions. If there were no other way to formalise uncertainty, then, perhaps, this would be the only way to go. However, the "Frequentist" critique, that models or hypotheses do not possess well-defined probabilities, might be taken seriously, and even some Bayesians admit that "prior" probabilities and "likelihoods" (or parameter-dependent chances appearing in stochastic models) are somewhat different.
 
-(There are further disagreements, including the [interpretation of probability](https://plato.stanford.edu/entries/probability-interpret/), the role of subjectivity and objectivity in statistics, etc. Which I might not be able to untangle in this blog post.)
+(There are further disagreements, including the [interpretation of probability](https://plato.stanford.edu/entries/probability-interpret/), the role of subjectivity and objectivity in statistics, etc. Which goes beyond the scope of this blog post.)
 
 #### Unification via Games and utility functions
 
@@ -1358,27 +1351,27 @@ So far, we treated Fisher and Bayesian games in parallel, but separately.
 A unification is achievable if we generalise the "most natural" logarithmic utility function to the whole family of "natural" utility functions introduced earlier.
 
 > **(Simplified) [Definition 5.1](https://arxiv.org/pdf/2402.15892#definition.5.1)** (Statistical game)
-Loosely speaking, a Statistical game is the same as the continuous Bayesian game $\mathfrak{BGame}(N, K_A , K_B , M )$, except that the utility function is an isoelastic utility function:
+Loosely speaking, a Statistical game is the same as the continuous Bayesian game $`\mathfrak{BGame}(N, K_A , K_B , M )`$, except that the utility function is an isoelastic utility function:
 >$$
 u_\gamma (c) = \begin{cases}
 \frac{c^{1-\gamma} - 1}{1 - \gamma}, & \text{if } \gamma \neq 1, \\
 \ln(c), & \text{if } \gamma = 1.
 \end{cases}
 >$$
->with relative risk aversion parameter $\gamma > 0$.
+>with relative risk aversion parameter $`\gamma > 0`$.
 The above-defined Statistical Game will be denoted as
-$\mathfrak{SGame}(N, K_A , K_B , M, γ)$.
+$`\mathfrak{SGame}(N, K_A , K_B , M, \gamma)`$.
 
 <p align="center">
   <img src="img_II/u_gamma_c.svg" alt="Statistical Games figure" width="600">
 </p>
 <p align="center">
   <em>
- Figure 45: Isoelastic utility functions, for several relative risk aversion parameters.
+  <a href="https://arxiv.org/pdf/2402.15892#subsubsection.E.3.2" target="_blank">Figure 45</a>: Isoelastic utility functions u(c) as a function of the player's capital, for several relative risk aversion parameters.
   </em>
 </p>
 
-The visualised isoelastic utility functions for various relative risk aversion parameters $\gamma$ are shown in the plot above. For $0 < \gamma < 1$, an Agent is not feeling infinitely bad about losing all her capital, while for $\gamma \ge 1$, there is no worse than losing everything. In the $\gamma \to 0$ limit, the utility function becomes linear, representing a risk-neutral Agent, while at $\gamma = 1$ we get back the logarithmic utility function.
+The visualised isoelastic utility functions for various relative risk aversion parameters $`\gamma`$ are shown in the plot above. For $`0 < \gamma < 1`$, an Agent is not feeling infinitely bad about losing all her capital, while for $`\gamma \ge 1`$, there is no worse than losing everything. In the $`\gamma \to 0`$ limit, the utility function becomes linear, representing a risk-neutral Agent, while at $`\gamma = 1`$ we get back the logarithmic utility function.
 
 The main advantage of such a one-parameter generalisation of continuous splitting Games is that both Fisher and Bayesian games appear as special cases:
 
@@ -1392,17 +1385,17 @@ $$
 
 The identification with Fisher games, of course, needs to be made more precise, but the correspondence will be made explicit soon.
 
-We use once more the **smallest nontrivial example**, i.e. $\mathfrak{SGame}(1,0,1,2,\gamma)$ to build intuition.
+We use once more the **smallest nontrivial example**, i.e. $`\mathfrak{SGame}(1,0,1,2,\gamma)`$ to build intuition.
 
-In general, the optimal splitting ratios $p'^*_{\gamma,k}$ do not follow Bayes' rule anymore, but a deformed form of it:
+In general, the optimal splitting ratios $`p'^*_{\gamma,k}`$ do not follow Bayes' rule anymore, but a deformed form of it:
 
 $$
 p'_{\gamma,k}(P) = \frac{( P \ p_k(A))^{1/\gamma}}{( P \ p_k(A))^{1/\gamma} + ( (1-P) \ p_k(B))^{1/\gamma}}
 $$
 
-And in general, $P^*_\gamma$ is not minimising the conditional Shannon entropy, but it can be found by searching for the value that minimises the expected utility of Player 1.
+And in general, $`P^*_\gamma`$ is not minimising the conditional Shannon entropy, but it can be found by searching for the value that minimises the expected utility of Player 1.
 
-For the **smallest nontrivial example**, $\mathfrak{SGame}(1,0,1,2,\gamma)$, the expected utility relative to an "insider player" looks the following for $0 < \gamma \le 1$ values:
+For the **smallest nontrivial example**, $`\mathfrak{SGame}(1,0,1,2,\gamma)`$, the expected utility relative to an "insider player" looks the following for $`0 < \gamma \le 1`$ values:
 
 <p align="center">
   <img src="img_II/EUP_1012_01.svg" alt="Statistical Games figure" width="600">
@@ -1413,7 +1406,7 @@ For the **smallest nontrivial example**, $\mathfrak{SGame}(1,0,1,2,\gamma)$, the
   </em>
 </p>
 
-The minimum position of the expected utility curve shifts from $P^*_{\gamma \to 0} = 1/3$ (the Fisher game solution) to $P^*_{\gamma = 1} = 1/\sqrt{5} \approx 0.447$ (the Bayesian game solution) as we tune the relative risk aversion parameter $\gamma$ from 0 to 1.
+The minimum position of the expected utility curve shifts from $`P^*_{\gamma \to 0} = 1/3`$ (the Fisher game solution) to $`P^*_{\gamma = 1} = 1/\sqrt{5} \approx 0.447`$ (the Bayesian game solution) as we tune the relative risk aversion parameter $`\gamma`$ from 0 to 1.
 
 A similar shift can be seen in the splitting ratios as well (see [Figure 38](https://arxiv.org/pdf/2402.15892#figure.caption.113) in the paper for the smallest nontrivial example).
 
@@ -1430,10 +1423,10 @@ For illustrative purposes, a slightly larger example is shown below:
 
 
 
-We can observe that as the relative risk aversion parameter $\gamma$ approaches 0, almost all splitting ratios $p'^*_{\gamma,k}$ approach either 0 or 1, and only one in-between line takes a non-extreme value.
+We can observe that as the relative risk aversion parameter $`\gamma`$ approaches 0, almost all splitting ratios $`p'^*_{\gamma,k}`$ approach either 0 or 1, and only one in-between line takes a non-extreme value.
 This pattern remains valid in general and provides an intuition on how discrete Fisher games and continuous Statistical games can be linked.
 
-It can be rigorously proven – and the proof can be fond in [Appendix F](https://arxiv.org/pdf/2402.15892#appendix.F) – that in the $\gamma \to 0$ limit the optimal splitting ratio for a critical $k^*$ value (which is the critical number of 1-s for the corresponding Fisher game) $p'^*_{\gamma,k^*}$ converges to nothing else than the equilibrium probability of guessing A, $\nu^*$, in the corresponding Fisher game.
+It can be rigorously proven – and the proof can be fond in [Appendix F](https://arxiv.org/pdf/2402.15892#appendix.F) – that in the $`\gamma \to 0`$ limit the optimal splitting ratio for a critical $`k^*`$ value (which is the critical number of 1-s for the corresponding Fisher game) $`p'^*_{\gamma,k^*}`$ converges to nothing else than the equilibrium probability of guessing A, $`\nu^*`$, in the corresponding Fisher game.
 Formally:
 
 $$
@@ -1443,12 +1436,21 @@ $$
 (See the precise statement in [Theorem 5.2](https://arxiv.org/pdf/2402.15892#theorem.5.2).)
 
 This result accomplishes several important things: 
-- It justifies the use of symmetric equilibria in Fisher games, because for all $\gamma > 0$ the equilibrium solutions are unique (and uniformly randomised) while "degeneracies" (which is a bit unfortunate [technical term](https://www.cs.cmu.edu/~sandholm/cs15-892F13/algorithmic-game-theory.pdf)) appear only in the discrete Fisher games.
+- It justifies the use of symmetric equilibria in Fisher games, because for all $`\gamma > 0`$ the equilibrium solutions are unique (and uniformly randomised) while "degeneracies" (which is a bit unfortunate [technical term](https://www.cs.cmu.edu/~sandholm/cs15-892F13/algorithmic-game-theory.pdf)) appear only in the discrete Fisher games.
 - It also gives rigidity to the construction of Fisher games; a randomised policy is needed in the critical case, to join Fisher games with always deterministic splitting of Statistical games.
-- Finally together with the matching of priors ($\lim_{\gamma \to 0} P^*_\gamma = P^*_{\text{Fisher}}$, $\lim_{\gamma \to 1} P^*_\gamma = P^*_{\text{Bayes}}$) it gives a unifying framework for both Fisher and Bayesian games.
+- Finally together with the matching of priors ($`\lim_{\gamma \to 0} P^*_\gamma = P^*_{\text{Fisher}}`$, $`\lim_{\gamma \to 1} P^*_\gamma = P^*_{\text{Bayes}}`$) it gives a unifying framework for both Fisher and Bayesian games.
 
 
 ## Call for collaboration
+
+<p align="center">
+  <img src="img/ArtCollaboration.jpg" alt="Statistical Games figure" width="500">
+</p>
+<p align="center">
+  <em>Artwork by Christina Massey & Sylvia Schwartz, result of an
+      <a href="https://visionaryprojects.org/interviews/a-call-for-art-collaboration-and-support-in-the-era-of-quarantine-the-usps-art-project" target="_blank">art collaboration project</a>.
+      </em>
+</p>
 
 ### Subsequent public and behind-the-scenes developments
 
@@ -1457,18 +1459,27 @@ I dared to start this research program alone, but I don't wish to own the though
 The uncovered relations, proved theorems, and relevant philosophical arguments are, in my view, public goods, and everybody is invited to apply, build upon, extend, critique, and improve them.
 
 Many developments have occurred since [Statistical Games](https://arxiv.org/abs/2402.15892) were first made public in February 2024. (Relevant references and additional materials related to this paper – such as slides for talks, open source software, notebooks, errata  – are collected on the project's [GitHub page](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames).)
-Related to the broader research program, notable public and behind-the-scenes developments can be listed:
+Related to the broader research program, notable public and behind-the-scenes developments manifested:
 
-- I collected mostly philosophical arguments together in an (unfinished) essay – that are not (sometimes not yet) formalised thoughts which felt to be expressible more naturally in "wordy" human language –, (and made it public on [GitHub](https://github.com/Konczer/UncertaintyTheory/tree/main/Essay)): [Essay on Uncertainty](https://raw.githubusercontent.com/Konczer/UncertaintyTheory/refs/heads/main/Essay/pdf/EssayOnUncertainty.pdf);
-- The concept has been generalised for multiple Agents interacting with an uncertain environment and each other by introducing "Extended Equilibrium". In this equilibrium concept, Agents are assumed to adopt strategies and form subjective beliefs about the uncertain environment in such a way that no Agent expects better outcomes by unilaterally changing her strategy. (For the details, see the arXiv paper: [Non-Cooperative Games with Uncertainty](https://arxiv.org/abs/2503.01889) and/or the project's [GitHub page](https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium));
+- I collected mostly philosophical arguments together in an (unfinished) essay – that are not (or not yet) formalised thoughts which felt to be expressible more naturally in "wordy" human language –, (and made it public on [GitHub](https://github.com/Konczer/UncertaintyTheory/tree/main/Essay)): [Essay on Uncertainty](https://raw.githubusercontent.com/Konczer/UncertaintyTheory/refs/heads/main/Essay/pdf/EssayOnUncertainty.pdf);
+- The concept has been generalised to multiple Agents interacting with an uncertain environment and each other by introducing "Extended Equilibrium". In this equilibrium concept, Agents are assumed to adopt strategies and form subjective beliefs about the uncertain environment in such a way that no Agent expects better outcomes by unilaterally changing her strategy. (For the details, see the arXiv paper: [Non-Cooperative Games with Uncertainty](https://arxiv.org/abs/2503.01889) and/or the project's [GitHub page](https://github.com/Konczer/UncertaintyTheory/tree/main/ExtendedEqilibrium));
 - There is an array of unpublished results, including:
   - Continuous parameter estimation problems, e.g. (the continuous version of the) [German tank](https://en.wikipedia.org/wiki/German_tank_problem) or the [taxi cab](https://web.archive.org/web/20250107001334/http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf) problem a.k.a. [serial number analysis](http://dx.doi.org/10.1080/01621459.1954.10501218);
   - Using the framework to address the exploration vs. exploitation trade-off in [Reinforcement Learning](https://en.wikipedia.org/wiki/Reinforcement_learning) problems. (For the simplest possible ["Bandit"](https://tor-lattimore.com/downloads/book/book.pdf) (for a particular example of such a problem, see [Section 7.7](https://arxiv.org/pdf/2402.15892#subsection.7.7)), the Game-theoretic approach naturally suggests behavioural strategies, i.e acquisition functions, which display a balance between exploration and exploitation for finite horizon problems);
   - Results related to the [Ellsberg paradox](https://en.wikipedia.org/wiki/Ellsberg_paradox). (Including comparison with [experimental findings](https://scispace.com/pdf/response-time-and-decision-making-an-experimental-study-1mhlc5u1oa.pdf).);
   - A framework for dynamical systems that could handle non-equilibrium statistical physics, and converges to invariant measures in the long-time limit. (Concrete calculations has been made for the simplest [sawtooth map](https://en.wikipedia.org/wiki/Dyadic_transformation) (also known as Bernoulli map or dyadic transformation.) and preliminary results for probably the simplest Hamiltonian chaotic system, the geodesic flow on the [Bolza surface](https://en.wikipedia.org/wiki/Bolza_surface) (a [genus 2 compact Riemann surface](https://en.wikipedia.org/wiki/Genus_g_surface#Genus_2) with constant negative curvature) also called [Hadamard's billiard](https://en.wikipedia.org/wiki/Hadamard%27s_dynamical_system).)
-  - And several other topics listed in [Section 7: Future work and extension](https://arxiv.org/pdf/2402.15892#section.7).
+  - And further results in several other topics listed in [Section 7: Future work and extension](https://arxiv.org/pdf/2402.15892#section.7).
 
 ### An invitation for collaboration
+
+<p align="center">
+  <img src="img/PersianRug.jpg" alt="Statistical Games figure" width="500">
+</p>
+<p align="center">
+<em>The weaving of a Persian rug (Kelim Gashgai) symbolises the nature of interdisciplinary research, arranging and weaving together separate threads of disciplines to one new coherent story. (Image source:
+      <a href="https://rugtales.com/en/About-Us/Rugtales-Blog/Die-Kunst-der-Herstellung-von-Perserteppichen/" target="_blank"> Rugtales Blog</a>.)
+      </em>
+</p>
 
 The outlined program of reformulating statistics – and possibly probability theory – in a Game-theoretic framework is far from being complete, and it seems clear that this endeavour is much bigger than what one person can achieve alone.
 The results and work I made public address some important aspects of the program, but it is rather a fertile ground for further questions and investigations than a finished piece of work.
@@ -1483,8 +1494,20 @@ If you found this read and this playful approach to statistics interesting, then
 - Contributing by code:
     - Feel free to contribute to the [Statistical Games](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames) or the broader [Uncertainty theory](https://github.com/Konczer/UncertaintyTheory/tree/main) on GitHub by opening issues, suggesting features, reporting bugs, or making pull requests.
  There is an uploaded Python package, [statgames](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/Software/Python/statgames), which can be further developed, but there are many other opportunities for small and large coding contributions as well.
-- Academic collaboration options:
-  - I am happy to talk about the topic at seminars, workshops, conferences, both online and offline. Let me know if some aspects of this line of research align with your group's or department's interests. Feel free to contact or invite me!
+
+#### Academic collaboration options 
+
+<p align="center">
+  <img src="img/CrochetHyperbolicPlane.JPG" alt="Statistical Games figure" width="500">
+</p>
+<p align="center">
+<em>A <a href="https://dainataimina.blogspot.com/2011/12/hyperbolic-planes.html" target="_blank">Fiber Sculpture</a> by <a href="https://en.wikipedia.org/wiki/Daina_Taimi%C5%86a" target="_blank">Daina Taimiņa</a>, a piece of crochet hyperbolic plane. (Related to the simplest self-mixing "automictic" physical system.)
+      </em>
+</p>
+
+An incomplete menu with a few scattered project suggestions:
+
+  - I am happy to talk about the topic at seminars, workshops, conferences, both online and offline. Let me know if some aspects of this line of research align with your group's or department's interests. Feel free to contact or invite me! (Collected slides and other resources for previous talks are collected under the project's [Talks](https://github.com/Konczer/UncertaintyTheory/tree/main/StatisticalGames/Talks) directory.)
   - Cite my work. The essential concepts in this blogpost can be found in two arXiv papers, and one (unfinished, live) essay:
     - [Statistical Games](https://www.arxiv.org/abs/2402.15892)
     - [Non-Cooperative Games with Uncertainty](https://arxiv.org/abs/2503.01889)
@@ -1492,11 +1515,13 @@ If you found this read and this playful approach to statistics interesting, then
   - For Mathematicians:
     - Completing and checking proofs. 
  In general, the topic provides a fertile ground for various mathematical explorations. To mention a few immediate problems: the asymptotic analysis (see [Appendix D](https://arxiv.org/pdf/2402.15892#appendix.D)) requires delicate inequalities for rigorous proofs. Another mathematically interesting topic might be the generalisation of the fixed point property of isoelastic utility functions (Theorem E.4 in [E.3.2](https://arxiv.org/pdf/2402.15892#subsubsection.E.3.2)) to more general settings.
+    - Naturally, the language of mathematics is so versatile that it would be futile to list all possible continuations of this work. Let me know if you see opportunities for collaboration, I am more than interested in others’ suggestions.
   - For Statisticians:
     - Finding problems which can be effectively addressed by the Game-theoretic approach. Calculating exact equilibria is feasible only for small and/or simple problems, but questions related to multiple-hypothesis testing, sequential analysis, problems with high symmetry, etc., might be within reach.
- (Approximative methods could really open up possibilities for practical applications.)
+    - Identify edge cases, where different approaches give markedly different results, and where the Game-theoretic framework could stay reasonable while traditional methods fail.
+(Approximative methods could really open up possibilities for practical applications.)
   - For Computer Scientists:
-    - Finding effective and scalable algorithms to calculate or approximate equilibrium strategies. The [Blahut–Arimoto algorithm](https://en.wikipedia.org/wiki/Blahut%E2%80%93Arimoto_algorithm) appears to be a promising candidate for approximate calculations, but it would need some modifications and generalisation for continuous cases.
+    - Finding effective and scalable algorithms to calculate or approximate equilibrium strategies. (A method analogous of Markov Chain Monte Carlo ([MCMC](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo)) for Bayesian statistics.) The [Blahut–Arimoto algorithm](https://en.wikipedia.org/wiki/Blahut%E2%80%93Arimoto_algorithm) appears to be a promising candidate for approximate calculations, but it would need some modifications and generalisation for continuous cases.
   - Machine Learning researchers:
     - One of the most direct links between Machine Learning architectures and the Game-theoretic framework might be through [Generative Adversarial Networks (GANs)](https://en.wikipedia.org/wiki/Generative_adversarial_network), and [Self-play](https://en.wikipedia.org/wiki/Self-play) techniques typically in Reinforcement Learning.
  I am happy to discuss ways to accommodate such architectures to tackle problems containing deep uncertainty.
@@ -1505,10 +1530,10 @@ If you found this read and this playful approach to statistics interesting, then
     - Reinforcement learning:
        - The framework could naturally define acquisition functions, which automatically balance exploration and exploitation. However, in practice, this definition is implicit; therefore, for realistic problems, only approximate methods can be feasible. Still, it could provide a solid theoretical foundation, a benchmark for various heuristics, and insights into how to design better acquisition functions.
        - A framework can be extended to incorporate [Multi-Agent Reinforcement Learning](https://www.marl-book.com/) under uncertainty, where multiple Agents interact with each other and an uncertain environment. (This is related to the [Extended Equilibrium](https://arxiv.org/abs/2503.01889) concept mentioned above.)
-  - Physicists:
+  - For Physicists:
     - I believe the framework could address the foundations of Statistical Physics. If we ask "What is Statistical Physics used for?", a natural answer is: "To help make decisions and form strategies for which the outcome is dependent on some large-scale property of a complex physical system."
  Therefore, the physical system in question can be embedded in a decision-making problem, and the Game-theoretic framework can be applied to it.
- (I think this is a wiser approach than associating our ignorance about a system with a uniform probability distribution.) To restore answers and strategies based on standard invariant measures, however, we need to allow the Agent to give an initial stir or be able to blow on the system. (This initial perturbation can be gentle, but has to be finite.)
+ (I think this is a wiser approach than associating our ignorance about a system with a uniform probability distribution.) To restore answers and strategies based on standard invariant measures, however, we need to allow the Agent to give an initial stir or be able to gently blow on the system. (This initial perturbation can be minuscule, but has to be finite.)
  By this approach, we can naturally handle "non-equilibrium" statistical physics and address the process of reaching the equilibrium as well.
  (See [Section 7.8](https://arxiv.org/pdf/2402.15892#subsection.7.8) where the construction – without the later added steering concept – is briefly outlined.)
     - There are various use cases for parameter estimation and data prediction in experimental physics. For high-stakes, low-data measurements, data analysis and future experimental design must be performed with the utmost care. In such cases, the Game-theoretic framework could provide valuable tools.
@@ -1521,34 +1546,45 @@ If you found this read and this playful approach to statistics interesting, then
  However, a rigorous and scalable definition of deep uncertainty could enhance our modelling and mitigation strategies, avoid prematurely committing to unsupported assumptions, and make our economic systems more robust.
     - Topics, often discussed in the field of [Behavioural Economics](https://en.wikipedia.org/wiki/Behavioral_economics) (such as [ambiguity aversion](https://en.wikipedia.org/wiki/Ambiguity_aversion) or more specifically the [Ellsberg paradox](https://en.wikipedia.org/wiki/Ellsberg_paradox)) might be addressed in this framework. Perhaps some "irrational" human behaviours could be explained as coherent strategies rather than merely faulty reasoning and decision-making heuristics.
     - I see some parallels between the concepts and properties investigated in [Appendix E](https://arxiv.org/pdf/2402.15892#appendix.E) and [Ergodic Economics](https://en.wikipedia.org/wiki/Ergodicity_economics). Perhaps these connections could be explored and developed further.
-  - Cognitive Scientists
+  - For Cognitive Scientists
     - There are findings in cognitive science on [neural foundations of economic decision-making](https://web.archive.org/web/20250316042146/https://thesis.library.caltech.edu/470/) (Ambiguous decision-making problems seem to be connected to the amygdala and the orbitofrontal cortex.) A coherent theoretical foundation for decision-making under uncertainty could inform further research and experimental design to understand better the neural and biological processes used by humans – and potentially other living organisms – to navigate an uncertain environment.
-  - Philosophers:
+  - For Philosophers:
     - I had to admit to myself that reasoning about different structures and properties that we project onto unknown parts of reality is not a strictly scientific, but rather partly a metaphysical endeavour. (If we refer to probability theory and statistics to use empirical data to evaluate and judge theories, then how can we test frameworks about probability theory and statistics themselves?)
  However, even if choosing between alternative frameworks is not decidable by experiments, there might be more delicate methods and arguments which can differentiate between various approaches. Philosophy, I think, is the field where such delicate matters can be best addressed and discussed.
  A few philosophical questions might be: 
-       - Can probability be defined with no circular definition (or is the best we can do a self-consistent theory)? 
-       - What are the "virtues" of metaphysical frameworks? (e.g. Simplicity, explanatory power, internal consistency, external consistency with other accepted frameworks, usefulness, beauty, etc.?)
+       - Can probability be defined with no circular definition (or the best we can do is a self-consistent theory)? Is [Epistemic Circularity](https://iep.utm.edu/ep-circ/) unavoidable?
+       - What are the "virtues" of metaphysical frameworks? (e.g. simplicity, explanatory power, internal consistency, external consistency with other accepted frameworks, usefulness, beauty, etc.?)
        - How and on what basis can we compare different frameworks?
        - Where are the limits of imagined possibilities? Can we address extreme cases, such as problems similar to [Pascal's wager](https://plato.stanford.edu/entries/pascal-wager/), in a satisfactory way?
   - Interdisciplinary research groups:
     - The topic is by its very nature interdisciplinary. If you are part of an interdisciplinary group – such as the [Santa Fe Institute](https://www.santafe.edu/) – you could consider taking a more holistic approach. I would be more than happy to engage in such environments.
-- Applied, industrial, business and policy-making collaboration options:
+#### Applied, industrial, business and policy-making collaboration options
+
+<p align="center">
+  <img src="img/IndustrialWeaving.jpg" alt="Statistical Games figure" width="500">
+</p>
+<p align="center">
+<em>Industrial weaving machine (power-operated loom). (Image source: <a href="https://www.motorpowerco.com/textile" target="_blank">Motor Power Company srl</a>.)
+      </em>
+</p>
+
   - [AI alignment](https://en.wikipedia.org/wiki/AI_alignment), in my view, is a much more fundamental requirement than it is often presented. Alignment, in its basic form, is about constructing loss functions, incentive structures, and pipelines that prevent and mitigate unwanted and unexpected consequences. (In an age where we have systems which can more and more effectively optimise and achieve goals, we have to be more and more careful what we wish for.)
  I strongly believe that a more nuanced approach to uncertainty could help design more cautious and better-aligned AI systems.
   - [AI safety](https://en.wikipedia.org/wiki/AI_safety) is, I think, a broader, more complex but also exceedingly important topic. Predicting how deployed AI systems will impact and change our societies, economies, political systems, cultures, or armed conflicts is a huge challenge. Deciding what kind of changes we wish to accelerate or avoid is an even less unclear, [wicked problem](https://en.wikipedia.org/wiki/Wicked_problem) that might not have a single correct answer, only dilemmas with trade-offs. However, given the potential dangers of this new and powerful technology, developing policies, safety measures, and guidelines is crucial.
  A principled way of reasoning about uncertainty could help hedge between dangers and opportunities, and might help design safe but forward-looking AI policies.
   - [Climate change](https://en.wikipedia.org/wiki/Climate_change) and the related environmental, social and geopolitical risks are among the most pressing issues of our time. Effective policy-making has to strike a balance between environmental and various other risk mitigation and global cooperation. However, the consequences of climate change are global, potentially catastrophic, and contain tipping points and irreversible changes.
  Therefore, careful hedging and the acknowledgement of deep uncertainty might be essential to address these challenges.
-  - Industrial discovery of resources and raw materials is often a high-stakes, low-data problem. There is potentially huge potential in, for example, [geological Hydrogen](https://royalsociety.org/-/media/policy/projects/natural-hydrogen/natural-hydrogen-policy-briefing.pdf),
- which is highly underdiscovered, and could provide a carbon-free energy source for humanity until we develop the appropriate infrastructure to generate, distribute and store energy from renewable sources. (If not finding alternative ways to generate electricity, such as the slowly but steadily developing [nuclear fusion reactors](https://en.wikipedia.org/wiki/Fusion_power).)
+  - Industrial discovery of resources and raw materials is often a high-stakes, low-data problem. There is potentially a huge opportunity in, for example, [geological Hydrogen](https://royalsociety.org/-/media/policy/projects/natural-hydrogen/natural-hydrogen-policy-briefing.pdf),
+ which is highly underdiscovered, and could provide a carbon-free energy source for humanity until we develop the appropriate infrastructure to generate, distribute and store energy from renewable sources. (Unless alternative ways to generate electricity are found, such as the slowly but steadily developing [nuclear fusion reactors](https://en.wikipedia.org/wiki/Fusion_power).)
  An integrated approach that considers not only geological and geophysical data indicating potential deposits but also economic potential could lead to more strategic discovery processes and lower the risk for businesses venturing into such projects.
  A similar approach could be used for general [mineral and other resource discovery](https://pubs.geoscienceworld.org/segweb/segdiscovery/article-abstract/doi/10.5382/Geo-and-Mining-02/586319/Mineral-Exploration-Discovering-and-Defining-Ore?redirectedFrom=fulltext).
   - Finance, automated trading is a natural area where a more principled decision-making and hedging strategy could prove lucrative (and even bring a stabilising effect to the markets if widely adopted).
 
+The list could go on, and I am sure that there are many more opportunities and directions that I can comprehend. I encourage everyone to reach out to me with further possibilities, especially if they see a chance for collaboration.
+
 ## Epilogue
 
-Thank you for reading and engaging with this blog post and the topic in general. In the end I feel appropriate the quote a paragraph from the [Acknowledgement](https://arxiv.org/pdf/2402.15892#section.8):
+Thank you for reading and engaging with this blog post and the topic in general. In the end, I feel it is appropriate to quote a paragraph from the [Acknowledgement](https://arxiv.org/pdf/2402.15892#section.8):
 
 > I want to express my deep gratitude to all readers of this relatively long and sometimes technical
 work. I do believe that a substantial part of a theoretical work’s value comes from the readers and the
@@ -1556,54 +1592,43 @@ ideas emerging from the interaction. If this work can inspire anybody to think d
 uncertainty, statistics or decision-making by reading, skimming or appreciating mathematical details,
 that brings me great joy and gratification.
 
-<!--
 
+## Sigillum
 
-
-- 
-
-The outlined program of reformulating statistics – and possibly probability theory – in a Game-theoretic framework is far from being complete.
-Further developments have happened since I made Statistical Games public in February 2024 (I collect additional materials, e.g. software, talks, etc., on the project's GitHub page). A related arXiv paper is now out *Non-Cooperative Games with Uncertainty*, addressing the problem of multiple Agents simultaneously interacting with an uncertain environment and each other.
-
-If you found this read and this playful approach to statistics interesting, then consider engaging with the project. There are multiple ways to get involved:
-
-- Relatively low engagement options:
-  - Give feedback or ask questions publicly on [alphAxiv](https://www.alphaxiv.org/pdf/2402.15892);
-  - Reach out to me (you can find contact details on the [paper](https://www.arxiv.org/pdf/2402.15892) as well as on my [homepage](https://konczer.github.io/)), and give feedback, ask questions and/or let's discuss collaboration opportunities privately;
-  - Reshare, repost, repurpose the material. All materials are free to use under [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) Creative Commons license. I am much more interested in creating and spreading useful and high-quality content than getting credit, but I am grateful for every citation, and I try to make citations easy.
-- Academic collaboration options:
-  - I am happy to talk about the topic at seminars, workshops, conferences, both online and offline. Let me know if some aspects of this line of research align with your group's or department's interests. Feel free to contact or invite me!
-  - Cite my work. The essential concepts in this blogpost can be found in two arXiv papers, and one (unfinished, live) essay:
-    - [Statistical Games](https://www.arxiv.org/abs/2402.15892)
-    - [Non-Cooperative Games with Uncertainty](https://arxiv.org/abs/2503.01889)
-    - [Essay on Uncertainty](https://github.com/Konczer/UncertaintyTheory/blob/main/Essay/pdf/EssayOnUncertainty.pdf)
-  - For Mathematicians:
-    - Completing proofs, inequalities, asymptotic analysis, etc.
-  - Statisticians:
-    - Finding problems which can be effectively addressed by this approach
-  - For Computer Scientists
-    - Blahut–Arimoto algorithm
-  - Machine Learning researchers:
-    - Active learning under uncertainty
-    - Reinforcement learning
-       - Acquisition functions (exploration vs. exploitation trade-off)
-       - A framework for Multi-Agent Reinforcement Learning under uncertainty
-  - Physicists
-    - If you are interested in an alternative foundation for statistical physics
-    - Quantum metrology 
-  - For Economists
-    - A formalisation of deep or Knightian uncertainty
-  - Cognitive Scientists
-    - Modelling decision making under uncertainty
-  - Philosophers:
-    - Metaphysics of probability and uncertainty
-  - Interdisciplinary research groups:
-    - [Santa Fe Institute](https://www.santafe.edu/) 
-- Contributing by code:
-- Applied, industrial, business collaboration options:
-  - AI alignment and safety
-  - Climate policy and risk management
-  - Resource, i.e. Hydrogen or mineral discovery
-  - Finance and automated trading
-
-  -->
+<p align="center">
+    <em>Made public by:</em>
+    <br>
+    <b>
+    <a href="https://konczer.github.io/" target="_blank">József Konczer</a>
+    </b>
+    </br>
+  <img src="img/Whirlpool.png" 
+     alt="Wiener quote" 
+     width="200"
+     title="We are but whirlpools in a river of ever-flowing water. We are not stuff that abides, but patterns that perpetuate themselves. — Norbert Wiener">
+  </br>
+  <a href="https://orcid.org/0000-0002-7900-2767" target="_blank">0000-0002-7900-2767</a>
+    </br>
+    konczer.j@gmail.com
+</p>
+<p align="center">
+<em>Path to the original document:</em>
+<br>
+<br>
+  <a href="https://github.com/Konczer/UncertaintyTheory/blob/main/StatisticalGames/Blog/README.md" 
+  target="_blank">
+  <img src="img/BlogQR.svg" alt="Statistical Games figure" height="150">
+  </a>
+</p>
+<p align="center">
+<em>Spacetime-stamp:</em>
+<br>
+  <a href="https://www.epochconverter.com/?q=1768348800" 
+  target="_blank">
+  <img src="img/AstroDate_20260114.svg" alt="Statistical Games figure" height="150">
+  </a>
+</p>
+<p align="center">
+    14 January 2026, <br>
+    London, Budapest
+</p>
