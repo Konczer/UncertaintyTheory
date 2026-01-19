@@ -744,7 +744,7 @@ For further details and references, see [Section 2.6](https://arxiv.org/pdf/2402
 
 Before continuing with abstract concepts, I invite you to explore your gut feelings on such betting opportunities.
 
-Imagine that you are really in the casino, and you are assured that outcome A can happen with probability $P=70\%$ and B with probability $(1-P)=30\%$.
+Imagine that you are really in the casino, and you are assured that outcome A can happen with probability $`P=70\%`$ and B with probability $`(1-P)=30\%`$.
 What portion of your initial capital would you push on A and what portion on B?
 (You need to put all of your chips on some outcome.)
 
