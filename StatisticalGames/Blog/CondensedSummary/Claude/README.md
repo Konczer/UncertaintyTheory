@@ -147,10 +147,9 @@ The general symmetric solution is presented in [Theorem 2.1](https://arxiv.org/p
 
 <p align="center">
   <em>
-    Equilibrium strategy plots for Fisher games. Each rectangle represents a possible outcome under equilibrium play: Player 2's sequence choice (columns) versus Player 1's sampling and guessing strategy (rows). Rectangle areas are proportional to outcome probabilities. Orange (■) indicates Player 1 wins; blue (■) indicates Player 1 loses. The intricate patterns emerge from the interplay of randomised strategies.
+    Equilibrium strategy plots for Fisher games. Each rectangle represents a possible outcome under equilibrium play: Player 2's sequence choice (columns) versus Player 1's sampling and guessing strategy (rows). Rectangle areas are proportional to outcome probabilities. Orange, <span style="color:#E7A046">■</span> indicates Player 1 wins; blue, <span style="color:#25548A">■</span> indicates Player 1 loses. The intricate patterns emerge from the interplay of randomised strategies.
   </em>
 </p>
-
 
 The strategy plots above show equilibrium solutions for larger Fisher games, displaying intricate fractal-like patterns where areas represent outcome probabilities under equilibrium play.
 
