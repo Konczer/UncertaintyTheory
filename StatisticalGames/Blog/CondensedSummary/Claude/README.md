@@ -110,7 +110,7 @@ The paper poses a problem entirely within traditional Game Theory: Two players p
 
 ### Fisher Games
 
-The paper provides a formal definition ([Definition 2.1](https://arxiv.org/pdf/2402.15892#definition.2.1)): In a Fisher game, Player 2 chooses between scenario A or B and produces a binary sequence of length M containing precisely K_A or K_B ones respectively. Player 1 (not knowing Player 2's actions) samples N bits from this sequence and, after observing their values, guesses which scenario was chosen. If correct, Player 1 wins.
+The paper provides a formal definition ([Definition 2.1](https://arxiv.org/pdf/2402.15892#definition.2.1)): In a Fisher game, Player 2 chooses between scenario A or B and produces a binary sequence of length M containing precisely $`K_A`$ or $`K_B`$ ones respectively. Player 1 (not knowing Player 2's actions) samples N bits from this sequence and, after observing their values, guesses which scenario was chosen. If correct, Player 1 wins.
 
 The simplest case (N=0) reduces to Matching Pennies—blind guessing with 50-50 equilibrium. This corresponds to the [statistically trivial case](https://arxiv.org/pdf/2402.15892#subsubsection.2.1.1) discussed in the paper. The smallest *nontrivial* case involves sampling one bit from a two-bit sequence, where scenario A contains only 0s and scenario B contains one 1 and one 0.
 
