@@ -98,13 +98,17 @@ Second, the Trickster cares about our *regret*—the difference between the best
 
 The paper poses a problem entirely within traditional Game Theory: Two players play a choosing-guessing game—what are their optimal strategies? This cautious approach allows investigating behaviour within a well-established framework while yielding rigorous, standalone formal statements.
 
+
+
 <p align="center">
   <img src="img/StatisticalGames.png" alt="Statistical Games figure" width="400">
 </p>
 <p align="center">
   <em>
- (Figure 6 in
-    <a href="https://arxiv.org/pdf/2402.15892" target="_blank">arXiv:2402.15892</a>.)
+    <a href="https://arxiv.org/pdf/2402.15892#figure.caption.28" target="_blank">Figure 6</a>: 
+    Strategy plot for the symmetric equilibrium of Game(N=4, K<sub>A</sub>=4, K<sub>B</sub>=6, M=10). 
+    This highly symmetric game produces an intricate fractal-like pattern. Rectangle areas represent 
+    outcome probabilities; orange indicates Player 1 wins, blue indicates Player 1 loses.
   </em>
 </p>
 
@@ -123,29 +127,27 @@ The general equilibrium solution involves three parameters:
 
 The general symmetric solution is presented in [Theorem 2.1](https://arxiv.org/pdf/2402.15892#theorem.2.1) and proven in [Appendix A](https://arxiv.org/pdf/2402.15892#appendix.A).
 
+
 <table>
   <tr>
     <td align="center" width="50%">
       <img src="img_II/StrategyPlot_2_2_4_7.png" alt="Strategy plot for Game(2,2,4,7)" width="100%"><br>
       <em>
- Fig.
-      <a href="https://arxiv.org/pdf/2402.15892#figure.caption.27" target="_blank">5a</a>:
- N=2, KA=2, KB=4, M=7.</em>
+      <a href="https://arxiv.org/pdf/2402.15892#figure.caption.27" target="_blank">Figure 5a</a>:
+      Game(N=2, K<sub>A</sub>=2, K<sub>B</sub>=4, M=7)</em>
     </td>
     <td align="center" width="50%">
       <img src="img_II/StrategyPlot_3_2_4_8.png" alt="Strategy plot for Game(3,2,4,8)" width="100%"><br>
-      <em>Fig.
-      <a href="https://arxiv.org/pdf/2402.15892#figure.caption.27" target="_blank">5b</a>:
- N=3, KA=2, KB=4, M=8.</em>
+      <em>
+      <a href="https://arxiv.org/pdf/2402.15892#figure.caption.27" target="_blank">Figure 5b</a>:
+      Game(N=3, K<sub>A</sub>=2, K<sub>B</sub>=4, M=8)</em>
     </td>
   </tr>
 </table>
 
 <p align="center">
   <em>
- Equilibrium Strategy plots for general Fisher games
- (Figure 5 in
-    <a href="https://arxiv.org/pdf/2402.15892" target="_blank">arXiv:2402.15892</a>.)
+    Equilibrium strategy plots for Fisher games. Each rectangle represents a possible outcome under equilibrium play: Player 2's sequence choice (columns) versus Player 1's sampling and guessing strategy (rows). Rectangle areas are proportional to outcome probabilities. Orange (■) indicates Player 1 wins; blue (■) indicates Player 1 loses. The intricate patterns emerge from the interplay of randomised strategies.
   </em>
 </p>
 
@@ -244,7 +246,14 @@ The key insight is that both Fisher and Bayesian games appear as special limitin
 </p>
 <p align="center">
   <em>
-    <a href="https://arxiv.org/pdf/2402.15892#figure.caption.114" target="_blank">Figure 39</a>: Splitting strategies for the Statistical game (N = 4, KA = 5, KB = 8, M = 14) as a function of relative risk aversion parameter.
+    <a href="https://arxiv.org/pdf/2402.15892#figure.caption.114" target="_blank">Figure 39</a>: 
+    Equilibrium splitting ratios p'<sub>γ,k</sub>* for the Statistical game SGame(N=4, K<sub>A</sub>=5, K<sub>B</sub>=8, M=14). 
+    <b>X-axis:</b> relative risk aversion parameter γ (from 0 to ~3). 
+    <b>Y-axis:</b> optimal capital allocation to scenario A (from 0 to 1). 
+    Each curve represents a different observed count k of 1s in the sample (k=0,1,2,3,4). 
+    As γ→0, all splitting ratios approach binary values (0 or 1), recovering Fisher game decisions. 
+    At γ=1 (Bayesian game), the ratios follow Bayes' rule. 
+    Horizontal gridlines at 1/2 and 14/39≈0.359.
   </em>
 </p>
 
@@ -282,8 +291,12 @@ The case where sample size goes to infinity is both mathematically interesting a
 </p>
 <p align="center">
   <em>
-    <a href="https://arxiv.org/pdf/2402.15892#figure.caption.96" target="_blank">Figure 32</a>:
- Binomial Fisher policy limit. Contour lines show 1% difference.
+    <a href="https://arxiv.org/pdf/2402.15892#figure.caption.96" target="_blank">Figure 32</a>: 
+    Binomial Fisher limiting policy s*(x<sub>A</sub>, x<sub>B</sub>) as N→∞. 
+    <b>X-axis:</b> density of 1s in scenario A (x<sub>A</sub>, from 0 to 1). 
+    <b>Y-axis:</b> density of 1s in scenario B (x<sub>B</sub>, from 0 to 1). 
+    <b>Colour scale:</b> limiting decision threshold s* (from 0 to 1). 
+    Contour lines show 1% differences.
   </em>
 </p>
 
